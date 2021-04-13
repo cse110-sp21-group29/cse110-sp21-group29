@@ -2,7 +2,9 @@
 # Spring 2021
 # Creation 04/12/2021
 
-1) **Group Identification**: 29
+**Group Identification**: 29
+
+
 **Lab section** # – TA: Paarth Neekhara
 
 
@@ -13,8 +15,9 @@
 
 
 **Team member info**:
-NAME:                   EMAIL:                  PHONE:                  OTHER:
-Julius Tran             j6tran@ucsd.edu         858-761-2652
+
+|        NAME         |       EMAIL          |      PHONE    |
+| Julius Tran         | j6tran@ucsd.edu      | 858-761-2652  |
 
 Dario Aburto-Rodriguez  daaburto@ucsd.edu       323-378-2948
 

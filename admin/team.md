@@ -1,13 +1,28 @@
 # 0.1x Engineers, an introduction and overview 
 ## Index
-- [Index](#index)
-- [Who are we?](#who-are-we)
-	- [Introduction Video](#introduction-video)
-    	- [Our brand](#our-brand)
-   		- [Meet the team](#meet-the-team)
-- [0.1x Culture](#culture)
-  - [Memes](#memes)
-  - [Team bonding events](#team-bonding-events)
+- [0.1x Engineers, an introduction and overview](#01x-engineers-an-introduction-and-overview)
+	- [Index](#index)
+	- [Who are we?](#who-are-we)
+		- [Introduction Video](#introduction-video)
+		- [Our brand](#our-brand)
+			- [Logo](#logo)
+			- [Team Color](#team-color)
+			- [Mascot](#mascot)
+			- [Theme song](#theme-song)
+			- [Powerpoint Theme](#powerpoint-theme)
+		- [Meet the team](#meet-the-team)
+			- [Julius Tran](#julius-tran)
+			- [Ethan Lew](#ethan-lew)
+			- [Dario Aburto-Rodriguez](#dario-aburto-rodriguez)
+			- [Dadian Zhu](#dadian-zhu)
+			- [Lucy Hu](#lucy-hu)
+			- [Anahita Afshari](#anahita-afshari)
+			- [Hien To](#hien-to)
+			- [Kevin Dyblue](#kevin-dyblue)
+		- [Summary](#summary)
+	- [Culture](#culture)
+		- [Memes](#memes)
+		- [Team bonding events](#team-bonding-events)
 
 
 ## Who are we?
@@ -35,7 +50,7 @@
 ### Summary
 | NAME                   | EMAIL             | PHONE        | Personal Github                        |
 |------------------------|-------------------|--------------|----------------------------------------|
-| Julius Tran            | j6tran@ucsd.edu   | 858-761-2652 |                                        |
+| Julius Tran            | j6tran@ucsd.edu   | 858-761-2652 | https://jtran2000.github.io/Lab2/                                       |
 | Dario Aburto-Rodriguez | daaburto@ucsd.edu | 323-378-2948 |                                        |
 | Dadian Zhu             | dazhu@ucsd.edu    | 650-727-4678 | https://derekzi.github.io/Lab1/        |
 | Lucy Hu                | luhu@ucsd.edu     | 626-420-3377 |                                        |

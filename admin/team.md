@@ -60,10 +60,8 @@ I am a third year computer science student in Muir College. I enjoy cooking and 
 ### Summary
 | NAME                   | EMAIL             | PHONE        | Personal Github                        |
 |------------------------|-------------------|--------------|----------------------------------------|
-| Julius Tran            | j6tran@ucsd.edu   | 858-761-2652 |                                        |
-| Dario Aburto-Rodriguez | daaburto@ucsd.edu | 323-378-2948 | https://darioaburto.github.io/CSE110_Lab1/                                       |
-| Julius Tran            | j6tran@ucsd.edu   | 858-761-2652 | https://jtran2000.github.io/Lab2/                                       |
-| Dario Aburto-Rodriguez | daaburto@ucsd.edu | 323-378-2948 |                                        |
+| Julius Tran            | j6tran@ucsd.edu   | 858-761-2652 | https://jtran2000.github.io/CSE110Lab1 |                                        
+| Dario Aburto-Rodriguez | daaburto@ucsd.edu | 323-378-2948 | https://darioaburto.github.io/CSE110_Lab1/ |
 | Dadian Zhu             | dazhu@ucsd.edu    | 650-727-4678 | https://derekzi.github.io/Lab1/        |
 | Lucy Hu                | luhu@ucsd.edu     | 626-420-3377 |                                        |
 | Anahita Afshari        | aafshari@ucsd.edu | 650-862-9980 |                                        |

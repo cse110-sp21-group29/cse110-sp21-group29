@@ -55,6 +55,8 @@ I am a third year in Muir College studying computer engineering! Some fun facts 
 I am a third year computer science student in Muir College. I enjoy cooking and watching movies when I am free. I also play badminton and basketball when I have time. 
 
 #### Lucy Hu
+I am a third year computer engineering student in Marshall College. I love watching Kdramas and enjoy cooking, baking, and painting. I also love going swimming and running too! 
+
 #### Anahita Afshari
 I'm a senior computer engineering student in Marshall College. I enjoy listening to true crime podcasts, watching stand-up comedy specials on Netflix, and discussing literature with my mom.
 
@@ -67,7 +69,7 @@ I'm a senior computer engineering student in Marshall College. I enjoy listening
 | Julius Tran            | j6tran@ucsd.edu   | 858-761-2652 | https://jtran2000.github.io/CSE110Lab1 |                                        
 | Dario Aburto-Rodriguez | daaburto@ucsd.edu | 323-378-2948 | https://darioaburto.github.io/CSE110_Lab1/ |
 | Dadian Zhu             | dazhu@ucsd.edu    | 650-727-4678 | https://derekzi.github.io/Lab1/        |
-| Lucy Hu                | luhu@ucsd.edu     | 626-420-3377 |                                        |
+| Lucy Hu                | luhu@ucsd.edu     | 626-420-3377 | https://luhu1.github.io/CSE-110-Lucy-Hu/ |
 | Anahita Afshari        | aafshari@ucsd.edu | 650-862-9980 | https://anahitaafsh.github.io/CSE110Lab1/                                       |
 | Hien To                | hto@ucsd.edu      | 858-952-3794 | https://hto2206.github.io/CSE110Lab1/  |
 | Ethan Lew              | elew@ucsd.edu     | 847-777-9758 | https://elew27.github.io/UserPage/     |

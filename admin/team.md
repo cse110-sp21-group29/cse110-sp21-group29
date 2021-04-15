@@ -18,7 +18,7 @@
 			- [Lucy Hu](#lucy-hu)
 			- [Anahita Afshari](#anahita-afshari)
 			- [Hien To](#hien-to)
-			- [Kevin Dyblue](#kevin-dyblue)
+			- [Kevin Dyblie](#kevin-dyblie)
 		- [Summary](#summary)
 	- [Culture](#culture)
 		- [Memes](#memes)
@@ -46,6 +46,7 @@ Our team color is \#54a6ffff, the shade of blue that can be seen in the above lo
 I'm a co-leader of the team and and a third-year Math-CS major at ERC.
 
 #### Ethan Lew
+I am a third year computer science major in Warren College. I am one of the two team leads and some of my hobbies include soccer, photography, and weird engineering projects.
 #### Dario Aburto-Rodriguez
 I am a third year in Muir College studying computer engineering! Some fun facts about myself are I enjoy going for runs in the morning, trying new foods, and watching anime! I want to go into cyber security or video game design after I graduate. 
 
@@ -53,7 +54,7 @@ I am a third year in Muir College studying computer engineering! Some fun facts 
 #### Lucy Hu
 #### Anahita Afshari
 #### Hien To
-#### Kevin Dyblue
+#### Kevin Dyblie
 
 ### Summary
 | NAME                   | EMAIL             | PHONE        | Personal Github                        |
@@ -66,7 +67,7 @@ I am a third year in Muir College studying computer engineering! Some fun facts 
 | Lucy Hu                | luhu@ucsd.edu     | 626-420-3377 |                                        |
 | Anahita Afshari        | aafshari@ucsd.edu | 650-862-9980 |                                        |
 | Hien To                | hto@ucsd.edu      | 858-952-3794 | https://hto2206.github.io/CSE110Lab1/  |
-| Ethan Lew              | elew@ucsd.edu     | 847-777-9758 |                                        |
+| Ethan Lew              | elew@ucsd.edu     | 847-777-9758 | https://elew27.github.io/UserPage/     |
 | Kevin Dyblie           | kdyblie@ucsd.edu  | 442-333-8294 |                                        |
 
 

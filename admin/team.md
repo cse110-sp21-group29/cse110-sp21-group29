@@ -31,7 +31,11 @@
 ### Our brand
 
 #### Logo
+<img src="logo.png" width="256"/>
+
 #### Team Color
+Our team color is \#54a6ffff, the shade of blue that can be seen in the above logo.
+
 #### Mascot
 #### Theme song
 #### Powerpoint Theme
@@ -39,6 +43,8 @@
 ### Meet the team
 
 #### Julius Tran
+I'm a co-leader of the team and and a third-year Math-CS major at ERC.
+
 #### Ethan Lew
 #### Dario Aburto-Rodriguez
 I am a third year in Muir College studying computer engineering! Some fun facts about myself are I enjoy going for runs in the morning, trying new foods, and watching anime! I want to go into cyber security or video game design after I graduate. 
@@ -54,6 +60,8 @@ I am a third year in Muir College studying computer engineering! Some fun facts 
 |------------------------|-------------------|--------------|----------------------------------------|
 | Julius Tran            | j6tran@ucsd.edu   | 858-761-2652 |                                        |
 | Dario Aburto-Rodriguez | daaburto@ucsd.edu | 323-378-2948 | https://darioaburto.github.io/CSE110_Lab1/                                       |
+| Julius Tran            | j6tran@ucsd.edu   | 858-761-2652 | https://jtran2000.github.io/Lab2/                                       |
+| Dario Aburto-Rodriguez | daaburto@ucsd.edu | 323-378-2948 |                                        |
 | Dadian Zhu             | dazhu@ucsd.edu    | 650-727-4678 | https://derekzi.github.io/Lab1/        |
 | Lucy Hu                | luhu@ucsd.edu     | 626-420-3377 |                                        |
 | Anahita Afshari        | aafshari@ucsd.edu | 650-862-9980 |                                        |

@@ -51,6 +51,7 @@ I am a third year computer science major in Warren College. I am one of the two 
 I am a third year in Muir College studying computer engineering! Some fun facts about myself are I enjoy going for runs in the morning, trying new foods, and watching anime! I want to go into cyber security or video game design after I graduate. 
 
 #### Dadian Zhu
+I am a third year computer science student in Muir College. I enjoy cooking and watching movies when I am free. I also play badminton and basketball when I have time. 
 #### Lucy Hu
 #### Anahita Afshari
 #### Hien To

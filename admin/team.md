@@ -31,7 +31,11 @@
 ### Our brand
 
 #### Logo
+<img src="logo.png" width="256"/>
+
 #### Team Color
+Our team color is \#54a6ffff, the shade of blue that can be seen in the above logo.
+
 #### Mascot
 #### Theme song
 #### Powerpoint Theme
@@ -39,6 +43,8 @@
 ### Meet the team
 
 #### Julius Tran
+I'm a co-leader of the team and and a third-year Math-CS major at ERC.
+
 #### Ethan Lew
 #### Dario Aburto-Rodriguez
 #### Dadian Zhu

@@ -42,6 +42,7 @@
 #### Ethan Lew
 #### Dario Aburto-Rodriguez
 I am a third year in Muir College studying computer engineering! Some fun facts about myself are I enjoy going for runs in the morning, trying new foods, and watching anime! I want to go into cyber security or video game design after I graduate. 
+
 #### Dadian Zhu
 #### Lucy Hu
 #### Anahita Afshari

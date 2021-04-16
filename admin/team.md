@@ -41,6 +41,7 @@ Our team color is \#54a6ffff, the shade of blue that can be seen in the above lo
 Blue Lady Bug
 #### Theme song
 I'm blue by Eiffel 65
+
 [![](http://img.youtube.com/vi/BinWA0EenDY/0.jpg)](http://www.youtube.com/watch?v=BinWA0EenDY "")
 
 #### Powerpoint Theme
@@ -99,6 +100,7 @@ I am a third year Mathematics - Computer Science major at Thurgood Marshall Coll
 <img src="pictures/meme1.png" width="256"/>
 <img src="pictures/meme2.png" width="256"/>
 <img src="pictures/meme3.png" width="256"/>
+
 ### Team bonding events
 - skribbl.io
 - Among Us

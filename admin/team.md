@@ -29,6 +29,11 @@
 ## Who are we?
 ### Introduction Video
 
+<video controls="controls">
+  <source type="video/mp4" src="Intro.mp4"></source>
+  <p>Your browser does not support the video element.</p>
+</video>
+
 ### Our brand
 
 #### Logo

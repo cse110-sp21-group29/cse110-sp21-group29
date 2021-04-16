@@ -27,4 +27,4 @@ Meeting Details:
 - Came up with a team mascot, theme song, and powerpoint theme.
 - Posted pictures of memes
 
-Meeting ended at 4 PM PST
+Meeting ended at 7 PM PST

@@ -39,6 +39,9 @@ Our team color is \#54a6ffff, the shade of blue that can be seen in the above lo
 
 #### Mascot
 Blue Lady Bug
+
+<img src="pictures/blue.png" width="256"/>
+
 #### Theme song
 I'm blue by Eiffel 65
 

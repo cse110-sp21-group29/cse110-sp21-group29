@@ -10,6 +10,7 @@
 			- [Mascot](#mascot)
 			- [Theme song](#theme-song)
 			- [Powerpoint Theme](#powerpoint-theme)
+			- [Our Values](#our-values)
 		- [Meet the team](#meet-the-team)
 			- [Julius Tran](#julius-tran)
 			- [Ethan Lew](#ethan-lew)
@@ -31,14 +32,28 @@
 ### Our brand
 
 #### Logo
-<img src="logo.png" width="256"/>
+<img src="pictures/logo.png" width="256"/>
 
 #### Team Color
 Our team color is \#54a6ffff, the shade of blue that can be seen in the above logo.
 
 #### Mascot
+Blue Lady Bug
 #### Theme song
+I'm blue by Eiffel 65
+[![](http://img.youtube.com/vi/BinWA0EenDY/0.jpg)](http://www.youtube.com/watch?v=BinWA0EenDY "")
+
 #### Powerpoint Theme
+Blue Connections
+https://www.slidescarnival.com/cordelia-free-presentation-template/216#preview
+
+#### Our Values
+- Trust
+- Responsibility
+- Respect
+- Consistency
+- Commitment
+- Reliability
 
 ### Meet the team
 
@@ -64,6 +79,7 @@ I'm a senior computer engineering student in Marshall College. I enjoy listening
 I'm a sophomore Math-CS major at Revelle College. In my free time, I browse memes and watch TV series, anime, read comics, or play games. My guilt hobby is rickrolling people. I love designing algorithms and study about cryptography, and especially in the field of neural cryptography and computer vision.  
 
 #### Kevin Dyblie
+I am a third year Mathematics - Computer Science major at Thurgood Marshall College. I enjoy watching crime drama (like Breaking Bad, Narcos, etc. ), gaming, and going to the beach on my free time.
 
 ### Summary
 | NAME                   | EMAIL             | PHONE        | Personal Github                            |
@@ -75,10 +91,14 @@ I'm a sophomore Math-CS major at Revelle College. In my free time, I browse meme
 | Anahita Afshari        | aafshari@ucsd.edu | 650-862-9980 | https://anahitaafsh.github.io/CSE110Lab1/  |
 | Hien To                | hto@ucsd.edu      | 858-952-3794 | https://hto2206.github.io/CSE110Lab1/      |
 | Ethan Lew              | elew@ucsd.edu     | 847-777-9758 | https://elew27.github.io/UserPage/         |
-| Kevin Dyblie           | kdyblie@ucsd.edu  | 442-333-8294 |                                            |
+| Kevin Dyblie           | kdyblie@ucsd.edu  | 442-333-8294 | https://kdyblie.github.io/CSE110-Lab-1/    |
 
 
 ## Culture
 ### Memes
+<img src="pictures/meme1.png" width="256"/>
+<img src="pictures/meme2.png" width="256"/>
+<img src="pictures/meme3.png" width="256"/>
 ### Team bonding events
-
+- skribbl.io
+- Among Us

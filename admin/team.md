@@ -29,10 +29,7 @@
 ## Who are we?
 ### Introduction Video
 
-<video controls="controls">
-  <source type="video/mp4" src="videos/IntroCompressed.mp4"></source>
-  <p>Your browser does not support the video element.</p>
-</video>
+[![](http://img.youtube.com/vi/RdVeaMqTS8I/0.jpg)](http://www.youtube.com/watch?v=RdVeaMqTS8I "")
 
 ### Our brand
 

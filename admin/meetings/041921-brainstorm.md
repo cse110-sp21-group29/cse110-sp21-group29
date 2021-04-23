@@ -35,3 +35,5 @@ Meeting Details
 Next Meeting
 - Continue brainstorming
 - Send out a SMS as a reminder to all members
+  
+Meeting ended at 4 PM PST

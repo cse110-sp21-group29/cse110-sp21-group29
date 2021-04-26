@@ -6,6 +6,7 @@ Team Name: 0.1x Engineers
 
 Date: 2:30 PM on 4/26/2021 on Zoom
 
+
 Note Taker: Julius Tran
 
 Members Present:
@@ -30,3 +31,5 @@ Meeting Details:
 
 Next Meeting
 - Start working on pitch
+
+Meeting ended at 3:15 PM

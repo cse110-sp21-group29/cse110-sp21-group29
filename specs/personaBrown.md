@@ -6,6 +6,7 @@
 <img src = "SarahB.jpg" width="200">
 **Image Credit:**
 From Unsplash
+
 ## Quote:
 
 > Always down to try new things!

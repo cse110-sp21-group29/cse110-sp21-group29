@@ -1,7 +1,7 @@
 
 ## Role: College Student
 
-## Name: Jackson Bernal
+## Name: Amber Jackson
 
 ## Image: 
 [<img src="amber-jackson.jpg" width="200">](amber-jackson.jpg)

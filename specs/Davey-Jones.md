@@ -1,6 +1,6 @@
 ## Name: Davey Jones 
 
-<img src = "DavidJ.jpg" width="200">
+<img src = "DaveyJ.jpg" width="200">
 
 ## Bio
 **Age:** 21<br>

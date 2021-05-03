@@ -43,4 +43,5 @@ I really don't have much time as it is and I need some organization as soon as p
 ## About
 I am a junior at USC, majoring in economics. Luckily, I haven't found school exceptionally difficult and have been able to do pretty well. However, I am very active in the photography club and surf club at my school. I also play soccer here and was just recently elected as vice president of my sorority. This mix of extracurriculars has caused conflicts, where I have overbooked a time and had to miss a meeting. I need a better way to organize my schedule so that those that I make less of these mistakes.
 
-
+## Technology Literacy
+My tech knowledge is limited, I have never coded in my life and have zero experience with any language. I use Apple products as thats what all my friends had. I tech knowledge is limited to browsing apps like instagram, tiktok, etc. and I am an avid online shopper.

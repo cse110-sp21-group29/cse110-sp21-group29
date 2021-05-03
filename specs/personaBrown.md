@@ -4,6 +4,7 @@
 
 ## Image: 
 <img src = "SarahB.jpg" width="200">
+
 **Image Credit:**
 From Unsplash
 

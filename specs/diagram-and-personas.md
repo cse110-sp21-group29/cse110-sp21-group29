@@ -196,6 +196,7 @@ I am an undergraduate student majoring in Business. I currently have two jobs: a
 ## Technology Literacy
 Although I'm a business major, I know my way around a computer. I've always been that IT guy in my family.
 
+<div style="page-break-after: always;"></div>
 
 ## Role: Graduate Student
 

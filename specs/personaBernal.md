@@ -43,4 +43,6 @@ I am really struggling with the situation I am in. Hope that I can have some app
 ## About
 I am a college freshman in UCSD. I am kind of struggling with the fast-paced university life. The pandemic makes my university life even worse. I am a person who is easy to be distracted. Staying at home and taking courses, I am always tempted by the colorful world cell phones provide and I am always attracted by the interesting world games provide. I can play cell phone and games all day and totally forget about school work. Because of that and also because I am a dilatory person, I always leave tons of homework untill the day it is due and sometimes I even forget about homework. I am struggling with the situation I am in. I hope there is some apps can help me get out of the mire I am in.  
 
+## Technology Literacy
 
+I have been gaming from a young age and am familiar with downloading mods like for games like minecraft. I am familiar with both Apple and Window products and have no problem switching between the two, however, I typically use Window products. I am adept at downloading apps and can easily identitfy things that are scams online as I have grown up in a tech world!

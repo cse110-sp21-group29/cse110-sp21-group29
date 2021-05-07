@@ -6,7 +6,6 @@ Team Name: 0.1x Engineers
 
 Date: 2:30 PM on 4/26/2021 on Zoom
 
-
 Note Taker: Julius Tran
 
 Members Present:

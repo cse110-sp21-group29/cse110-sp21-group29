@@ -29,6 +29,8 @@ jobs:
         with:
           linter: semistandard
           annotate: true
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       #Testing
       - name: Run tests
         run: npm test

@@ -12,14 +12,10 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  test:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Setting up workflow
+      # Setting up git and npm
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
       - run: npm install
@@ -34,7 +30,14 @@ jobs:
       #Testing
       - name: Run tests
         run: npm test
-        
+  docs:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Setting up workflow
+      - uses: actions/checkout@v2       
       #Generate documentation
       - name: Generate documentation
         uses: andstor/jsdoc-action@v1.2.0
@@ -44,13 +47,13 @@ jobs:
           template: docdash
           front_page: ./docs/frontend/README.md
           recurse: true
-      - name: commit docs
+      - name: Commit documentation
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add ./docs/frontend
           git commit -m "Front end documentation automatically updated" 
-      - name: Push docs to this repository
+      - name: Push documentation to this repository
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

@@ -37,5 +37,6 @@ jobs:
       - name: writedoc
         uses: andstor/jsdoc-action@v1.2.0
         with:
+          source_dir: ./source
           recurse: true
           front_page: ./docs/frontend/docs.md

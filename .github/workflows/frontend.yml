@@ -4,7 +4,7 @@ name: CI
 
 # Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
+  # Triggers the workflow on push or pull request events
   push:
     branches: [ frontend ]
   pull_request:
@@ -41,4 +41,3 @@ jobs:
           recurse: true
           output_dir: ./docs/frontend
           front_page: ./docs/frontend/docs.md
-

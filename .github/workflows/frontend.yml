@@ -32,4 +32,12 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run tests
         run: yarn test
+        
+      #Generate documentation
+      - name: writedoc
+        uses: andstor/jsdoc-action@v1.2.0
+        with:
+          source_dir: ./source/frontend
+          recurse: true
+          output_dir: ./docs/frontend
 

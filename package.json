@@ -18,6 +18,7 @@
   "homepage": "https://github.com/cse110-sp21-group29/cse110-sp21-group29#readme",
   "devDependencies": {
     "jest": "^26.6.3",
-    "jsdoc": "^3.6.6"
+    "jsdoc": "^3.6.6",
+    "semistandard": "^16.0.0"
   }
 }

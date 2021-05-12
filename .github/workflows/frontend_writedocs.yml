@@ -1,0 +1,57 @@
+# This workflow generates documentation for the front end
+name: CI Front end documentation
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events
+  push:
+    branches: [main ]
+    paths: 
+      - 'source/frontend/**'
+      - 'docs/frontend/**'
+      - '.github/**'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  docs:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Set up job
+      - uses: actions/checkout@v2       
+      #Generate documentation
+      - name: Generate documentation
+        uses: andstor/jsdoc-action@v1.2.0
+        with:
+          source_dir: ./source/frontend
+          output_dir: ./docs/frontend
+          template: docdash
+          front_page: ./docs/frontend/README.md
+          recurse: true
+      - name: Commit documentation
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add ./docs/frontend
+          git commit -m "Front end documentation automatically updated" 
+      - name: Push documentation to this repository
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+      - name: Pushes ./docs/frontend to docs repository
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source_file: './docs/frontend'
+          destination_repo: 'cse110-sp21-group29/docs'
+          user_email: 'jtran2000@outlook.com'
+          user_name: 'jtran2000'
+          commit_message: 'Front end documentation automatically updated'
+

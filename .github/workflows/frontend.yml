@@ -35,9 +35,6 @@ jobs:
         
       #Generate documentation
       - name: writedoc
-        uses: andstor/jsdoc-action@v1.2.0
+        uses: brunokrauss/jsdoc-action@1
         with:
-          source_dir: ./source
-          output_dir: ./docs/frontend
-          recurse: true
-          front_page: ./docs/frontend/docs.md
+          jsdoc-path: './source/frontend'

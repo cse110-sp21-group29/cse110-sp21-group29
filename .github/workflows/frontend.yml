@@ -40,4 +40,5 @@ jobs:
           source_dir: ./source/frontend
           recurse: true
           output_dir: ./docs/frontend
+          front_page: docs.md
 

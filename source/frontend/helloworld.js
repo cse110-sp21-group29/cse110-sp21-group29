@@ -5,6 +5,7 @@
 function sum (a, b) {
   console.log('Hello World');
   return a + b;
+  blabla;
 }
 module.exports = sum;
 // This is a comment

@@ -6,8 +6,6 @@ on:
   # Triggers the workflow on push or pull request events
   push:
     branches: [frontend ]
-  pull_request:
-    branches: [frontend ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -38,8 +36,8 @@ jobs:
         with:
           source_dir: ./source/frontend
           output_dir: ./docs/frontend
-          template: minami
-          front_page: /docs/frontend/README.md
+          template: docdash
+          front_page: ./docs/frontend/README.md
           recurse: true
       - name: commit
         run: |

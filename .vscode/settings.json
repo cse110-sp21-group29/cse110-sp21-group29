@@ -3,4 +3,10 @@
     "files.autoSave": "off",
     "standard.engine": "semistandard",
     "standard.autoFixOnSave": true,
+    "standard.options": {
+        "ignore": [
+            "node_modules/**",
+            "tests/**"
+        ]
+    }
 }

@@ -39,7 +39,7 @@ jobs:
           source_dir: ./source/frontend
           output_dir: ./docs/frontend
           template: minami
-          front_page: /docs/frontend/README.md
+          front_page: ./docs/frontend/README.md
           recurse: true
       - name: commit
         run: |

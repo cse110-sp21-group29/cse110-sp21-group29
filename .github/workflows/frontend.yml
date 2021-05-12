@@ -25,8 +25,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Install modules
-        run: npm install
+
 
       # Runs a single command using the runners shell
       - name: Install modules 2
@@ -36,6 +35,9 @@ jobs:
       - name: Run tests
         run: yarn test
         
+      - name: Install JSDoc
+        run: npm install -g jsdoc
+
       #Generate documentation
       - name: writedoc
         run: jsdoc source/frontend/helloworld.js

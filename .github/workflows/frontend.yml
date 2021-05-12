@@ -55,7 +55,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source_file: './docs/*'
+          source_file: './docs'
           destination_repo: 'cse110-sp21-group29/docs'
           user_email: 'jtran2000@outlook.com'
           user_name: 'jtran2000'

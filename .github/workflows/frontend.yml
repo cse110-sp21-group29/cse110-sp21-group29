@@ -36,7 +36,7 @@ jobs:
         run: yarn test
         
       - name: Install JSDoc
-        run: npm install -g jsdoc
+        run: sudo npm install -g jsdoc
 
       #Generate documentation
       - name: writedoc

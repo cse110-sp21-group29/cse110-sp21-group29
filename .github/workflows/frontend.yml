@@ -38,7 +38,7 @@ jobs:
         with:
           source_dir: ./source/frontend
           output_dir: ./docs/frontend
-          template: minami
+          template: docdash
           front_page: ./docs/frontend/README.md
           recurse: true
       - name: commit

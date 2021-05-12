@@ -1,5 +1,5 @@
-# This is the frontend workflow
-name: CI
+# This workflow generates documentation for the front end
+name: CI Documentation
 
 # Controls when the action will run. 
 on:
@@ -12,31 +12,13 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      # Setting up git and npm
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - run: npm install
-      #Linting
-      - name: Lint with semistandard
-        uses: goto-bus-stop/standard-action@v1
-        with:
-          linter: semistandard
-          annotate: true
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      #Testing
-      - name: Run tests
-        run: npm test
   docs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Setting up workflow
+      # Set up job
       - uses: actions/checkout@v2       
       #Generate documentation
       - name: Generate documentation

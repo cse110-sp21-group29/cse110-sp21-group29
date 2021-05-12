@@ -1,0 +1,34 @@
+# This workflow tests front end code
+name: CI Tests
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events
+  push:
+    branches: [main, frontend ]
+  pull_request:
+    branches: [main, frontend ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # Setting up git and npm
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - run: npm install
+      #Linting
+      - name: Lint with semistandard
+        uses: goto-bus-stop/standard-action@v1
+        with:
+          linter: semistandard
+          annotate: true
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      #Testing
+      - name: Run tests with Jest
+        run: npm test

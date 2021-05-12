@@ -4,11 +4,11 @@ name: CI
 
 # Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
+  # Triggers the workflow on push or pull request events
   push:
-    branches: [ frontend ]
+    branches: [main, frontend ]
   pull_request:
-    branches: [ frontend ]
+    branches: [main, frontend ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -34,11 +34,24 @@ jobs:
         run: yarn test
         
       #Generate documentation
+      - name: cleandocs
+        run:  sudo rm -r /docs/frontend*
       - name: writedoc
         uses: andstor/jsdoc-action@v1.2.0
         with:
           source_dir: ./source/frontend
-          recurse: true
           output_dir: ./docs/frontend
-          front_page: .docs/frontend/docs.md
+          recurse: true
+          front_page: ./docs/frontend/docs.md
+      - name: commit
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add ./docs/frontend
+          git commit -m "Write docs" 
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
 

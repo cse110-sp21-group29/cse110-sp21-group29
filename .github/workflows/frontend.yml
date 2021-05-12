@@ -35,7 +35,7 @@ jobs:
         
       #Generate documentation
       - name: cleandocs
-        run:  sudo rm -r ./docs/frontend*
+        run:  sudo rm -r ./docs/frontend/*
       - name: writedoc
         uses: andstor/jsdoc-action@v1.2.0
         with:

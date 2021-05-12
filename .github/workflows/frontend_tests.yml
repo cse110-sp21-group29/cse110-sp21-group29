@@ -31,4 +31,4 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       #Testing
       - name: Run tests with Jest
-        run: npm test
+        run: npm run frontend_test

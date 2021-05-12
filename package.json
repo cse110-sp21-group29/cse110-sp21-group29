@@ -4,7 +4,7 @@
   "description": "This is our team's Bullet Journal project",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "frontend_test": "jest ./tests/frontend"
   },
   "repository": {
     "type": "git",

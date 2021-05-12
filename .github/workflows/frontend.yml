@@ -31,7 +31,7 @@ jobs:
           annotate: true
       #Testing
       - name: Run tests
-      - run: npm test
+        run: npm test
         
       #Generate documentation
       - name: Generate documentation

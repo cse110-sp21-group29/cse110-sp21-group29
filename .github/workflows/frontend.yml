@@ -25,19 +25,27 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-
-
       # Runs a single command using the runners shell
-      - name: Install modules 2
+      - name: Install modules
         run: yarn
 
       # Runs a set of commands using the runners shell
       - name: Run tests
         run: yarn test
         
-      - name: Install JSDoc
-        run: sudo npm install -g jsdoc
-
       #Generate documentation
       - name: writedoc
-        run: jsdoc source/frontend/helloworld.js
+        uses: andstor/jsdoc-action@v1.2.0
+        with:
+          source_dir: ./source/frontend
+          output_dir: ./docs/frontend
+          recurse: true
+          front_page: ./docs/frontend/docs.md
+      - name: commit
+        run: git commit -m "Write docs" -a
+      - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
+

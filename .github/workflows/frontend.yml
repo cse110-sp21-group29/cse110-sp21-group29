@@ -35,6 +35,4 @@ jobs:
         
       #Generate documentation
       - name: writedoc
-        uses: brunokrauss/jsdoc-action@1
-        with:
-          jsdoc-path: './source/frontend'
+        run: jsdoc source/frontend/helloworld.js

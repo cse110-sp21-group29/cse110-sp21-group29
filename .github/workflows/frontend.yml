@@ -34,15 +34,12 @@ jobs:
         run: yarn test
         
       #Generate documentation
-      - name: cleandocs
-        run:  sudo rm -r /docs/frontend*
       - name: writedoc
         uses: andstor/jsdoc-action@v1.2.0
         with:
           source_dir: ./source/frontend
           output_dir: ./docs/frontend
           recurse: true
-          front_page: ./docs/frontend/docs.md
       - name: commit
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"

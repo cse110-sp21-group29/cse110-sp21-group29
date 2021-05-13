@@ -13,7 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
         newDay.classList.add('card');
         const date = new Date(day.date);
         const dateTitle = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
-        newDay.innerHTML = '<div class="card-body"><h2 class="card-title text-center"><time datetime="' + day.date + '">' + dateTitle + '</time></h2></div>';
+        newDay.innerHTML = '<div class="card-body"><h2 class="card-title text-center"><time datetime="' +
+        day.date + '">' + dateTitle + '</time></h2></div>';
+        const entries = document.createElement('log-entries');
+        entries.content = day.entries;
+        newDay.querySelector('.card-body').appendChild(entries);
         main.appendChild(newDay);
       });
     })

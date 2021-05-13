@@ -9,9 +9,14 @@
             "subentries": [
                 {                
                     "type": "note",
-                    "text": "Hello World"
+                    "text": "This is a subentry"
                 }
             ]
+          },
+          {
+            "type": "note",
+            "text": "Another note",
+            "subentries": []
           }
       ]
     },

@@ -1,4 +1,12 @@
-class Entries extends HTMLElement {
+/**
+ *
+ *
+ * @author Julius Tran <j6tran@ucsd.edu>
+ * @date 2021-05-13
+ * @class LogEntries
+ * @extends {HTMLElement}
+ */
+class LogEntries extends HTMLElement {
   constructor () {
     super();
     this.attachShadow({ mode: 'open' });
@@ -8,7 +16,7 @@ class Entries extends HTMLElement {
           <ul class=""list-group"></ul>
       `;
     this.shadowRoot.appendChild(template.content.cloneNode(true));
-    const list = this.shadowRoot.querySelector('ul');
+
     // this.classList.add('card');
   }
 
@@ -16,8 +24,8 @@ class Entries extends HTMLElement {
  *
  *
  * @author Julius Tran <j6tran@ucsd.edu>
- * @date 2021/05/13
- * @memberof Entries
+ * @date 2021-05-13
+ * @memberof LogEntries
  */
   get content () {
     return this.getAttribute('content');
@@ -27,14 +35,21 @@ class Entries extends HTMLElement {
  *
  *
  * @author Julius Tran <j6tran@ucsd.edu>
- * @date 2021/05/13
- * @memberof Entries
+ * @date 2021-05-13
+ * @memberof LogEntries
  */
   set content (content) {
+    const list = this.shadowRoot.querySelector('ul');
     content.forEach((entry) => {
-
+      if (entry.type === 'note') {
+        const item = document.createElement('li');
+        item.classList.add('list-group-item');
+        item.classList.add('border-0');
+        item.innerText = '– ' + entry.text;
+        list.appendChild(item);
+      }
     });
   }
 }
 
-customElements.define('entries', Entries);
+customElements.define('log-entries', LogEntries);

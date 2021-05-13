@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
         newDay.classList.add('card');
         document.body.appendChild(newDay); */
         const newDay = document.createElement('section');
-        newDay.classList.add('card');
+        newDay.setAttribute('id', day.date);
+        newDay.classList.add('card', 'w-50', 'mx-auto', 'my-3', 'border-3');
         const date = new Date(day.date);
         const dateTitle = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
         newDay.innerHTML = '<div class="card-body"><h2 class="card-title text-center"><time datetime="' +

@@ -30,8 +30,7 @@ class LogEntries extends HTMLElement {
     content.forEach((entry) => {
       if (entry.type === 'note') {
         const item = document.createElement('li');
-        item.classList.add('list-group-item');
-        item.classList.add('border-0');
+        item.classList.add('list-group-item', 'border-0');
         item.innerText = '– ' + entry.text;
         list.appendChild(item);
       }

@@ -12,11 +12,24 @@ class Entries extends HTMLElement {
     // this.classList.add('card');
   }
 
+  /**
+ *
+ *
+ * @author Julius Tran <j6tran@ucsd.edu>
+ * @date 2021/05/13
+ * @memberof Entries
+ */
   get content () {
     return this.getAttribute('content');
   }
 
-  
+  /**
+ *
+ *
+ * @author Julius Tran <j6tran@ucsd.edu>
+ * @date 2021/05/13
+ * @memberof Entries
+ */
   set content (content) {
     content.forEach((entry) => {
 

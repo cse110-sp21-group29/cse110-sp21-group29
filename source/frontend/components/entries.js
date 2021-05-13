@@ -1,6 +1,7 @@
 /**
  *
- *
+ * This is a re-usable custom web component that displays notes, tasks, and events.
+ * Simply set its .content property to the array of entries
  * @author Julius Tran <j6tran@ucsd.edu>
  * @date 2021-05-13
  * @class LogEntries
@@ -20,24 +21,10 @@ class LogEntries extends HTMLElement {
     // this.classList.add('card');
   }
 
-  /**
- *
- *
- * @author Julius Tran <j6tran@ucsd.edu>
- * @date 2021-05-13
- * @memberof LogEntries
- */
   get content () {
     return this.getAttribute('content');
   }
 
-  /**
- *
- *
- * @author Julius Tran <j6tran@ucsd.edu>
- * @date 2021-05-13
- * @memberof LogEntries
- */
   set content (content) {
     const list = this.shadowRoot.querySelector('ul');
     content.forEach((entry) => {

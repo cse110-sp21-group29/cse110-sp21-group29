@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Home - Documentation</title>
+    <title>components/entries.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -32,39 +32,59 @@
 
 <div id="main">
     
+    <h1 class="page-title">components/entries.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>class Entries extends HTMLElement {
+  constructor () {
+    super();
+    this.attachShadow({ mode: 'open' });
+    const template = document.createElement('template');
+    template.innerHTML = `
+          &lt;link rel="stylesheet" href="../styles/bootstrap.css">
+          &lt;ul class=""list-group">&lt;/ul>
+      `;
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
+    const list = this.shadowRoot.querySelector('ul');
+    // this.classList.add('card');
+  }
 
+  /**
+ *
+ *
+ * @author Julius Tran &lt;j6tran@ucsd.edu>
+ * @date 2021/05/13
+ * @memberof Entries
+ */
+  get content () {
+    return this.getAttribute('content');
+  }
 
-    <section class="package">
-        <h3> </h3>		
+  /**
+ *
+ *
+ * @author Julius Tran &lt;j6tran@ucsd.edu>
+ * @date 2021/05/13
+ * @memberof Entries
+ */
+  set content (content) {
+    content.forEach((entry) => {
+
+    });
+  }
+}
+
+customElements.define('entries', Entries);
+</code></pre>
+        </article>
     </section>
-
-
-
-
-
-
-
-
-
-    
-
-
-
-    <section class="readme usertext">
-        <article><h2>Front End Documentation</h2>
-<p>This documentation is generated using JSDocs from <code>.js</code> files in <code>source/frontend</code> directory of the <a href="https://github.com/cse110-sp21-group29/cse110-sp21-group29">main project repository</a> using the workflow at <code>.github/workflows/frontend.yml</code> and stored in <code>docs/frontend</code> of the main repo.</p>
-<p>The workflow runs every time a chage is pushed onto the <code>frontend</code> branch of the main repo.</p>
-<p>It is hosted in Github Pages using <a href="https://github.com/cse110-sp21-group29/docs">this public repo</a>.</p>
-<p>The workflow handles transferring the front end documentation at <code>docs/frontend</code> of the main repo to the public repo, but note that it might take a few minutes for changes to update, and a hard reload might be required.</p></article>
-    </section>
-
-
 
 
 

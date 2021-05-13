@@ -1,8 +1,0 @@
-{
-    "javascript.validate.enable": false,
-    "files.autoSave": "off",
-    "standard.engine": "semistandard",
-    "standard.autoFixOnSave": true,
-    "standard.options": {
-    }
-}

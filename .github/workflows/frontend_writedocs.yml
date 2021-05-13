@@ -37,7 +37,7 @@ jobs:
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add ./docs/frontend
+          git add -f ./docs/frontend
           git commit -m "Front end documentation automatically updated" 
       - name: Push documentation to this repository
         uses: ad-m/github-push-action@master

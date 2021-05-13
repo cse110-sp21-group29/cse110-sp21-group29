@@ -1,5 +1,5 @@
 # This workflow generates documentation for the front end
-name: CI Documentation
+name: CI Front end documentation
 
 # Controls when the action will run. 
 on:
@@ -8,6 +8,8 @@ on:
     branches: [main ]
     paths: 
       - 'source/frontend/**'
+      - 'docs/frontend/**'
+      - '.github/**'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -52,4 +54,3 @@ jobs:
           user_email: 'jtran2000@outlook.com'
           user_name: 'jtran2000'
           commit_message: 'Front end documentation automatically updated'
-

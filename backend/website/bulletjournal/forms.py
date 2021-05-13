@@ -1,4 +1,9 @@
 from django import forms
 
-class EmailForm(forms.Form):
-    your_name = forms.CharField(label='Your Email', max_length=100)
+class LoginForm(forms.Form):
+    user_name = forms.CharField(label='Username', max_length=100)
+    pword = forms.CharField(label='Password', max_length=100)
+
+class SignUpForm(forms.Form):
+    user_name = forms.CharField(label='Username', max_length=100)
+    pword = forms.CharField(label='Password', max_length=100)

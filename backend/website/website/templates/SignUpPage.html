@@ -4,23 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Sign Up Page</title>
 </head>
 <body>
     {% block content %}
-    <a href="{% url 'signup' %}">Sign up</a>
+    <a href="{% url 'login' %}">Login</a>
     <form method='POST'>
         {% csrf_token %}
         {% for field in form %}
         <p>
             {{ field.label_tag }}<br>
-            {{ field }}<br>
+            {{ field }}
+            {% if field.help_text %}
+              <small style="color: grey">{{ field.help_text }}</small>
+            {% endif %}
             {% for error in field.errors %}
               <p style="color: red">{{ error }}</p>
             {% endfor %}
-            {% if field.help_text %}
-              <p><small style="color: grey">{{ field.help_text }}</small></p>
-            {% endif %}
           </p>
         {% endfor %}
         <input type="submit" value="Submit">

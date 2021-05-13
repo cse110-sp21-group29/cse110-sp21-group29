@@ -16,6 +16,7 @@ class Entries extends HTMLElement {
     return this.getAttribute('content');
   }
 
+  
   set content (content) {
     content.forEach((entry) => {
 

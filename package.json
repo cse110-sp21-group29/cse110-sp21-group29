@@ -4,7 +4,7 @@
   "description": "This is our team's Bullet Journal project",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "frontend_test": "jest ./tests/frontend"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,16 @@
   },
   "homepage": "https://github.com/cse110-sp21-group29/cse110-sp21-group29#readme",
   "devDependencies": {
-    "jest": "^26.6.3"
+    "jest": "^26.6.3",
+    "jsdoc": "^3.6.6",
+    "semistandard": "^16.0.0"
+  },
+  "semistandard": {
+    "ignore": [
+      "node_modules/**",
+      "tests/**",
+      "docs/**"
+    ],
+    "env": [ "browser"]
   }
 }

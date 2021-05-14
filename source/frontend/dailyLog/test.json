@@ -1,0 +1,42 @@
+[
+    {
+      "date": "2021-05-08",
+      "editable": false,
+      "entries": [
+          {
+            "type": "note",
+            "text": "Hello World",
+            "subentries": [
+                {                
+                    "type": "note",
+                    "text": "This is a subentry"
+                }
+            ]
+          },
+          {
+            "type": "note",
+            "text": "Another note",
+            "subentries": []
+          }
+      ]
+    },
+    {
+      "date": "2021-05-09",
+      "entries": [
+
+      ]
+    },
+    {
+      "date": "2021-05-10",
+      "entries": [
+
+      ]
+    },
+    {
+      "date": "2021-05-11",
+      "entries": [
+
+      ]
+    }
+  ]
+  

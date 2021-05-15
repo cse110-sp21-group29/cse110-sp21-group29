@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="LogEntries.html">LogEntries</a></li></ul><h3>Global</h3><ul><li><a href="global.html#sum">sum</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="LogEntries.html">LogEntries</a><ul class='methods'><li data-type='method'><a href="LogEntries.html#createEvent">createEvent</a></li><li data-type='method'><a href="LogEntries.html#createLi">createLi</a></li><li data-type='method'><a href="LogEntries.html#createList">createList</a></li><li data-type='method'><a href="LogEntries.html#createNote">createNote</a></li><li data-type='method'><a href="LogEntries.html#createTask">createTask</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#sum">sum</a></li></ul>
 </nav>
 
 <div id="main">
@@ -44,7 +44,8 @@
         <article>
             <pre class="prettyprint source linenums"><code>/**
  *
- *
+ * This is a re-usable custom web component that displays notes, tasks, and events.
+ * Simply set its .content property to the array of entries
  * @author Julius Tran &lt;j6tran@ucsd.edu>
  * @date 2021-05-13
  * @class LogEntries
@@ -57,45 +58,114 @@ class LogEntries extends HTMLElement {
     const template = document.createElement('template');
     template.innerHTML = `
           &lt;link rel="stylesheet" href="../styles/bootstrap.css">
-          &lt;ul class=""list-group">&lt;/ul>
       `;
     this.shadowRoot.appendChild(template.content.cloneNode(true));
-
-    // this.classList.add('card');
   }
 
-  /**
- *
- *
- * @author Julius Tran &lt;j6tran@ucsd.edu>
- * @date 2021-05-13
- * @memberof LogEntries
- */
   get content () {
     return this.getAttribute('content');
   }
 
+  set content (content) {
+    this.createList(this.shadowRoot, content);
+  }
+
   /**
- *
- *
+ * Create an &lt;ol> containing the entries.
  * @author Julius Tran &lt;j6tran@ucsd.edu>
- * @date 2021-05-13
+ * @date 2021-05-15
+ * @param {Object} - The element to append the &lt;ol> to
+ * @param {Object[]} entries - The data for the entries
+ * @return {*}
  * @memberof LogEntries
  */
-  set content (content) {
-    const list = this.shadowRoot.querySelector('ul');
-    content.forEach((entry) => {
+  createList (elem, entries) {
+    if (!entries || entries.length === 0) return false;
+    const list = document.createElement('ul');
+    list.classList.add('list-group');
+    elem.appendChild(list);
+    entries.forEach(entry => {
       if (entry.type === 'note') {
-        const item = document.createElement('li');
-        item.classList.add('list-group-item');
-        item.classList.add('border-0');
-        item.innerText = '– ' + entry.text;
-        list.appendChild(item);
+        list.appendChild(this.createNote(entry));
+        return;
+      }
+      if (entry.type === 'event') {
+        list.appendChild(this.createEvent(entry));
+        return;
+      }
+      if (entry.type === 'task') {
+        list.appendChild(this.createTask(entry));
       }
     });
   }
-}
 
+  /**
+   * Create &lt;li> with proper class
+   * @author Julius Tran &lt;j6tran@ucsd.edu>
+   * @date 2021-05-15
+   * @return {*} - The created &lt;li> element
+   * @memberof LogEntries
+   */
+  createLi () {
+    const li = document.createElement('li');
+    li.classList.add('list-group-item', 'border-0', 'py-0');
+    return li;
+  }
+
+  /**
+ * Create a note &lt;li> element
+ * @author Julius Tran &lt;j6tran@ucsd.edu>
+ * @date 2021-05-15
+ * @param {Object} - The note data
+ * @return {*} - The created note
+ * @memberof LogEntries
+ */
+  createNote (note) {
+    const noteElem = this.createLi();
+    noteElem.innerText = '– ' + note.text;
+    this.createList(noteElem, note.subEntries);
+    return noteElem;
+  }
+
+  /**
+   * Create an event &lt;li> element
+   * @author Julius Tran &lt;j6tran@ucsd.edu>
+   * @date 2021-05-15
+   * @param {*} event - The event data
+   * @return {*} - The created event
+   * @memberof LogEntries
+   */
+  createEvent (event) {
+    const eventElem = this.createLi();
+    eventElem.innerText = '○ ' + event.text;
+    if (event.startTime) {
+      eventElem.innerHTML += '&lt;br>&lt;span>&amp;nbsp &amp;nbsp Starts: ' + event.startTime + '&lt;/span>';
+      if (event.endTime) {
+        eventElem.innerHTML += '&lt;span>&amp;nbsp Ends: ' + event.endTime + '&lt;/span>';
+      }
+    }
+    this.createList(eventElem, event.subEntries);
+    return eventElem;
+  }
+
+  /**
+   * Create a task &lt;li>
+   * @author Julius Tran &lt;j6tran@ucsd.edu>
+   * @date 2021-05-15
+   * @param {*} task - The task data
+   * @return {*} - The created task
+   * @memberof LogEntries
+   */
+  createTask (task) {
+    const taskElem = this.createLi();
+    taskElem.innerText = '● ' + task.text;
+    if (task.deadline) {
+      taskElem.innerHTML += '&lt;br>&lt;span>&amp;nbsp &amp;nbsp Deadline: ' + task.deadline + '&lt;/span>';
+    }
+    this.createList(taskElem, task.subEntries);
+    return taskElem;
+  }
+}
 customElements.define('log-entries', LogEntries);
 </code></pre>
         </article>
@@ -111,7 +181,7 @@ customElements.define('log-entries', LogEntries);
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Thu May 13 2021 21:40:00 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Sat May 15 2021 23:36:39 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

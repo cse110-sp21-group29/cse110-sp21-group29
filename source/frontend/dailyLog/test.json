@@ -9,7 +9,11 @@
             "subentries": [
                 {                
                     "type": "note",
-                    "text": "This is a subentry"
+                    "text": "This is a subnote"
+                },
+                {                
+                  "type": "note",
+                  "text": "This is another subnote"
                 }
             ]
           },
@@ -17,41 +21,66 @@
             "type": "note",
             "text": "Another note",
             "subentries": []
+          },
+          {
+            "type": "event",
+            "text": "John Doe's Birthday Party",
+            "startTime": "9:00AM",
+            "endTime": "11:00AM",
+            "subentries": [
+              {                
+                "type": "event",
+                "text": "Cutting the cake",
+                "startTime": "9:30AM",
+                "endTime": "10:00AM"
+              },
+              {                
+                "type": "note",
+                "text": "There will be 30 guests"
+              }
+            ]
           }
       ]
     },
     {
       "date": "2021-05-09",
+      "editable": false,
       "entries": [
       ]
     },
     {
       "date": "2021-05-10",
+      "editable": false,
       "entries": [
       ]
     },
     {
       "date": "2021-05-11",
+      "editable": false,
       "entries": [
       ]
     },
     {
       "date": "2021-05-12",
+      "editable": false,
       "entries": [
       ]
     },
     {
       "date": "2021-05-13",
+      "editable": false,
       "entries": [
       ]
     },
     {
       "date": "2021-05-14",
+      "editable": false,
       "entries": [
       ]
     },
     {
       "date": "2021-05-15",
+      "editable": false,
       "entries": [
       ]
     }

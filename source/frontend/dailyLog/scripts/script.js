@@ -5,10 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(response => response.json()) /* FILL IN RESPONSE HANDLING HERE */
     .then(days => {
       days.forEach((day) => {
-        /*  const newDay = document.createElement('day-log');
-        newDay.content = content;
-        newDay.classList.add('card');
-        document.body.appendChild(newDay); */
         const newDay = document.createElement('section');
         newDay.setAttribute('id', day.date);
         newDay.classList.add('card', 'w-50', 'mx-auto', 'my-3', 'border-3');

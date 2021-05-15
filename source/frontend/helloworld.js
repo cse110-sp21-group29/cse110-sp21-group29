@@ -3,8 +3,8 @@
  * This is a basic function to demonstrate the pipeline
  * @author Julius Tran <j6tran@ucsd.edu>
  * @date 2021/05/13
- * @param {*} a
- * @param {*} b
+ * @param {*} a - The first summand
+ * @param {*} b - The second summand
  * @return {*}  The sum of a and b
  */
 function sum (a, b) {

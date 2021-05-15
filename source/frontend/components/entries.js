@@ -27,12 +27,12 @@ class LogEntries extends HTMLElement {
   }
 
   /**
- * Create an <ol> containing the entries.
+ * Create an ol element containing the entries.
  * @author Julius Tran <j6tran@ucsd.edu>
  * @date 2021-05-15
- * @param {Object} - The element to append the <ol> to
+ * @param {Object} - The element to append the ol to
  * @param {Object[]} entries - The data for the entries
- * @return {*}
+ * @return {HTMLUListElement} The created list
  * @memberof LogEntries
  */
   createList (elem, entries) {
@@ -53,13 +53,14 @@ class LogEntries extends HTMLElement {
         list.appendChild(this.createTask(entry));
       }
     });
+    return list;
   }
 
   /**
-   * Create <li> with proper class
+   * Create li with proper CSS clasess
    * @author Julius Tran <j6tran@ucsd.edu>
    * @date 2021-05-15
-   * @return {*} - The created <li> element
+   * @return {HTMLLIElement}  The created li element
    * @memberof LogEntries
    */
   createLi () {
@@ -69,11 +70,11 @@ class LogEntries extends HTMLElement {
   }
 
   /**
- * Create a note <li> element
+ * Create a note li element
  * @author Julius Tran <j6tran@ucsd.edu>
  * @date 2021-05-15
  * @param {Object} - The note data
- * @return {*} - The created note
+ * @return {HTMLLIElement}  The created note
  * @memberof LogEntries
  */
   createNote (note) {
@@ -84,11 +85,11 @@ class LogEntries extends HTMLElement {
   }
 
   /**
-   * Create an event <li> element
+   * Create an event li element
    * @author Julius Tran <j6tran@ucsd.edu>
    * @date 2021-05-15
    * @param {*} event - The event data
-   * @return {*} - The created event
+   * @return {HTMLLIElement} The created event
    * @memberof LogEntries
    */
   createEvent (event) {
@@ -105,11 +106,11 @@ class LogEntries extends HTMLElement {
   }
 
   /**
-   * Create a task <li>
+   * Create a task li element
    * @author Julius Tran <j6tran@ucsd.edu>
    * @date 2021-05-15
    * @param {*} task - The task data
-   * @return {*} - The created task
+   * @return {HTMLLIElement}  The created task
    * @memberof LogEntries
    */
   createTask (task) {

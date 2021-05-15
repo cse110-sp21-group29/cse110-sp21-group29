@@ -27,10 +27,10 @@ class LogEntries extends HTMLElement {
   }
 
   /**
- * Create an <ol> containing the entries.
+ * Create an ol element containing the entries.
  * @author Julius Tran <j6tran@ucsd.edu>
  * @date 2021-05-15
- * @param {Object} - The element to append the <ol> to
+ * @param {Object} - The element to append the ol to
  * @param {Object[]} entries - The data for the entries
  * @return {*}
  * @memberof LogEntries
@@ -56,7 +56,7 @@ class LogEntries extends HTMLElement {
   }
 
   /**
-   * Create <li> with proper class
+   * Create li with proper CSS clasess
    * @author Julius Tran <j6tran@ucsd.edu>
    * @date 2021-05-15
    * @return {*} - The created <li> element
@@ -69,7 +69,7 @@ class LogEntries extends HTMLElement {
   }
 
   /**
- * Create a note <li> element
+ * Create a note li element
  * @author Julius Tran <j6tran@ucsd.edu>
  * @date 2021-05-15
  * @param {Object} - The note data
@@ -84,7 +84,7 @@ class LogEntries extends HTMLElement {
   }
 
   /**
-   * Create an event <li> element
+   * Create an event li element
    * @author Julius Tran <j6tran@ucsd.edu>
    * @date 2021-05-15
    * @param {*} event - The event data
@@ -105,7 +105,7 @@ class LogEntries extends HTMLElement {
   }
 
   /**
-   * Create a task <li>
+   * Create a task li element
    * @author Julius Tran <j6tran@ucsd.edu>
    * @date 2021-05-15
    * @param {*} task - The task data

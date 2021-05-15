@@ -6,7 +6,7 @@
           {
             "type": "note",
             "text": "Hello World",
-            "subentries": [
+            "subEntries": [
                 {                
                     "type": "note",
                     "text": "This is a subnote"
@@ -20,14 +20,33 @@
           {
             "type": "note",
             "text": "Another note",
-            "subentries": []
+            "subEntries": []
+          },
+          {
+            "type": "task",
+            "text": "Make buttered toast",
+            "deadline": "8:00AM",
+            "subEntries": [
+              {
+                "type": "task",
+                "text": "Get the bread"
+              },
+              {
+                "type": "task",
+                "text": "Toast the bread"
+              },
+              {
+                "type": "task",
+                "text": "Apply butter to the toast"
+              }
+            ]
           },
           {
             "type": "event",
             "text": "John Doe's Birthday Party",
             "startTime": "9:00AM",
             "endTime": "11:00AM",
-            "subentries": [
+            "subEntries": [
               {                
                 "type": "event",
                 "text": "Cutting the cake",

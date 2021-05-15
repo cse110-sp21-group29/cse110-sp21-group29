@@ -14,11 +14,8 @@ class LogEntries extends HTMLElement {
     const template = document.createElement('template');
     template.innerHTML = `
           <link rel="stylesheet" href="../styles/bootstrap.css">
-          <ul class=""list-group"></ul>
       `;
     this.shadowRoot.appendChild(template.content.cloneNode(true));
-    this.list = this.shadowRoot.querySelector('ul');
-    // this.classList.add('card');
   }
 
   get content () {
@@ -26,63 +23,76 @@ class LogEntries extends HTMLElement {
   }
 
   set content (content) {
-    content.forEach((entry) => {
+    this.createList(this.shadowRoot, content);
+  }
+
+  /**
+ * Create an <ol> containing the entries.
+ * @author Julius Tran <j6tran@ucsd.edu>
+ * @date 2021-05-15
+ * @param {Object} - The element to append the <ol> to
+ * @param {Object[]} entries - The data for the entries
+ * @return {*}
+ * @memberof LogEntries
+ */
+  createList (elem, entries) {
+    if (!entries || entries.length === 0) return false;
+    const list = document.createElement('ul');
+    list.classList.add('list-group');
+    elem.appendChild(list);
+    entries.forEach(entry => {
       if (entry.type === 'note') {
-        this.createMainNote(entry);
+        list.appendChild(this.createNote(entry));
         return;
       }
       if (entry.type === 'event') {
-        this.createMainEvent(entry);
+        list.appendChild(this.createEvent(entry));
+        return;
+      }
+      if (entry.type === 'task') {
+        list.appendChild(this.createTask(entry));
       }
     });
   }
 
   /**
- *
- * A helper method to create notes
- * @author Julius Tran <j6tran@ucsd.edu>
- * @date 2021-05-15
- * @param {*} note - The contents of the note
- * @memberof LogEntries
- */
-  createMainNote (note) {
-    const noteElem = this.createNote(note, this.list);
-    if (note.subentries.length > 0) {
-      const subList = document.createElement('ul');
-      subList.classList.add('list-group');
-      noteElem.appendChild(subList);
-      note.subentries.forEach(subentry => {
-        if (subentry.type === 'note') this.createNote(subentry, subList);
-      });
-    }
+   * Create <li> with proper class
+   * @author Julius Tran <j6tran@ucsd.edu>
+   * @date 2021-05-15
+   * @return {*} - The created <li> element
+   * @memberof LogEntries
+   */
+  createLi () {
+    const li = document.createElement('li');
+    li.classList.add('list-group-item', 'border-0', 'py-0');
+    return li;
   }
 
-  createNote (note, list) {
-    const noteElem = this.createLi(list);
+  /**
+ * Create a note <li> element
+ * @author Julius Tran <j6tran@ucsd.edu>
+ * @date 2021-05-15
+ * @param {Object} - The note data
+ * @return {*} - The created note
+ * @memberof LogEntries
+ */
+  createNote (note) {
+    const noteElem = this.createLi();
     noteElem.innerText = '– ' + note.text;
+    this.createList(noteElem, note.subEntries);
     return noteElem;
   }
 
-  createMainEvent (event) {
-    const eventElem = this.createEvent(event, this.list);
-    if (event.subentries.length > 0) {
-      const subList = document.createElement('ul');
-      subList.classList.add('list-group');
-      eventElem.appendChild(subList);
-      event.subentries.forEach(subentry => {
-        if (subentry.type === 'note') {
-          this.createNote(subentry, subList);
-          return;
-        }
-        if (subentry.type === 'event') {
-          this.createEvent(subentry, subList);
-        }
-      });
-    }
-  }
-
-  createEvent (event, list) {
-    const eventElem = this.createLi(list);
+  /**
+   * Create an event <li> element
+   * @author Julius Tran <j6tran@ucsd.edu>
+   * @date 2021-05-15
+   * @param {*} event - The event data
+   * @return {*} - The created event
+   * @memberof LogEntries
+   */
+  createEvent (event) {
+    const eventElem = this.createLi();
     eventElem.innerText = '○ ' + event.text;
     if (event.startTime) {
       eventElem.innerHTML += '<br><span>&nbsp &nbsp Starts: ' + event.startTime + '</span>';
@@ -90,24 +100,26 @@ class LogEntries extends HTMLElement {
         eventElem.innerHTML += '<span>&nbsp Ends: ' + event.endTime + '</span>';
       }
     }
+    this.createList(eventElem, event.subEntries);
     return eventElem;
   }
 
   /**
-   *
-   * A helper method that creates <li> and appends them to a <ol>
+   * Create a task <li>
    * @author Julius Tran <j6tran@ucsd.edu>
    * @date 2021-05-15
-   * @param {*} list
-   * @return {*} The created <li> element
+   * @param {*} task - The task data
+   * @return {*} - The created task
    * @memberof LogEntries
    */
-  createLi (list) {
-    const li = document.createElement('li');
-    li.classList.add('list-group-item', 'border-0', 'py-0');
-    list.appendChild(li);
-    return li;
+  createTask (task) {
+    const taskElem = this.createLi();
+    taskElem.innerText = '● ' + task.text;
+    if (task.deadline) {
+      taskElem.innerHTML += '<br><span>&nbsp &nbsp Deadline: ' + task.deadline + '</span>';
+    }
+    this.createList(taskElem, task.subEntries);
+    return taskElem;
   }
 }
-
 customElements.define('log-entries', LogEntries);

@@ -11,7 +11,14 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-@import url("https://fonts.googleapis.com/css2?family=News+Cycle:wght@400;700&display=swap");
+/*@import url("https://fonts.googleapis.com/css2?family=News+Cycle:wght@400;700&display=swap");*/
+
+
+@font-face {
+  font-family: literata;
+  src: url(literata.ttf);
+}
+
 :root {
   --bs-blue: #eb6864;
   --bs-indigo: #6610f2;
@@ -53,7 +60,7 @@
 
 body {
   margin: 0;
-  font-family: var(--bs-font-sans-serif);
+  font-family: "literata";
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -78,7 +85,7 @@ hr:not([size]) {
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+  font-family: "literata", "Arial Narrow Bold", sans-serif;
   font-weight: 700;
   line-height: 1.1;
 }
@@ -10975,7 +10982,7 @@ fieldset:disabled .btn {
 
 .navbar {
   font-size: 18px;
-  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+  font-family: "literata", "Arial Narrow Bold", sans-serif;
   font-weight: 700;
 }
 
@@ -10987,7 +10994,7 @@ fieldset:disabled .btn {
 }
 
 .btn {
-  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+  font-family: "literata", "Arial Narrow Bold", sans-serif;
   font-weight: 700;
 }
 

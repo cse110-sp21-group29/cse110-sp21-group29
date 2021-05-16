@@ -7,7 +7,7 @@
  * @class LogEntries
  * @extends {HTMLElement}
  */
-class LogEntries extends HTMLElement {
+export class LogEntries extends HTMLElement {
   constructor () {
     super();
     this.attachShadow({ mode: 'open' });
@@ -18,12 +18,12 @@ class LogEntries extends HTMLElement {
     this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
-  get content () {
+  get entries () {
     return this.getAttribute('content');
   }
 
-  set content (content) {
-    this.createList(this.shadowRoot, content);
+  set entries (entries) {
+    this.createList(this.shadowRoot, entries);
   }
 
   /**

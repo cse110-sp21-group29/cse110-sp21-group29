@@ -1,0 +1,107 @@
+[
+    {
+      "date": "2021-05-08",
+      "editable": false,
+      "entries": [
+          {
+            "type": "note",
+            "text": "Hello World",
+            "subEntries": [
+                {                
+                    "type": "note",
+                    "text": "This is a subnote"
+                },
+                {                
+                  "type": "note",
+                  "text": "This is another subnote"
+                }
+            ]
+          },
+          {
+            "type": "note",
+            "text": "Another note",
+            "subEntries": []
+          },
+          {
+            "type": "task",
+            "text": "Make buttered toast",
+            "deadline": "8:00AM",
+            "subEntries": [
+              {
+                "type": "task",
+                "text": "Get the bread"
+              },
+              {
+                "type": "task",
+                "text": "Toast the bread"
+              },
+              {
+                "type": "task",
+                "text": "Apply butter to the toast"
+              }
+            ]
+          },
+          {
+            "type": "event",
+            "text": "John Doe's Birthday Party",
+            "startTime": "9:00AM",
+            "endTime": "11:00AM",
+            "subEntries": [
+              {                
+                "type": "event",
+                "text": "Cutting the cake",
+                "startTime": "9:30AM",
+                "endTime": "10:00AM"
+              },
+              {                
+                "type": "note",
+                "text": "There will be 30 guests"
+              }
+            ]
+          }
+      ]
+    },
+    {
+      "date": "2021-05-09",
+      "editable": false,
+      "entries": [
+      ]
+    },
+    {
+      "date": "2021-05-10",
+      "editable": false,
+      "entries": [
+      ]
+    },
+    {
+      "date": "2021-05-11",
+      "editable": false,
+      "entries": [
+      ]
+    },
+    {
+      "date": "2021-05-12",
+      "editable": false,
+      "entries": [
+      ]
+    },
+    {
+      "date": "2021-05-13",
+      "editable": false,
+      "entries": [
+      ]
+    },
+    {
+      "date": "2021-05-14",
+      "editable": false,
+      "entries": [
+      ]
+    },
+    {
+      "date": "2021-05-15",
+      "editable": false,
+      "entries": [
+      ]
+    }
+  ]
+  

@@ -14,3 +14,5 @@ I have also asked everyone working on the front end to install two VSCode extens
 Once coding is fully underway code will be reviewed by teammates.
 
 The other co-leader Ethan Lew is working on a pipeline for the back end.
+
+[Here is a video demonstrating the pipeline](https://www.youtube.com/watch?v=sq8I9ZODWLs)

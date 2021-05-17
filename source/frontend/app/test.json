@@ -65,42 +65,99 @@
       "date": "2021-05-09",
       "editable": false,
       "entries": [
+        {
+          "type": "note",
+          "text": "A note",
+          "subEntries": []
+        }
       ]
     },
     {
       "date": "2021-05-10",
       "editable": false,
       "entries": [
+        {
+          "type": "note",
+          "text": "A note",
+          "subEntries": []
+        }
       ]
     },
     {
       "date": "2021-05-11",
       "editable": false,
       "entries": [
+        {
+          "type": "note",
+          "text": "A note",
+          "subEntries": []
+        }
       ]
     },
     {
       "date": "2021-05-12",
       "editable": false,
       "entries": [
+        {
+          "type": "note",
+          "text": "A note",
+          "subEntries": []
+        }
       ]
     },
     {
       "date": "2021-05-13",
       "editable": false,
       "entries": [
+        {
+          "type": "note",
+          "text": "A note",
+          "subEntries": []
+        }
       ]
     },
     {
       "date": "2021-05-14",
       "editable": false,
       "entries": [
+        {
+          "type": "note",
+          "text": "A note",
+          "subEntries": []
+        }
       ]
     },
     {
       "date": "2021-05-15",
       "editable": false,
       "entries": [
+        {
+          "type": "note",
+          "text": "A note",
+          "subEntries": []
+        }
+      ]
+    },
+    {
+      "date": "2021-05-16",
+      "editable": false,
+      "entries": [
+        {
+          "type": "note",
+          "text": "A note",
+          "subEntries": []
+        }
+      ]
+    },
+    {
+      "date": "2021-05-17",
+      "editable": true,
+      "entries": [
+        {
+          "type": "note",
+          "text": "A note",
+          "subEntries": []
+        }
       ]
     }
   ]

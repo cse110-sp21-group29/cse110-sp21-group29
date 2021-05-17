@@ -16,6 +16,9 @@ export class LogEntries extends HTMLElement {
           <link rel="stylesheet" href="../styles/bootstrap.css">
       `;
     this.shadowRoot.appendChild(template.content.cloneNode(true));
+    this.addEventListener('focus', event => {
+
+    });
   }
 
   get entries () {
@@ -23,7 +26,16 @@ export class LogEntries extends HTMLElement {
   }
 
   set entries (entries) {
+    // this.tabIndex = 0;
     this.createList(this.shadowRoot, entries);
+  }
+
+  get editable () {
+    return this.getAttribute('editable');
+  }
+
+  set editable (editable) {
+
   }
 
   /**
@@ -63,8 +75,10 @@ export class LogEntries extends HTMLElement {
    * @return {HTMLLIElement}  The created li element
    * @memberof LogEntries
    */
-  createLi () {
+  createLi (bullet, text) {
     const li = document.createElement('li');
+    // li.draggable = true;
+    li.innerHTML = '<span class="d-inline-block pr-5"><span>' + bullet + ' </span><span class="mr-5" >' + text + '</span></span>';
     li.classList.add('list-group-item', 'border-0', 'py-0');
     return li;
   }
@@ -78,8 +92,8 @@ export class LogEntries extends HTMLElement {
  * @memberof LogEntries
  */
   createNote (note) {
-    const noteElem = this.createLi();
-    noteElem.innerText = '– ' + note.text;
+    const noteElem = this.createLi('–', note.text);
+    // noteElem.innerText = '– ' + note.text;
     this.createList(noteElem, note.subEntries);
     return noteElem;
   }
@@ -93,8 +107,8 @@ export class LogEntries extends HTMLElement {
    * @memberof LogEntries
    */
   createEvent (event) {
-    const eventElem = this.createLi();
-    eventElem.innerText = '○ ' + event.text;
+    const eventElem = this.createLi('○', event.text);
+    // eventElem.innerText = '○ ' + event.text;
     if (event.startTime) {
       eventElem.innerHTML += '<br><span>&nbsp &nbsp Starts: ' + event.startTime + '</span>';
       if (event.endTime) {
@@ -114,8 +128,8 @@ export class LogEntries extends HTMLElement {
    * @memberof LogEntries
    */
   createTask (task) {
-    const taskElem = this.createLi();
-    taskElem.innerText = '● ' + task.text;
+    const taskElem = this.createLi('●', task.text);
+
     if (task.deadline) {
       taskElem.innerHTML += '<br><span>&nbsp &nbsp Deadline: ' + task.deadline + '</span>';
     }

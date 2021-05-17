@@ -12,6 +12,11 @@ class DailyLog extends HTMLElement {
     const template = document.createElement('template');
     template.innerHTML = `
               <link rel="stylesheet" href="../styles/bootstrap.css">
+              <style>
+                section.focused {
+                    /*outline: 5px auto -webkit-focus-ring-color;*/
+                }
+              </style>
           `;
     this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
@@ -23,7 +28,8 @@ class DailyLog extends HTMLElement {
   set days (days) {
     days.forEach((day) => {
       const newDay = document.createElement('section');
-      newDay.setAttribute('id', day.date);
+      newDay.tabIndex = 0;
+      newDay.id = 'dailyLog:' + day.date;
       newDay.classList.add('card', 'w-50', 'mx-auto', 'my-3', 'border-3');
       const date = new Date(day.date);
       const dateTitle = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
@@ -32,7 +38,15 @@ class DailyLog extends HTMLElement {
       const entries = document.createElement('log-entries');
       entries.entries = day.entries;
       newDay.querySelector('.card-body').appendChild(entries);
-      document.body.appendChild(newDay);
+      this.shadowRoot.appendChild(newDay);
+      newDay.addEventListener('focus', event => {
+        location.hash = newDay.id;
+        newDay.scrollIntoView();
+        newDay.classList.add('focused');
+      });
+      newDay.addEventListener('blur', event => {
+        newDay.classList.remove('focused');
+      });
     });
   }
 }

@@ -1,10 +1,14 @@
-name: Python package
+name: CI Backend Tests
 
 on: 
   push:
     branches: [ backend ]
+    paths: 
+      - 'source/backend/**'
   pull_request:
     branches: [ backend ]
+    paths: 
+      - 'source/backend/**'
 
 jobs:
   build:

@@ -1,8 +1,8 @@
 from django.shortcuts import render
-#from django.contrib.auth.decorators import login_required
+# from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.http import HttpResponseRedirect
-#from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from .forms import LoginForm
 from django.contrib.auth.forms import UserCreationForm
 
@@ -13,7 +13,8 @@ def signup_view(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            user = authenticate(username=form.cleaned_data.get('username'), password=form.cleaned_data.get('password1'))
+            user = authenticate(username=form.cleaned_data.get('username'),
+            password=form.cleaned_data.get('password1'))
             login(request, user)
             return HttpResponseRedirect('front_page')
     else:
@@ -25,7 +26,8 @@ def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            user = authenticate(username=form.cleaned_data.get('user_name'), password=form.cleaned_data.get('pword'))
+            user = authenticate(username=form.cleaned_data.get('user_name'),
+            password=form.cleaned_data.get('pword'))
             if user is not None:
                 login(request, user)
                 return HttpResponseRedirect('front_page')
@@ -36,3 +38,4 @@ def login_view(request):
 
 def front_page(request):
     return render(request, "FrontPage.html")
+    

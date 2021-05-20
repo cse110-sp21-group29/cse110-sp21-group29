@@ -14,7 +14,7 @@ def signup_view(request):
         if form.is_valid():
             form.save()
             user = authenticate(username=form.cleaned_data.get('username'),
-            password=form.cleaned_data.get('password1'))
+                                password=form.cleaned_data.get('password1'))
             login(request, user)
             return HttpResponseRedirect('front_page')
     else:
@@ -27,7 +27,7 @@ def login_view(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             user = authenticate(username=form.cleaned_data.get('user_name'),
-            password=form.cleaned_data.get('pword'))
+                                password=form.cleaned_data.get('pword'))
             if user is not None:
                 login(request, user)
                 return HttpResponseRedirect('front_page')
@@ -38,4 +38,3 @@ def login_view(request):
 
 def front_page(request):
     return render(request, "FrontPage.html")
-    

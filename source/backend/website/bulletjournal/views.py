@@ -38,3 +38,4 @@ def login_view(request):
 
 def front_page(request):
     return render(request, "FrontPage.html")
+# This is a new line that ends the file.

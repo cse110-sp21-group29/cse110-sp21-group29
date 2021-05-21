@@ -14,7 +14,6 @@ Members Present:
 - Dario Aburto Rodriguez
 - Dadian Zhu
 - Lucy Hu
-- Kevin Dyblie
 - Hien To
 - Anahita Afshari
 

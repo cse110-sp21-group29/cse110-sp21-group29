@@ -27,6 +27,8 @@
       "tests/**",
       "docs/**"
     ],
-    "env": [ "browser"]
+    "env": [
+      "browser"
+    ]
   }
 }

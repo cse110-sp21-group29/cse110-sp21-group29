@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
   fetch(url)
     .then(response => response.json()) /* FILL IN RESPONSE HANDLING HERE */
     .then(days => {
+      const sideBar=document.createElement('side-bar');
+
       days.forEach((day) => {
         const newDay = document.createElement('section');
         newDay.setAttribute('id', day.date);
@@ -16,7 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.content = day.entries;
         newDay.querySelector('.card-body').appendChild(entries);
         main.appendChild(newDay);
+        sideBar.content=day.entries;
       });
+      main.appendChild(sideBar);
     })
     .catch(error => {
       console.log(`%cresult of fetch is an error: \n"${error}"`, 'color: red');

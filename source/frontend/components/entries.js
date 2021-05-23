@@ -14,11 +14,13 @@ export class LogEntries extends HTMLElement {
     const template = document.createElement('template');
     template.innerHTML = `
           <link rel="stylesheet" href="../styles/bootstrap.css">
+          <style>
+            .focused {
+              outline: 5px auto -webkit-focus-ring-color;
+            }
+          </style>
       `;
     this.shadowRoot.appendChild(template.content.cloneNode(true));
-    this.addEventListener('focus', event => {
-
-    });
   }
 
   get entries () {
@@ -28,14 +30,6 @@ export class LogEntries extends HTMLElement {
   set entries (entries) {
     // this.tabIndex = 0;
     this.createList(this.shadowRoot, entries);
-  }
-
-  get editable () {
-    return this.getAttribute('editable');
-  }
-
-  set editable (editable) {
-
   }
 
   /**
@@ -80,6 +74,18 @@ export class LogEntries extends HTMLElement {
     // li.draggable = true;
     li.innerHTML = '<span class="d-inline-block pr-5"><span>' + bullet + ' </span><span class="mr-5" >' + text + '</span></span>';
     li.classList.add('list-group-item', 'border-0', 'py-0');
+
+    if (this.editable) {
+      li.tabIndex = 0;
+      li.children[0].children[0].tabIndex = 0;
+      li.children[0].children[1].contentEditable = true;
+      li.addEventListener('focus', event => {
+        li.classList.add('focused');
+      });
+      li.addEventListener('blur', event => {
+        li.classList.remove('focused');
+      });
+    }
     return li;
   }
 

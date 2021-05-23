@@ -1,10 +1,10 @@
-document.addEventListener('DOMContentLoaded', () => {
+/* document.addEventListener('DOMContentLoaded', () => {
   const url = './test.json'; // SET URL
   const main = document.querySelector('main');
   fetch(url)
-    .then(response => response.json()) /* FILL IN RESPONSE HANDLING HERE */
+    .then(response => response.json())
     .then(days => {
-      const sideBar=document.createElement('side-bar');
+      const sideBar = document.createElement('side-bar');
 
       days.forEach((day) => {
         const newDay = document.createElement('section');
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.content = day.entries;
         newDay.querySelector('.card-body').appendChild(entries);
         main.appendChild(newDay);
-        sideBar.content=day.entries;
+        sideBar.content = day.entries;
       });
       main.appendChild(sideBar);
     })
@@ -26,3 +26,4 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log(`%cresult of fetch is an error: \n"${error}"`, 'color: red');
     });
 });
+ */

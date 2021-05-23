@@ -15,7 +15,11 @@ const updatedMonth5 = months[checkMonths(currMonth5)];
 const currMonth6 = currMonth5 + 1;
 const updatedMonth6 = months[checkMonths(currMonth6)];
 
+<<<<<<< HEAD
 document.getElementById('month1').innerHTML = updatedMonth1;
+=======
+document.getElementById("month1").innerHTML = updatedMonth1;
+>>>>>>> Future Log
 document.getElementById('month2').innerHTML = updatedMonth2;
 document.getElementById('month3').innerHTML = updatedMonth3;
 document.getElementById('month4').innerHTML = updatedMonth4;

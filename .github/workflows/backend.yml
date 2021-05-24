@@ -31,6 +31,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          sudo apt install -y $(grep -o ^[^#][[:alnum:]-]* "packages.list")
           pip install flake8 pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         
@@ -43,4 +44,5 @@ jobs:
         #Testing
       - name: Test with pytest
         run: |
-          pytest
+         pytest --exitfirst --verbose --failed-first \
+         --cov=. --cov-report html

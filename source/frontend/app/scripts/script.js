@@ -1,7 +1,9 @@
 let dailyLog;
+let sideBar;
 document.addEventListener('DOMContentLoaded', () => {
   const url = './test.json'; // SET URL
   dailyLog = document.getElementById('dailyLog');
+  sideBar = document.querySelector('side-bar');
   fetch(url)
     .then(response => response.json())
     .then(days => {
@@ -26,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         newDay.addEventListener('blur', event => {
           newDay.classList.remove('focused');
         });
+        sideBar.content = day.entries;
       });
     })
     .catch(error => {

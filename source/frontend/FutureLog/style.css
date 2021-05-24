@@ -1,3 +1,4 @@
+
 @font-face {
     font-family: headerText;
     src: url(bright-sunshine.ttf);
@@ -19,6 +20,13 @@ h1{
 
 body {
     background-color: white;
+}
+
+.month {
+    color: #2C5684;
+    word-break: break-all;
+
+
 }
 
 .container {
@@ -44,4 +52,6 @@ body {
 .item:nth-child(odd){
     border-right: 3px solid black;
 }
+
+
 

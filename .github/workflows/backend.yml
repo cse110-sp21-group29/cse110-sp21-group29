@@ -33,7 +33,7 @@ jobs:
           python -m pip install --upgrade pip
           sudo apt install -y $(grep -o ^[^#][[:alnum:]-]* "packages.list")
           pip install flake8 pytest
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install -r requirements.txt
         
         #Linting
       - name: Lint with flake8

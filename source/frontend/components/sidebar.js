@@ -6,7 +6,6 @@ class SideBar extends HTMLElement {
             <style>
             
             .sidebar {
-                width: 20%;
                 height: 100%;
                 background-color: gray;
                 position:relative;
@@ -32,7 +31,7 @@ class SideBar extends HTMLElement {
   }
 
   get content () {
-    return this.shadowRoot.querySelector("[class='sidebar']");
+    return this.getAttribute('content');
   }
 
   set content (entry) {

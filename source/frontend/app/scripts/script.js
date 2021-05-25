@@ -1,14 +1,19 @@
+import { router } from './router.js';
+
 let dailyLog;
+let sideBar;
 document.addEventListener('DOMContentLoaded', () => {
   const url = './test.json'; // SET URL
   dailyLog = document.getElementById('dailyLog');
+  sideBar = document.querySelector('side-bar');
   fetch(url)
     .then(response => response.json())
     .then(days => {
+      sideBar.content = days;
       days.forEach((day) => {
         const newDay = document.createElement('section');
         newDay.tabIndex = 0;
-        newDay.id = 'dailyLog:' + day.date;
+        newDay.id = '/dailyLog/' + day.date;
         newDay.classList.add('card', 'w-50', 'mx-auto', 'my-3', 'border-3');
         const date = new Date(day.date);
         const dateTitle = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
@@ -27,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
           newDay.classList.remove('focused');
         });
       });
+      router.setState();
     })
     .catch(error => {
       console.log(`%cresult of fetch is an error: \n"${error}"`, 'color: red');
@@ -34,10 +40,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 window.addEventListener('hashchange', event => {
-  const elem = document.getElementById(location.hash.substring(1));
-  if (elem && document.activeElement !== elem) {
-    elem.focus();
-    console.log(location.hash);
-    elem.classList.add('focus');
-  }
+  router.setState();
 });

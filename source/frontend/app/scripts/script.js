@@ -1,3 +1,5 @@
+import { router } from './router.js';
+
 let dailyLog;
 let sideBar;
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
       days.forEach((day) => {
         const newDay = document.createElement('section');
         newDay.tabIndex = 0;
-        newDay.id = 'dailyLog:' + day.date;
+        newDay.id = '/dailyLog/' + day.date;
         newDay.classList.add('card', 'w-50', 'mx-auto', 'my-3', 'border-3');
         const date = new Date(day.date);
         const dateTitle = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
@@ -30,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         sideBar.content = day.entries;
       });
+      router.setState();
     })
     .catch(error => {
       console.log(`%cresult of fetch is an error: \n"${error}"`, 'color: red');
@@ -37,10 +40,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 window.addEventListener('hashchange', event => {
-  const elem = document.getElementById(location.hash.substring(1));
-  if (elem && document.activeElement !== elem) {
-    elem.focus();
-    console.log(location.hash);
-    elem.classList.add('focus');
-  }
+  router.setState();
 });

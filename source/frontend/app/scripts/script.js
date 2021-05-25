@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   fetch(url)
     .then(response => response.json())
     .then(days => {
+      sideBar.content = days;
       days.forEach((day) => {
         const newDay = document.createElement('section');
         newDay.tabIndex = 0;
@@ -30,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
         newDay.addEventListener('blur', event => {
           newDay.classList.remove('focused');
         });
-        sideBar.content = day.entries;
       });
       router.setState();
     })

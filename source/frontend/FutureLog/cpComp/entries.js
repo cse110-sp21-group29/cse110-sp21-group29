@@ -7,29 +7,23 @@
  * @class LogEntries
  * @extends {HTMLElement}
  */
-export class LogEntries extends HTMLElement {
+class LogEntries extends HTMLElement {
   constructor () {
     super();
     this.attachShadow({ mode: 'open' });
     const template = document.createElement('template');
     template.innerHTML = `
           <link rel="stylesheet" href="../styles/bootstrap.css">
-          <style>
-            .focused {
-              outline: 5px auto -webkit-focus-ring-color;
-            }
-          </style>
       `;
     this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
-  get entries () {
+  get content () {
     return this.getAttribute('content');
   }
 
-  set entries (entries) {
-    // this.tabIndex = 0;
-    this.createList(this.shadowRoot, entries);
+  set content (content) {
+    this.createList(this.shadowRoot, content);
   }
 
   /**
@@ -69,23 +63,9 @@ export class LogEntries extends HTMLElement {
    * @return {HTMLLIElement}  The created li element
    * @memberof LogEntries
    */
-  createLi (bullet, text) {
+  createLi () {
     const li = document.createElement('li');
-    // li.draggable = true;
-    li.innerHTML = '<span class="d-inline-block pr-5"><span>' + bullet + ' </span><span class="mr-5" >' + text + '</span></span>';
     li.classList.add('list-group-item', 'border-0', 'py-0');
-
-    if (this.editable) {
-      li.tabIndex = 0;
-      li.children[0].children[0].tabIndex = 0;
-      li.children[0].children[1].contentEditable = true;
-      li.addEventListener('focus', event => {
-        li.classList.add('focused');
-      });
-      li.addEventListener('blur', event => {
-        li.classList.remove('focused');
-      });
-    }
     return li;
   }
 
@@ -98,8 +78,8 @@ export class LogEntries extends HTMLElement {
  * @memberof LogEntries
  */
   createNote (note) {
-    const noteElem = this.createLi('–', note.text);
-    // noteElem.innerText = '– ' + note.text;
+    const noteElem = this.createLi();
+    noteElem.innerText = '– ' + note.text;
     this.createList(noteElem, note.subEntries);
     return noteElem;
   }
@@ -113,8 +93,8 @@ export class LogEntries extends HTMLElement {
    * @memberof LogEntries
    */
   createEvent (event) {
-    const eventElem = this.createLi('○', event.text);
-    // eventElem.innerText = '○ ' + event.text;
+    const eventElem = this.createLi();
+    eventElem.innerText = '○ ' + event.text;
     if (event.startTime) {
       eventElem.innerHTML += '<br><span>&nbsp &nbsp Starts: ' + event.startTime + '</span>';
       if (event.endTime) {
@@ -134,8 +114,8 @@ export class LogEntries extends HTMLElement {
    * @memberof LogEntries
    */
   createTask (task) {
-    const taskElem = this.createLi('●', task.text);
-
+    const taskElem = this.createLi();
+    taskElem.innerText = '● ' + task.text;
     if (task.deadline) {
       taskElem.innerHTML += '<br><span>&nbsp &nbsp Deadline: ' + task.deadline + '</span>';
     }

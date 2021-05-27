@@ -4,9 +4,15 @@ class SideBar extends HTMLElement {
     const template = document.createElement('template');
     template.innerHTML = `
             <style>
+            
             a{
               text-align:center;
               display:block;
+            }
+            input{
+              width:90%;
+              height:20px;
+              padding-left:10px;
             }
             .sidebar {
                 height: 100%;
@@ -35,8 +41,8 @@ class SideBar extends HTMLElement {
             }
             </style> 
             <section class="sidebar">
-                <!-- <button>Collapse</button> -->  
-                <input type="text" placeholder="Search..">
+                
+                <input id="searchbar" type="text" placeholder="Search..">
                 <h3 id='future'>Future Log</h3>
                 <section class="futureLog"></section>
                 <h3 id='monthly'>Monthly Log</h3>
@@ -99,6 +105,18 @@ class SideBar extends HTMLElement {
           this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display = 'none';
         } else {
           this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display = 'block';
+        }
+      }
+    });
+    const input = this.shadowRoot.getElementById('searchbar');
+    const link = this.shadowRoot.querySelectorAll("[class='list-group-item']");
+
+    input.addEventListener('keyup', () => {
+      for (let i = 0; i < link.length; i++) {
+        if (!link[i].innerHTML.includes(input.value)) {
+          link[i].style.display = 'none';
+        } else {
+          link[i].style.display = 'block';
         }
       }
     });

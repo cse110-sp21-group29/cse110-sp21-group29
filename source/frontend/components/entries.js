@@ -1,3 +1,5 @@
+/* global BSN */
+
 /**
  *
  * This is a re-usable custom web component that displays notes, tasks, and events.
@@ -14,11 +16,13 @@ export class LogEntries extends HTMLElement {
     const template = document.createElement('template');
     template.innerHTML = `
           <link rel="stylesheet" href="../styles/bootstrap.css">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
           <style>
             .focused {
               outline: 5px auto -webkit-focus-ring-color;
             }
           </style>
+          <article id="entries"></article>
       `;
     this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
@@ -26,11 +30,34 @@ export class LogEntries extends HTMLElement {
   get entries () {
     return this.getAttribute('content');
   }
-
+  /* eslint-disable */
   set entries (entries) {
     // this.tabIndex = 0;
-    this.createList(this.shadowRoot, entries);
+    this.createList(this.shadowRoot.getElementById('entries'), entries);
+    if (this.editable) {
+      const addDropdown = document.createElement('div');
+      addDropdown.innerHTML = `
+        <button id="myDropdown" type="button" data-bs-toggle="dropdown" data-bs-keyboard="true" aria-haspopup="true" aria-expanded="false"
+        class="px-1 pt-1 mx-4 mb-2 btn btn-lg btn-primary dropdown-toggle">
+          <i class="bi-journal-plus"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="myDropdown">
+          <a class="dropdown-item" href="#">Add Note</a>
+          <a class="dropdown-item" href="#">Add Event</a>
+          <a class="dropdown-item" href="#">Add Task</a>
+        <div>
+      `;
+      addDropdown.classList.add('dropdown');
+      /*       const addButton = document.createElement('button');
+      addButton.innerHTML = '<i class="bi-journal-plus"></i>';
+      addButton.classList.add('px-1', 'py-1', 'mx-1', 'my-1', 'btn', 'btn-lg', 'btn-primary'); */
+      document.getElementById(this.parentId).appendChild(addDropdown);
+      
+      const myDropdownInit = new BSN.Dropdown('#myDropdown');
+      
+    }
   }
+  /* eslint-enable */
 
   /**
  * Create an ol element containing the entries.

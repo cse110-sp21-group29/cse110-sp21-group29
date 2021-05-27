@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const url = './test.json'; // SET URL
   dailyLog = document.getElementById('dailyLog');
   sideBar = document.querySelector('side-bar');
+  console.log(sideBar);
   fetch(url)
     .then(response => response.json())
     .then(days => {

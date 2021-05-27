@@ -4,7 +4,10 @@ class SideBar extends HTMLElement {
     const template = document.createElement('template');
     template.innerHTML = `
             <style>
-            
+            a{
+              text-align:center;
+              display:block;
+            }
             .sidebar {
                 height: 100%;
                 background-color: gray;
@@ -15,14 +18,31 @@ class SideBar extends HTMLElement {
             .sidebar_hide{
                 width:0%;
             }
-            
+            .futureLog{
+              
+              display:block;
+            }
+            .monthlyLog{
+              
+              display:block;
+            }
+            .dailyLog{
+              
+              display:block;
+            }
+            h3{
+              font-weight:normal;
+            }
             </style> 
             <section class="sidebar">
                 <!-- <button>Collapse</button> -->  
-                <input type="text" placeholder="Search.."> 
-                <section class="futureLog">Future Log</section>
-                <section class="monthlyLog">Monthly Log</section>
-                <sectino class="dailyLog">Daily Log</section>
+                <input type="text" placeholder="Search..">
+                <h3 id='future'>Future Log</h3>
+                <section class="futureLog"></section>
+                <h3 id='monthly'>Monthly Log</h3>
+                <section class="monthlyLog"></section> 
+                <h3 id='daily'>Daily Log</h3>
+                <section class="dailyLog"></section>
              </section>
             
             `;
@@ -34,15 +54,33 @@ class SideBar extends HTMLElement {
     return this.getAttribute('content');
   }
 
-  set content (entry) {
-    const futureList = document.createElement('ul');
-    const monthlyList = document.createElement('ul');
-    const dailyList = document.createElement('ul');
+  /* const dailySection = this.shadowRoot.querySelector("[class='dailyLog']");
+  dailySection.addEventListener('click', function () {
+  this.dailySection.classList.add('daily_hide');
+  for (let i = 0; i < entry.length; i++) {
 
-    // entries.forEach(entry=>{
-    const length = document.querySelectorAll('time').length;
-    const li = document.createElement('li');
-    li.innerHTML = document.querySelectorAll('time')[length - 1].innerHTML;
+  }
+});
+*/
+  set content (entry) {
+    console.log(entry);
+    const futureList = document.createElement('div');
+    futureList.setAttribute('class', 'list-group');
+    const monthlyList = document.createElement('div');
+    monthlyList.setAttribute('class', 'list-group');
+    const dailyList = document.createElement('div');
+    dailyList.setAttribute('class', 'list-group');
+    console.log(entry.date);
+    console.log(entry.length);
+    for (let i = 0; i < entry.length; i++) {
+      const a = document.createElement('a');
+      a.setAttribute('class', 'list-group-item');
+      a.innerHTML = entry[i].date;
+      dailyList.appendChild(a);
+      a.setAttribute('href', '#/dailyLog/' + entry[i].date);
+    }
+    // const li = document.createElement('li');
+    // li.innerHTML = day.date;
     // if(entry.category=='Future Log'){
     //     futureList.appendChild(li);
     // }
@@ -50,12 +88,20 @@ class SideBar extends HTMLElement {
     //     monthlyList.appendChild(li);
     // }
     // if(entry.category=='Daily Log'){
-    dailyList.appendChild(li);
+
     // }
-    // });
     this.shadowRoot.querySelector("[class='futureLog']").appendChild(futureList);
     this.shadowRoot.querySelector("[class='monthlyLog']").appendChild(monthlyList);
     this.shadowRoot.querySelector("[class='dailyLog']").appendChild(dailyList);
+    this.shadowRoot.getElementById('daily').addEventListener('click', () => {
+      for (let i = 0; i < entry.length; i++) {
+        if (this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display === 'block') {
+          this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display = 'none';
+        } else {
+          this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display = 'block';
+        }
+      }
+    });
   }
 }
 customElements.define('side-bar', SideBar);

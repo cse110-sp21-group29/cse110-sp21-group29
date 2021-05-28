@@ -7,8 +7,19 @@ class SideBar extends HTMLElement {
             
             a{
               text-align:center;
+              text-decoration: none;
               display:block;
+              color: #e1ffff;
+              font-family: "Comic Sans MS", "Comic Sans", cursive;
+              font-size: 18px;
+              padding: 10px 25px;
             }
+
+            a:hover {
+              text-decoration: underline;
+              background-color: #0076ad;
+            }
+
             input{
               width:90%;
               height:20px;
@@ -16,7 +27,7 @@ class SideBar extends HTMLElement {
             }
             .sidebar {
                 height: 100%;
-                background-color: gray;
+                background-color: #22282c;
                 position:relative;
                 padding-top: 40px;
                 overflow-y: scroll;
@@ -37,7 +48,13 @@ class SideBar extends HTMLElement {
               display:block;
             }
             h3{
-              font-weight:normal;
+              color: #e1ffff; 
+              font-family: "Comic Sans MS", "Comic Sans", cursive;
+              font-weight: bold;
+            }
+            h3:hover {
+              text-decoration: underline;
+              background-color: #0076ad;
             }
             </style> 
             <section class="sidebar">

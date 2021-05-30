@@ -73,6 +73,13 @@ class SideBar extends HTMLElement {
     this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
+  /**
+ *
+ *
+ * @author Dadian Zhu <dazhu@ucsd.edu>
+ * @date 2021-05-30
+ * @memberof SideBar
+ */
   get content () {
     return this.getAttribute('content');
   }
@@ -84,7 +91,14 @@ class SideBar extends HTMLElement {
 
   }
 });
-*/
+*//**
+ *
+ *
+ * @author Dadian Zhu <dazhu@ucsd.edu>
+ * @date 2021-05-30
+ * @memberof SideBar
+ */
+
   set content (entry) {
     console.log(entry);
     const futureList = document.createElement('div');

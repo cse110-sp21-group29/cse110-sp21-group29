@@ -1,10 +1,11 @@
 import { router } from './router.js';
 
-let dailyLog;
+// let dailyLog;
 // let sideBar;
 document.addEventListener('DOMContentLoaded', () => {
-  const url = './test.json'; // SET URL
-  dailyLog = document.getElementById('dailyLog');
+  router.setState();
+/*   const url = './test.json'; // SET URL
+  dailyLog = document.getElementById('dailyLogDiv');
   // sideBar = document.querySelector('side-bar');
   fetch(url)
     .then(response => response.json())
@@ -33,8 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
           newDay.classList.remove('focused');
         });
       });
-      router.setState();
-    });
+    }); */
 });
 
 window.addEventListener('hashchange', event => {

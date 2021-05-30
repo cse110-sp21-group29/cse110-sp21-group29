@@ -14,7 +14,7 @@ future-logs:nth-child(odd){
   
 @font-face {
     font-family: literata;
-    src: url(literata.ttf);
+    src: url(../literata.ttf);
 }
 
 

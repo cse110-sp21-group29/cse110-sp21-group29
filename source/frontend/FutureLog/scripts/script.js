@@ -6,20 +6,26 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(response => response.json()) /* FILL IN RESPONSE HANDLING HERE */
     .then(month => {
       month.forEach((monthz) => {
-        console.log(monthz);
         if (counter < 6) {
-          const newMonth = document.createElement('div');
-          newMonth.classList.add('item');
-          newMonth.innerHTML = '<div class="test"> <h2 class="month" >' + monthz.Month + '</h2></div>';
-          // main.append(newMonth);
+          console.log(monthz);
 
-          const entries = document.createElement('log-entries');
-          entries.content = monthz.entries;
+          // const newMonth = document.createElement('div');
+          // newMonth.classList.add('item');
+          // newMonth.innerHTML = ' <h2 class="month" >' + monthz.Month + '</h2><div class="entries"></div>';
 
-          // console.log(entries);
-          newMonth.querySelector('.test').appendChild(entries);
+          // console.log(newMonth);
+          const changeDate = document.createElement('future-logs');
 
-          main.append(newMonth);
+          // changeDate.content = newMonth;
+          console.log(monthz.Month);
+          changeDate.content = monthz;
+          console.log(changeDate.querySelector('.entries'));
+
+          // changeDate.querySelector('.item').innerHTML +=
+
+          // console.log(newMonth.querySelector('.item'));
+
+          main.append(changeDate);
           counter++;
         }
       });

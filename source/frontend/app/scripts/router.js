@@ -1,30 +1,41 @@
 export const router = {};
+const dailyLogUrl = './dailyLog.json';
+const futureLogUrl = './futureLog.json';
+const dailyLog = document.getElementById('dailyLogDiv');
+let dailyLogLoaded = false;
 // const main = document.querySelector('main');
 router.setState = function () {
   if (location.hash === '#/dailyLog') {
-    router.setDailyLog();
+    router.loadDailyLog();
     router.setDailyLogHome();
     return;
   }
   if (location.hash.substring(0, 10) === '#/dailyLog') {
-    router.setDailyLog();
+    router.loadDailyLog();
     router.setDay();
     return;
   }
   if (location.hash === '#/futureLog') {
+    dailyLogLoaded = false;
     router.setFutureLog();
     return;
   }
-  location.hash = '#/dailyLog';
+
+  if (location.hash === '#' || location.hash === '#/' || location.hash === '') {
+    location.hash = '#/dailyLog';
+  }
+  router.setError();
 };
 
-router.setDailyLog = function () {
+router.loadDailyLog = function () {
+  if (dailyLogLoaded) return;
+  dailyLogLoaded = true;
   document.body.className = 'dailyLog';
-  const url = './dailyLog.json'; // SET URL
-  const dailyLog = document.getElementById('dailyLogDiv');
-  fetch(url)
+  dailyLog.innerHTML = '';
+  fetch(dailyLogUrl)
     .then(response => response.json())
     .then(days => {
+      window.days = days;
       days.forEach((day) => {
         const newDay = document.createElement('section');
         newDay.tabIndex = 0;
@@ -60,7 +71,7 @@ router.setDay = function () {
   const day = document.getElementById(location.hash.substring(1));
   if (!day) {
     location.hash = '#/dailyLog';
-    router.setDailyLogHome();
+    return;
   }
   if (document.activeElement !== day) {
     day.focus();
@@ -70,35 +81,22 @@ router.setDay = function () {
 
 router.setFutureLog = function () {
   document.body.className = 'futureLog';
-  const futureLogUrl = './futureLog.json'; // SET URL
   const futureLog = document.getElementById('futureLogDiv');
   let counter = 0;
   fetch(futureLogUrl)
-    .then(response => response.json()) /* FILL IN RESPONSE HANDLING HERE */
+    .then(response => response.json())
     .then(month => {
       month.forEach((monthz) => {
         if (counter < 6) {
-          // console.log(monthz);
-
-          // const newMonth = document.createElement('div');
-          // newMonth.classList.add('item');
-          // newMonth.innerHTML = ' <h2 class="month" >' + monthz.Month + '</h2><div class="entries"></div>';
-
-          // console.log(newMonth);
           const changeDate = document.createElement('future-logs');
-
-          // changeDate.content = newMonth;
-          // console.log(monthz.Month);
           changeDate.content = monthz;
-          // console.log(changeDate.querySelector('.entries'));
-
-          // changeDate.querySelector('.item').innerHTML +=
-
-          // console.log(newMonth.querySelector('.item'));
-
           futureLog.append(changeDate);
           counter++;
         }
       });
     });
+};
+
+router.setError = function () {
+  document.body.className = 'error';
 };

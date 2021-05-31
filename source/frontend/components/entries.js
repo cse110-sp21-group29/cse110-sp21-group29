@@ -28,35 +28,104 @@ export class LogEntries extends HTMLElement {
   }
 
   get entries () {
-    return this.getAttribute('content');
+    return this.getAttribute('entries');
   }
   /* eslint-disable */
   set entries (entries) {
     // this.tabIndex = 0;
-    this.createList(this.shadowRoot.getElementById('entries'), entries);
-    if (this.editable) {
-      const addDropdown = document.createElement('div');
-      addDropdown.innerHTML = `
-        <button id="myDropdown" type="button" data-bs-toggle="dropdown" data-bs-keyboard="true" aria-haspopup="true" aria-expanded="false"
-        class="px-1 pt-1 mx-4 mb-2 btn btn-lg btn-primary dropdown-toggle">
-          <i class="bi-journal-plus"></i>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="myDropdown">
-          <a class="dropdown-item" href="#">Add Note</a>
-          <a class="dropdown-item" href="#">Add Event</a>
-          <a class="dropdown-item" href="#">Add Task</a>
-        <div>
-      `;
-      addDropdown.classList.add('dropdown');
-      /*       const addButton = document.createElement('button');
-      addButton.innerHTML = '<i class="bi-journal-plus"></i>';
-      addButton.classList.add('px-1', 'py-1', 'mx-1', 'my-1', 'btn', 'btn-lg', 'btn-primary'); */
-      document.getElementById(this.parentId).appendChild(addDropdown);
-      
-      const myDropdownInit = new BSN.Dropdown('#myDropdown');
-      
+    this.entryArray = entries;
+    const article = this.shadowRoot.getElementById('entries');
+    article.innerHTML = '';
+    this.createList(article, entries,true);
+    if (this.editable && !this.addButtonCreated) {
+      this.addButtonCreated = true;
+      this.createAddButton();
+      this.createAddNestedButton();
     }
   }
+
+  createAddButton() {
+    const addDropdown = document.createElement('div');
+    const id = 'myDropdown-' + this.parentId.substring(11)
+    addDropdown.innerHTML = `
+      <button id="${id}" type="button" data-bs-toggle="dropdown" data-bs-keyboard="true" aria-haspopup="true" aria-expanded="false"
+      class="px-1 pt-1 mx-4 mb-2 btn btn-lg btn-primary dropdown-toggle">
+        <i class="bi-journal-plus"></i>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="myDropdown">
+        <a class="dropdown-item"  href="#">Add Note</a>
+        <a class="dropdown-item"  href="#">Add Event</a>
+        <a class="dropdown-item"  href="#">Add Task</a>
+      <div>
+    `;
+    addDropdown.classList.add('dropdown');
+    const parent = document.getElementById(this.parentId);
+    parent.appendChild(addDropdown);
+    //console.log(parent);
+    let addItems = addDropdown.querySelectorAll('a');
+    //console.log(addItems);
+    addItems[0].addEventListener('click', event => {
+      this.entryArray.push({
+        "type": "note",
+        "text": "A note",
+        "subEntries": []
+      });
+      this.entries = this.entryArray;
+    })
+    addItems[1].addEventListener('click', event => {
+      this.entryArray.push({
+        "type": "event",
+        "text": "An event",
+        "startTime": "",
+        "endTime": "",
+        "subEntries": []
+      });
+      this.entries = this.entryArray;
+    })
+    addItems[2].addEventListener('click', event => {
+      this.entryArray.push({
+        "type": "task",
+        "text": "A task",
+        "subEntries": []
+      });
+      this.entries = this.entryArray;
+    })
+    const myDropdownInit = new BSN.Dropdown( `#${id}`);
+  }
+
+  createAddNestedButton() {
+    this.addNestedDropdown = document.createElement('div');
+    const id = 'nestedDropdown-' + this.parentId.substring(11)
+    this.addNestedDropdown.innerHTML = `
+      <button id="${id}"  type="button" data-bs-toggle="dropdown" data-bs-keyboard="true" aria-haspopup="true" aria-expanded="false"
+      class="px-1 pt-1 mx-4 mb-2 btn btn-lg btn-primary dropdown-toggle">
+        <i class="bi-journal-plus"></i>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="myDropdown">
+        <a class="dropdown-item"  href="#">Add Note</a>
+        <a class="dropdown-item"  href="#">Add Event</a>
+        <a class="dropdown-item"  href="#">Add Task</a>
+      <div>
+    `;
+    this.addNestedDropdown.classList.add('dropdown','position-absolute','d-none');
+    this.addNestedDropdown.item = {};
+    const parent = document.getElementById(this.parentId);
+    parent.appendChild(this.addNestedDropdown);
+    //console.log(parent);
+    let addItems = this.addNestedDropdown.querySelectorAll('a');
+    //console.log(addItems);
+    addItems[0].addEventListener('click', event => {
+
+      this.addNestedDropdown.item.subEntries.push(        {
+        "type": "note",
+        "text": "A note",
+      });
+      this.entries = this.entryArray;
+    })
+    const myDropdownInit = new BSN.Dropdown(`#${id}`);
+    
+  }
+
   /* eslint-enable */
 
   /**
@@ -68,22 +137,22 @@ export class LogEntries extends HTMLElement {
  * @return {HTMLUListElement} The created list
  * @memberof LogEntries
  */
-  createList (elem, entries) {
+  createList (elem, entries, topLevel) {
     if (!entries || entries.length === 0) return false;
     const list = document.createElement('ul');
     list.classList.add('list-group');
     elem.appendChild(list);
     entries.forEach(entry => {
       if (entry.type === 'note') {
-        list.appendChild(this.createNote(entry));
+        list.appendChild(this.createNote(entry, topLevel));
         return;
       }
       if (entry.type === 'event') {
-        list.appendChild(this.createEvent(entry));
+        list.appendChild(this.createEvent(entry, topLevel));
         return;
       }
       if (entry.type === 'task') {
-        list.appendChild(this.createTask(entry));
+        list.appendChild(this.createTask(entry, topLevel));
       }
     });
     return list;
@@ -96,10 +165,10 @@ export class LogEntries extends HTMLElement {
    * @return {HTMLLIElement}  The created li element
    * @memberof LogEntries
    */
-  createLi (bullet, text) {
+  createLi (bullet, item, topLevel) {
     const li = document.createElement('li');
     // li.draggable = true;
-    li.innerHTML = '<span class="d-inline-block pr-5"><span>' + bullet + ' </span><span class="mr-5" >' + text + '</span></span>';
+    li.innerHTML = '<span class="d-inline-block pr-5"><span>' + bullet + ' </span><span class="mr-5" >' + item.text + '</span></span>';
     li.classList.add('list-group-item', 'border-0', 'py-0');
 
     if (this.editable) {
@@ -109,8 +178,23 @@ export class LogEntries extends HTMLElement {
       li.addEventListener('focus', event => {
         li.classList.add('focused');
       });
+      if (topLevel) {
+        li.addEventListener('focusin', event => {
+          this.addNestedDropdown.classList.remove('d-none');
+          this.addNestedDropdown.item = item;
+          this.addNestedDropdown.style.top = li.getBoundingClientRect().y + 'px';
+          this.addNestedDropdown.style.left = li.getBoundingClientRect().x + 50 + 'px';
+        });
+        li.addEventListener('focusout', event => {
+          // this.addNestedDropdown.classList.add('d-none');
+        });
+      }
       li.addEventListener('blur', event => {
         li.classList.remove('focused');
+        // alert('hello');
+      });
+      li.children[0].children[1].addEventListener('input', event => {
+        item.text = li.children[0].children[1].innerText;
       });
     }
     return li;
@@ -124,10 +208,10 @@ export class LogEntries extends HTMLElement {
  * @return {HTMLLIElement}  The created note
  * @memberof LogEntries
  */
-  createNote (note) {
-    const noteElem = this.createLi('–', note.text);
+  createNote (note, topLevel) {
+    const noteElem = this.createLi('–', note, topLevel);
     // noteElem.innerText = '– ' + note.text;
-    this.createList(noteElem, note.subEntries);
+    this.createList(noteElem, note.subEntries, false);
     return noteElem;
   }
 
@@ -139,16 +223,27 @@ export class LogEntries extends HTMLElement {
    * @return {HTMLLIElement} The created event
    * @memberof LogEntries
    */
-  createEvent (event) {
-    const eventElem = this.createLi('○', event.text);
+  createEvent (event, topLevel) {
+    const eventElem = this.createLi('○', event, topLevel);
     // eventElem.innerText = '○ ' + event.text;
-    if (event.startTime) {
-      eventElem.innerHTML += '<br><span>&nbsp &nbsp Starts: ' + event.startTime + '</span>';
-      if (event.endTime) {
-        eventElem.innerHTML += '<span>&nbsp Ends: ' + event.endTime + '</span>';
+    if (!this.editable) {
+      if (event.startTime) {
+        eventElem.innerHTML += '<br><span>&nbsp &nbsp Starts: ' + event.startTime + '</span>';
+        if (event.endTime) {
+          eventElem.innerHTML += '<span>&nbsp Ends: ' + event.endTime + '</span>';
+        }
       }
+    } else {
+      eventElem.innerHTML += `
+      <br>
+      <span> 
+        &nbsp &nbsp  Starts: <input type="time" value="${event.startTime}" name="startTime">
+        &nbsp Ends: <input type="time" value="${event.endTime}" name="endTime">
+      </span>
+      `;
     }
-    this.createList(eventElem, event.subEntries);
+
+    this.createList(eventElem, event.subEntries, false);
     return eventElem;
   }
 
@@ -160,13 +255,13 @@ export class LogEntries extends HTMLElement {
    * @return {HTMLLIElement}  The created task
    * @memberof LogEntries
    */
-  createTask (task) {
-    const taskElem = this.createLi('●', task.text);
+  createTask (task, topLevel) {
+    const taskElem = this.createLi('●', task, topLevel);
 
     if (task.deadline) {
       taskElem.innerHTML += '<br><span>&nbsp &nbsp Deadline: ' + task.deadline + '</span>';
     }
-    this.createList(taskElem, task.subEntries);
+    this.createList(taskElem, task.subEntries, false);
     return taskElem;
   }
 }

@@ -1,26 +1,34 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
-#dailyLog >   section.focused {
+#dailyLogDiv >   section.focused {
   outline: 5px auto -webkit-focus-ring-color;
 }
 
-body.dailyLog > main > #dailyLogDiv {
+body.dailyLog #dailyLogDiv {
   display: block;
 }
 
-body.dailyLog > main > #futureLogDiv {
+body.dailyLog  #futureLogDiv {
   display: none;
 }
 
-body.futureLog > main > #dailyLogDiv {
+body.futureLog  #dailyLogDiv {
   display: none;
 }
 
-body.futureLog > main > #futureLogDiv {
+body.futureLog  #futureLogDiv {
   display: grid;
 }
 
 body.futureLog side-bar{
   display: none;
+}
+
+body.error #dailyLogDiv, body.error #futureLogDiv, body.error side-bar {
+  display: none
+}
+
+body.error #error {
+  display: block !important;
 }
 
 /* #futureLogDiv > h1 {

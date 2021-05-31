@@ -25,7 +25,7 @@
           {
             "type": "task",
             "text": "Make buttered toast",
-            "deadline": "8:00AM",
+            "deadline": "8:00",
             "subEntries": [
               {
                 "type": "task",
@@ -44,14 +44,14 @@
           {
             "type": "event",
             "text": "John Doe's Birthday Party",
-            "startTime": "9:00AM",
-            "endTime": "11:00AM",
+            "startTime": "9:00",
+            "endTime": "11:00",
             "subEntries": [
               {                
                 "type": "event",
                 "text": "Cutting the cake",
-                "startTime": "9:30AM",
-                "endTime": "10:00AM"
+                "startTime": "9:30",
+                "endTime": "10:00"
               },
               {                
                 "type": "note",

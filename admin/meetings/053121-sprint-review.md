@@ -29,6 +29,7 @@ Meeting Agenda:
 Meeting Details:
 - Backend team still needs to do a few things before it is time to integrate
 - I showed backend team the .json format and entries.js
+- I showed the ability to edit entries
 - Backend team demonstrated the Django Views
   
 

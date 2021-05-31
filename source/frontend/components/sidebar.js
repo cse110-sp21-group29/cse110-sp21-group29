@@ -1,4 +1,13 @@
-class SideBar extends HTMLElement {
+/**
+ *
+ * This is a re-usable custom web component that setup sidebar, enables search bar, and enable navigating to note on a certain date
+ * @author Dadian Zhu <dazhu@ucsd.edu>
+ * @date 2021-05-30
+ * @export
+ * @class SideBar
+ * @extends {HTMLElement}
+ */
+export class SideBar extends HTMLElement {
   constructor () {
     super();
     const template = document.createElement('template');

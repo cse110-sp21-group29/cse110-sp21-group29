@@ -1,3 +1,4 @@
+
 class FutureLogs extends HTMLElement {
   constructor () {
     super();

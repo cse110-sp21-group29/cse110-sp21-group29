@@ -1,6 +1,6 @@
 {
     "javascript.validate.enable": false,
-    "docthis.authorName": "Julius Tran <j6tran@ucsd.edu>",
+    "docthis.authorName": "Dario Aburto Rodriguez <daaburto@ucsd.edu>",
     "docthis.includeAuthorTag": true,
     "docthis.dateTagFormat": "yyyy-mm-dd",
     "docthis.includeDateTag": true,

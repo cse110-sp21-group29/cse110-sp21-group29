@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>components/sidebar.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="LogEntries.html">LogEntries</a><ul class='methods'><li data-type='method'><a href="LogEntries.html#createEvent">createEvent</a></li><li data-type='method'><a href="LogEntries.html#createEvent">createEvent</a></li><li data-type='method'><a href="LogEntries.html#createLi">createLi</a></li><li data-type='method'><a href="LogEntries.html#createLi">createLi</a></li><li data-type='method'><a href="LogEntries.html#createList">createList</a></li><li data-type='method'><a href="LogEntries.html#createList">createList</a></li><li data-type='method'><a href="LogEntries.html#createNote">createNote</a></li><li data-type='method'><a href="LogEntries.html#createNote">createNote</a></li><li data-type='method'><a href="LogEntries.html#createTask">createTask</a></li><li data-type='method'><a href="LogEntries.html#createTask">createTask</a></li></ul></li><li></li></ul><h3>Global</h3><ul><li><a href="global.html#sum">sum</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">components/sidebar.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>class SideBar extends HTMLElement {
+  constructor () {
+    super();
+    const template = document.createElement('template');
+    template.innerHTML = `
+            &lt;style>
+            
+            a{
+              text-align:center;
+              text-decoration: none;
+              display:block;
+              color: #e1ffff;
+              font-family: "Comic Sans MS", "Comic Sans", cursive;
+              font-size: 18px;
+              padding: 10px 25px;
+            }
+
+            a:hover {
+              text-decoration: underline;
+              background-color: #0076ad;
+            }
+
+            input{
+              width:90%;
+              height:20px;
+              padding-left:10px;
+            }
+            .sidebar {
+                height: 100%;
+                background-color: #22282c;
+                position:relative;
+                padding-top: 40px;
+                overflow-y: scroll;
+            }
+            .sidebar_hide{
+                width:0%;
+            }
+            .futureLog{
+              
+              display:block;
+            }
+            .monthlyLog{
+              
+              display:block;
+            }
+            .dailyLog{
+              
+              display:block;
+            }
+            h3{
+              color: #e1ffff; 
+              font-family: "Comic Sans MS", "Comic Sans", cursive;
+              font-weight: bold;
+            }
+            h3:hover {
+              text-decoration: underline;
+              background-color: #0076ad;
+            }
+            &lt;/style> 
+            &lt;section class="sidebar">
+                
+                &lt;input id="searchbar" type="text" placeholder="Search..">
+                &lt;h3 id='future'>Future Log&lt;/h3>
+                &lt;section class="futureLog">&lt;/section>
+                &lt;h3 id='monthly'>Monthly Log&lt;/h3>
+                &lt;section class="monthlyLog">&lt;/section> 
+                &lt;h3 id='daily'>Daily Log&lt;/h3>
+                &lt;section class="dailyLog">&lt;/section>
+             &lt;/section>
+            
+            `;
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
+  }
+
+  /**
+ *
+ *
+ * @author Dadian Zhu &lt;dazhu@ucsd.edu>
+ * @date 2021-05-30
+ * @memberof SideBar
+ */
+  get content () {
+    return this.getAttribute('content');
+  }
+
+  /* const dailySection = this.shadowRoot.querySelector("[class='dailyLog']");
+  dailySection.addEventListener('click', function () {
+  this.dailySection.classList.add('daily_hide');
+  for (let i = 0; i &lt; entry.length; i++) {
+
+  }
+});
+*//**
+ *
+ *
+ * @author Dadian Zhu &lt;dazhu@ucsd.edu>
+ * @date 2021-05-30
+ * @memberof SideBar
+ */
+
+  set content (entry) {
+    console.log(entry);
+    const futureList = document.createElement('div');
+    futureList.setAttribute('class', 'list-group');
+    const monthlyList = document.createElement('div');
+    monthlyList.setAttribute('class', 'list-group');
+    const dailyList = document.createElement('div');
+    dailyList.setAttribute('class', 'list-group');
+    console.log(entry.date);
+    console.log(entry.length);
+    for (let i = 0; i &lt; entry.length; i++) {
+      const a = document.createElement('a');
+      a.setAttribute('class', 'list-group-item');
+      a.innerHTML = entry[i].date;
+      dailyList.appendChild(a);
+      a.setAttribute('href', '#/dailyLog/' + entry[i].date);
+    }
+    // const li = document.createElement('li');
+    // li.innerHTML = day.date;
+    // if(entry.category=='Future Log'){
+    //     futureList.appendChild(li);
+    // }
+    // if(entry.category=='Monthly Log'){
+    //     monthlyList.appendChild(li);
+    // }
+    // if(entry.category=='Daily Log'){
+
+    // }
+    this.shadowRoot.querySelector("[class='futureLog']").appendChild(futureList);
+    this.shadowRoot.querySelector("[class='monthlyLog']").appendChild(monthlyList);
+    this.shadowRoot.querySelector("[class='dailyLog']").appendChild(dailyList);
+    this.shadowRoot.getElementById('daily').addEventListener('click', () => {
+      for (let i = 0; i &lt; entry.length; i++) {
+        if (this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display === 'block') {
+          this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display = 'none';
+        } else {
+          this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display = 'block';
+        }
+      }
+    });
+    const input = this.shadowRoot.getElementById('searchbar');
+    const link = this.shadowRoot.querySelectorAll("[class='list-group-item']");
+
+    input.addEventListener('keyup', () => {
+      for (let i = 0; i &lt; link.length; i++) {
+        if (!link[i].innerHTML.includes(input.value)) {
+          link[i].style.display = 'none';
+        } else {
+          link[i].style.display = 'block';
+        }
+      }
+    });
+  }
+}
+customElements.define('side-bar', SideBar);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Mon May 31 2021 21:46:48 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

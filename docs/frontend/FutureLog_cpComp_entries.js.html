@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>FutureLog/cpComp/entries.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="LogEntries.html">LogEntries</a><ul class='methods'><li data-type='method'><a href="LogEntries.html#createEvent">createEvent</a></li><li data-type='method'><a href="LogEntries.html#createEvent">createEvent</a></li><li data-type='method'><a href="LogEntries.html#createLi">createLi</a></li><li data-type='method'><a href="LogEntries.html#createLi">createLi</a></li><li data-type='method'><a href="LogEntries.html#createList">createList</a></li><li data-type='method'><a href="LogEntries.html#createList">createList</a></li><li data-type='method'><a href="LogEntries.html#createNote">createNote</a></li><li data-type='method'><a href="LogEntries.html#createNote">createNote</a></li><li data-type='method'><a href="LogEntries.html#createTask">createTask</a></li><li data-type='method'><a href="LogEntries.html#createTask">createTask</a></li></ul></li><li></li></ul><h3>Global</h3><ul><li><a href="global.html#sum">sum</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">FutureLog/cpComp/entries.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ *
+ * This is a re-usable custom web component that displays notes, tasks, and events.
+ * Simply set its .content property to the array of entries
+ * @author Julius Tran &lt;j6tran@ucsd.edu>
+ * @date 2021-05-13
+ * @class LogEntries
+ * @extends {HTMLElement}
+ */
+class LogEntries extends HTMLElement {
+  constructor () {
+    super();
+    this.attachShadow({ mode: 'open' });
+    const template = document.createElement('template');
+    template.innerHTML = `
+          &lt;link rel="stylesheet" href="../styles/bootstrap.css">
+      `;
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
+  }
+
+  get content () {
+    return this.getAttribute('content');
+  }
+
+  set content (content) {
+    this.createList(this.shadowRoot, content);
+  }
+
+  /**
+ * Create an ol element containing the entries.
+ * @author Julius Tran &lt;j6tran@ucsd.edu>
+ * @date 2021-05-15
+ * @param {Object} - The element to append the ol to
+ * @param {Object[]} entries - The data for the entries
+ * @return {HTMLUListElement} The created list
+ * @memberof LogEntries
+ */
+  createList (elem, entries) {
+    if (!entries || entries.length === 0) return false;
+    const list = document.createElement('ul');
+    list.classList.add('list-group');
+    elem.appendChild(list);
+    entries.forEach(entry => {
+      if (entry.type === 'note') {
+        list.appendChild(this.createNote(entry));
+        return;
+      }
+      if (entry.type === 'event') {
+        list.appendChild(this.createEvent(entry));
+        return;
+      }
+      if (entry.type === 'task') {
+        list.appendChild(this.createTask(entry));
+      }
+    });
+    return list;
+  }
+
+  /**
+   * Create li with proper CSS clasess
+   * @author Julius Tran &lt;j6tran@ucsd.edu>
+   * @date 2021-05-15
+   * @return {HTMLLIElement}  The created li element
+   * @memberof LogEntries
+   */
+  createLi () {
+    const li = document.createElement('li');
+    li.classList.add('list-group-item', 'border-0', 'py-0');
+    return li;
+  }
+
+  /**
+ * Create a note li element
+ * @author Julius Tran &lt;j6tran@ucsd.edu>
+ * @date 2021-05-15
+ * @param {Object} - The note data
+ * @return {HTMLLIElement}  The created note
+ * @memberof LogEntries
+ */
+  createNote (note) {
+    const noteElem = this.createLi();
+    noteElem.innerText = '– ' + note.text;
+    this.createList(noteElem, note.subEntries);
+    return noteElem;
+  }
+
+  /**
+   * Create an event li element
+   * @author Julius Tran &lt;j6tran@ucsd.edu>
+   * @date 2021-05-15
+   * @param {*} event - The event data
+   * @return {HTMLLIElement} The created event
+   * @memberof LogEntries
+   */
+  createEvent (event) {
+    const eventElem = this.createLi();
+    eventElem.innerText = '○ ' + event.text;
+    if (event.startTime) {
+      eventElem.innerHTML += '&lt;br>&lt;span>&amp;nbsp &amp;nbsp Starts: ' + event.startTime + '&lt;/span>';
+      if (event.endTime) {
+        eventElem.innerHTML += '&lt;span>&amp;nbsp Ends: ' + event.endTime + '&lt;/span>';
+      }
+    }
+    this.createList(eventElem, event.subEntries);
+    return eventElem;
+  }
+
+  /**
+   * Create a task li element
+   * @author Julius Tran &lt;j6tran@ucsd.edu>
+   * @date 2021-05-15
+   * @param {*} task - The task data
+   * @return {HTMLLIElement}  The created task
+   * @memberof LogEntries
+   */
+  createTask (task) {
+    const taskElem = this.createLi();
+    taskElem.innerText = '● ' + task.text;
+    if (task.deadline) {
+      taskElem.innerHTML += '&lt;br>&lt;span>&amp;nbsp &amp;nbsp Deadline: ' + task.deadline + '&lt;/span>';
+    }
+    this.createList(taskElem, task.subEntries);
+    return taskElem;
+  }
+}
+customElements.define('log-entries', LogEntries);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Mon May 31 2021 21:46:48 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

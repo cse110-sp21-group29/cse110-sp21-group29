@@ -1,0 +1,107 @@
+[
+    {
+      "Month": "May ",
+      "editable": false,
+      "entries": [
+          {
+            "type": "note",
+            "text": "Hello World",
+            "subEntries": [
+                {                
+                    "type": "note",
+                    "text": "This is a subnote"
+                },
+                {                
+                  "type": "note",
+                  "text": "This is another subnote"
+                }
+            ]
+          },
+          {
+            "type": "note",
+            "text": "Another note",
+            "subEntries": []
+          },
+          {
+            "type": "task",
+            "text": "Make buttered toast",
+            "deadline": "8:00",
+            "subEntries": [
+              {
+                "type": "task",
+                "text": "Get the bread"
+              },
+              {
+                "type": "task",
+                "text": "Toast the bread"
+              },
+              {
+                "type": "task",
+                "text": "Apply butter to the toast"
+              }
+            ]
+          },
+          {
+            "type": "event",
+            "text": "John Doe's Birthday Party",
+            "startTime": "9:00",
+            "endTime": "11:00",
+            "subEntries": [
+              {                
+                "type": "event",
+                "text": "Cutting the cake",
+                "startTime": "9:30",
+                "endTime": "10:00"
+              },
+              {                
+                "type": "note",
+                "text": "There will be 30 guests"
+              }
+            ]
+          }
+      ]
+    },
+    {
+      "Month": "June",
+      "editable": false,
+      "entries": [
+      ]
+    },
+    {
+      "Month": "July",
+      "editable": false,
+      "entries": [
+      ]
+    },
+    {
+      "Month": "August",
+      "editable": false,
+      "entries": [
+      ]
+    },
+    {
+      "Month": "September",
+      "editable": false,
+      "entries": [
+      ]
+    },
+    {
+      "Month": "October",
+      "editable": false,
+      "entries": [
+      ]
+    },
+    {
+      "Month": "November",
+      "editable": false,
+      "entries": [
+      ]
+    },
+    {
+      "Month": "December",
+      "editable": false,
+      "entries": [
+      ]
+    }
+  ]
+  

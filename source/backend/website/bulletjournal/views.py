@@ -36,5 +36,9 @@ def login_view(request):
     return render(request, "LoginPage.html", {'form': form})
 
 
+def daily_view(request):
+    return render(request, "frontend/app/index.html")
+
+
 def front_page(request):
     return render(request, "FrontPage.html")

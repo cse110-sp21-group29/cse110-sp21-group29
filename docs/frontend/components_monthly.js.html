@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>helloworld.js - Documentation</title>
+    <title>components/monthly.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -32,7 +32,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">helloworld.js</h1>
+    <h1 class="page-title">components/monthly.js</h1>
     
 
     
@@ -42,22 +42,72 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>
+            <pre class="prettyprint source linenums"><code>/* global */
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const d = new Date();
+const n = months[d.getMonth()];
+const y = d.getFullYear();
+document.getElementById('monthName').innerHTML = n;
+document.getElementById('yearName').innerHTML = y;
+const allDays = getDaysInMonth(d.getMonth(), y);
+
 /**
- * This is a basic function to demonstrate the pipeline
- * @author Julius Tran &lt;j6tran@ucsd.edu>
- * @date 2021/05/13
- * @param {number} a - The first summand
- * @param {number} b - The second summand
- * @return {number}  The sum of a and b
+ * Create month with appropriate amount of days
+ * @author Anahita Afshari &lt;aafshari@ucsd.edu>
+ * @date 2021-05-30
+ * @param month - the month it is
+ * @param year - the year it is
+ * @return days - how many days are in the month
  */
-function sum (a, b) {
-  console.log('Hello World');
-  return a + b;
+function getDaysInMonth (month, year) {
+  const date = new Date(year, month, 1);
+  const days = [];
+  const dNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  while (date.getMonth() === month) {
+    const temp = new Date(date);
+    const tempDayName = dNames[temp.getDay()];
+    const tempDayNum = temp.getDate();
+    const tempStr = String(tempDayNum) + '         ' + String(tempDayName);
+    days.push(tempStr);
+    date.setDate(date.getDate() + 1);
+  }
+  return days;
 }
-module.exports = sum;
-// This is a comment
-</code></pre>
+
+/**
+ * Make a list of the days with appropriate week lines
+ * @author Anahita Afshari &lt;aafshari@ucsd.edu>
+ * @date 2021-05-30
+ */
+function makeList () {
+  const listData = allDays;
+  const listContainer = document.createElement('div');
+  const listElement = document.createElement('ul');
+  const numberOfListItems = listData.length;
+  let listItem;
+  let i;
+
+  document.getElementsByTagName('body')[0].appendChild(listContainer);
+  listContainer.appendChild(listElement);
+
+  for (i = 0; i &lt; numberOfListItems; i++) {
+    const count = listData[i];
+    const weekCount = count.slice(count.length - 3);
+    console.log(weekCount);
+
+    if (weekCount === 'Sun') {
+      const elem = document.createElement('hr');
+      listElement.appendChild(elem);
+      console.log(weekCount);
+    }
+
+    listItem = document.createElement('li');
+    listItem.innerHTML = listData[i];
+    listElement.appendChild(listItem);
+  }
+}
+
+makeList();</code></pre>
         </article>
     </section>
 

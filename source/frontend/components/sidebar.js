@@ -1,3 +1,4 @@
+
 /**
  *
  * This is a re-usable custom web component that setup sidebar, enables search bar, and enable navigating to note on a certain date
@@ -17,7 +18,7 @@ export class SideBar extends HTMLElement {
             a{
               text-align:center;
               text-decoration: none;
-              display:block;
+              
               color: #e1ffff;
               font-family: "Comic Sans MS", "Comic Sans", cursive;
               font-size: 18px;
@@ -107,10 +108,8 @@ export class SideBar extends HTMLElement {
  * @date 2021-05-30
  * @memberof SideBar
  */
-
   set content (entry) {
     // console.log(entry);
-
     const futureList = document.createElement('div');
     futureList.setAttribute('class', 'list-group');
     const monthlyList = document.createElement('div');
@@ -122,6 +121,7 @@ export class SideBar extends HTMLElement {
     for (let i = 0; i < entry.length; i++) {
       const a = document.createElement('a');
       a.setAttribute('class', 'list-group-item');
+      a.style.display='block';
       a.innerHTML = entry[i].date;
       dailyList.appendChild(a);
       a.setAttribute('href', '#/dailyLog/' + entry[i].date);
@@ -147,17 +147,23 @@ export class SideBar extends HTMLElement {
     monthlySection.appendChild(monthlyList);
     dailySection.appendChild(dailyList);
     this.shadowRoot.getElementById('daily').addEventListener('click', () => {
+      console.log("click");
       for (let i = 0; i < entry.length; i++) {
         if (this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display === 'block') {
+          console.log("none");
           this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display = 'none';
         } else {
+          console.log("block");
           this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display = 'block';
         }
       }
     });
+    
     const input = this.shadowRoot.getElementById('searchbar');
     const link = this.shadowRoot.querySelectorAll("[class='list-group-item']");
-
+    this.shadowRoot.getElementById('future').addEventListener('click',()=>{
+      location.hash='/futureLog';
+    })
     input.addEventListener('keyup', () => {
       for (let i = 0; i < link.length; i++) {
         if (!link[i].innerHTML.includes(input.value)) {

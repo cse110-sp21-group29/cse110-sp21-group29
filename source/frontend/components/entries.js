@@ -105,6 +105,7 @@ export class LogEntries extends HTMLElement {
         <a class="dropdown-item"  href="#">Add Note</a>
         <a class="dropdown-item"  href="#">Add Event</a>
         <a class="dropdown-item"  href="#">Add Task</a>
+        <a class="dropdown-item"  href="#">Delete Entry</a>
       <div>
     `;
     this.addNestedDropdown.classList.add('dropdown','position-absolute','d-none');
@@ -115,11 +116,29 @@ export class LogEntries extends HTMLElement {
     let addItems = this.addNestedDropdown.querySelectorAll('a');
     //console.log(addItems);
     addItems[0].addEventListener('click', event => {
-
-      this.addNestedDropdown.item.subEntries.push(        {
+      this.addNestedDropdown.item.subEntries.push({
         "type": "note",
         "text": "A note",
       });
+      this.entries = this.entryArray;
+    })
+    addItems[1].addEventListener('click', event => {
+      this.addNestedDropdown.item.subEntries.push({
+        "type": "event",
+        "text": "An event",
+      });
+      this.entries = this.entryArray;
+    })
+    addItems[2].addEventListener('click', event => {
+      this.addNestedDropdown.item.subEntries.push(        {
+        "type": "task",
+        "text": "A task",
+      });
+      this.entries = this.entryArray;
+    })
+    addItems[3].addEventListener('click', event => {
+      const index = this.entryArray.indexOf(this.addNestedDropdown.item);
+      this.entryArray.splice(index,1);
       this.entries = this.entryArray;
     })
     const myDropdownInit = new BSN.Dropdown(`#${id}`);
@@ -191,7 +210,6 @@ export class LogEntries extends HTMLElement {
       }
       li.addEventListener('blur', event => {
         li.classList.remove('focused');
-        // alert('hello');
       });
       li.children[0].children[1].addEventListener('input', event => {
         item.text = li.children[0].children[1].innerText;

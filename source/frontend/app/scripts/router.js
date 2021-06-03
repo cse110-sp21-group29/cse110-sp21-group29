@@ -1,14 +1,68 @@
 export const router = {};
+const dailyLogUrl = './dailyLog.json';
+const futureLogUrl = './futureLog.json';
+
+let dailyLogLoaded = false;
+// const main = document.querySelector('main');
 router.setState = function () {
   if (location.hash === '#/dailyLog') {
+    router.loadDailyLog();
     router.setDailyLogHome();
     return;
   }
   if (location.hash.substring(0, 10) === '#/dailyLog') {
-    router.setDailyLog();
+    router.loadDailyLog();
+    router.setDay();
     return;
   }
-  location.hash = '#/dailyLog';
+  if (location.hash === '#/futureLog') {
+    dailyLogLoaded = false;
+    router.setFutureLog();
+    return;
+  }
+
+  if (location.hash === '#' || location.hash === '#/' || location.hash === '') {
+    location.hash = '#/dailyLog';
+  }
+  router.setError();
+};
+
+router.loadDailyLog = function () {
+  if (dailyLogLoaded) return;
+  const dailyLog = document.getElementById('dailyLogDiv');
+  const sideBar = document.querySelector('side-bar');
+  dailyLogLoaded = true;
+  document.body.className = 'dailyLog';
+  dailyLog.innerHTML = '';
+  fetch(dailyLogUrl)
+    .then(response => response.json())
+    .then(days => {
+      window.days = days;
+      sideBar.content = days;
+      days.forEach((day) => {
+        const newDay = document.createElement('section');
+        newDay.tabIndex = 0;
+        newDay.id = '/dailyLog/' + day.date;
+        newDay.classList.add('card', 'w-50', 'mx-auto', 'my-3', 'border-3');
+        const date = new Date(day.date);
+        const dateTitle = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+        newDay.innerHTML = '<div class="card-body"><h2 class="card-title text-center"><time datetime="' +
+          day.date + '">' + dateTitle + '</time></h2></div>';
+        dailyLog.appendChild(newDay);
+        const entries = document.createElement('log-entries');
+        entries.parentId = newDay.id;
+        entries.editable = day.editable;
+        entries.entries = day.entries;
+        newDay.querySelector('.card-body').appendChild(entries);
+        newDay.addEventListener('focus', event => {
+          location.hash = newDay.id;
+          newDay.classList.add('focused');
+        });
+        newDay.addEventListener('blur', event => {
+          newDay.classList.remove('focused');
+        });
+      });
+    });
 };
 
 router.setDailyLogHome = function () {
@@ -16,14 +70,36 @@ router.setDailyLogHome = function () {
   document.activeElement.blur();
 };
 
-router.setDailyLog = function () {
+router.setDay = function () {
   const day = document.getElementById(location.hash.substring(1));
   if (!day) {
     location.hash = '#/dailyLog';
-    router.setDailyLogHome();
+    return;
   }
   if (document.activeElement !== day) {
     day.focus();
     day.classList.add('focus');
   }
+};
+
+router.setFutureLog = function () {
+  document.body.className = 'futureLog';
+  const futureLog = document.getElementById('futureLogDiv');
+  let counter = 0;
+  fetch(futureLogUrl)
+    .then(response => response.json())
+    .then(month => {
+      month.forEach((monthz) => {
+        if (counter < 6) {
+          const changeDate = document.createElement('future-logs');
+          changeDate.content = monthz;
+          futureLog.append(changeDate);
+          counter++;
+        }
+      });
+    });
+};
+
+router.setError = function () {
+  document.body.className = 'error';
 };

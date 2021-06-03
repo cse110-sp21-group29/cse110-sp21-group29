@@ -109,15 +109,16 @@ export class SideBar extends HTMLElement {
  */
 
   set content (entry) {
-    console.log(entry);
+    // console.log(entry);
+
     const futureList = document.createElement('div');
     futureList.setAttribute('class', 'list-group');
     const monthlyList = document.createElement('div');
     monthlyList.setAttribute('class', 'list-group');
     const dailyList = document.createElement('div');
     dailyList.setAttribute('class', 'list-group');
-    console.log(entry.date);
-    console.log(entry.length);
+    // console.log(entry.date);
+    // console.log(entry.length);
     for (let i = 0; i < entry.length; i++) {
       const a = document.createElement('a');
       a.setAttribute('class', 'list-group-item');
@@ -125,6 +126,12 @@ export class SideBar extends HTMLElement {
       dailyList.appendChild(a);
       a.setAttribute('href', '#/dailyLog/' + entry[i].date);
     }
+    const futureSection = this.shadowRoot.querySelector("[class='futureLog']");
+    const monthlySection = this.shadowRoot.querySelector("[class='monthlyLog']");
+    const dailySection = this.shadowRoot.querySelector("[class='dailyLog']");
+    futureSection.innerHTML = '';
+    monthlySection.innerHTML = '';
+    dailySection.innerHTML = '';
     // const li = document.createElement('li');
     // li.innerHTML = day.date;
     // if(entry.category=='Future Log'){
@@ -136,9 +143,9 @@ export class SideBar extends HTMLElement {
     // if(entry.category=='Daily Log'){
 
     // }
-    this.shadowRoot.querySelector("[class='futureLog']").appendChild(futureList);
-    this.shadowRoot.querySelector("[class='monthlyLog']").appendChild(monthlyList);
-    this.shadowRoot.querySelector("[class='dailyLog']").appendChild(dailyList);
+    futureSection.appendChild(futureList);
+    monthlySection.appendChild(monthlyList);
+    dailySection.appendChild(dailyList);
     this.shadowRoot.getElementById('daily').addEventListener('click', () => {
       for (let i = 0; i < entry.length; i++) {
         if (this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display === 'block') {

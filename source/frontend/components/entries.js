@@ -258,6 +258,15 @@ export class LogEntries extends HTMLElement {
     return eventElem;
   }
 
+  /**
+   *
+   *
+   * @author Julius Tran <j6tran@ucsd.edu>
+   * @date 2021-06-02
+   * @param {*} time - A time string in 24-hour format
+   * @return {*} The time string in 12 hour format
+   * @memberof LogEntries
+   */
   convertTime (time) {
     return new Date('2000-01-01T' + time + 'Z').toLocaleTimeString({}, { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' });
   }
@@ -266,7 +275,7 @@ export class LogEntries extends HTMLElement {
    * Create a task li element
    * @author Julius Tran <j6tran@ucsd.edu>
    * @date 2021-05-15
-   * @param {*} task - The task data
+   * @param {*} task  The task data
    * @return {HTMLLIElement}  The created task
    * @memberof LogEntries
    */

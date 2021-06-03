@@ -19,10 +19,14 @@ body.futureLog  #futureLogDiv {
   display: grid;
 }
 
-body.futureLog side-bar{
-  display: none;
+#futureLogDiv {
+  margin-left: 400px;
 }
 
+/* body.futureLog side-bar{
+  display: none;
+}
+ */
 body.error #dailyLogDiv, body.error #futureLogDiv, body.error side-bar {
   display: none
 }

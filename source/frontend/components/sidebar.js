@@ -100,15 +100,15 @@ class SideBar extends HTMLElement {
  */
 
   set content (entry) {
-    console.log(entry);
+    // console.log(entry);
     const futureList = document.createElement('div');
     futureList.setAttribute('class', 'list-group');
     const monthlyList = document.createElement('div');
     monthlyList.setAttribute('class', 'list-group');
     const dailyList = document.createElement('div');
     dailyList.setAttribute('class', 'list-group');
-    console.log(entry.date);
-    console.log(entry.length);
+    // console.log(entry.date);
+    // console.log(entry.length);
     for (let i = 0; i < entry.length; i++) {
       const a = document.createElement('a');
       a.setAttribute('class', 'list-group-item');

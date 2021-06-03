@@ -1,7 +1,7 @@
 export const router = {};
 const dailyLogUrl = './dailyLog.json';
 const futureLogUrl = './futureLog.json';
-const dailyLog = document.getElementById('dailyLogDiv');
+
 let dailyLogLoaded = false;
 // const main = document.querySelector('main');
 router.setState = function () {
@@ -29,6 +29,8 @@ router.setState = function () {
 
 router.loadDailyLog = function () {
   if (dailyLogLoaded) return;
+  const dailyLog = document.getElementById('dailyLogDiv');
+  const sideBar = document.querySelector('side-bar');
   dailyLogLoaded = true;
   document.body.className = 'dailyLog';
   dailyLog.innerHTML = '';
@@ -36,6 +38,7 @@ router.loadDailyLog = function () {
     .then(response => response.json())
     .then(days => {
       window.days = days;
+      sideBar.content = days;
       days.forEach((day) => {
         const newDay = document.createElement('section');
         newDay.tabIndex = 0;

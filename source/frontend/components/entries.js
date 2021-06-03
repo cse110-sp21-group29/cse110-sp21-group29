@@ -228,9 +228,13 @@ export class LogEntries extends HTMLElement {
     // eventElem.innerText = '○ ' + event.text;
     if (!this.editable) {
       if (event.startTime) {
-        eventElem.innerHTML += '<br><span>&nbsp &nbsp Starts: ' + event.startTime + '</span>';
+        eventElem.innerHTML += `
+        <br><span>&nbsp &nbsp Starts:  ${this.convertTime(event.startTime)}</span>
+        `;
         if (event.endTime) {
-          eventElem.innerHTML += '<span>&nbsp Ends: ' + event.endTime + '</span>';
+          eventElem.innerHTML += `
+          <span>&nbsp Ends:  ${this.convertTime(event.endTime)}</span>
+          `;
         }
       }
     } else {
@@ -241,10 +245,21 @@ export class LogEntries extends HTMLElement {
         &nbsp Ends: <input type="time" value="${event.endTime}" name="endTime">
       </span>
       `;
+      // console.log(eventElem.children);
+      eventElem.children[2].children[0].addEventListener('input', ev => {
+        event.startTime = ev.path[0].value;
+      });
+      eventElem.children[2].children[1].addEventListener('input', ev => {
+        event.endTime = ev.path[0].value;
+      });
     }
 
     this.createList(eventElem, event.subEntries, false);
     return eventElem;
+  }
+
+  convertTime (time) {
+    return new Date('2000-01-01T' + time + 'Z').toLocaleTimeString({}, { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' });
   }
 
   /**
@@ -257,12 +272,23 @@ export class LogEntries extends HTMLElement {
    */
   createTask (task, topLevel) {
     const taskElem = this.createLi('●', task, topLevel);
-
-    if (task.deadline) {
-      taskElem.innerHTML += '<br><span>&nbsp &nbsp Deadline: ' + task.deadline + '</span>';
+    if (!this.editable) {
+      if (task.deadline) {
+        taskElem.innerHTML += `
+        <br><span>&nbsp &nbsp Deadline: ${this.convertTime(task.deadline)}</span>
+        `;
+      }
+    } else {
+      taskElem.innerHTML += `
+      <br><span>&nbsp &nbsp Deadline: <input type="time" value="${task.deadline}"></span>
+        `;
+      taskElem.children[2].children[0].addEventListener('input', ev => {
+        task.deadline = ev.path[0].value;
+      });
     }
     this.createList(taskElem, task.subEntries, false);
     return taskElem;
   }
 }
+
 customElements.define('log-entries', LogEntries);

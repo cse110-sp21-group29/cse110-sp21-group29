@@ -35,20 +35,6 @@ body.error #error {
   display: block !important;
 }
 
-/*Future Log Div */
-
-
-
-
-/* #futureLogDiv > h1 {
-
-  text-align: center;
-  font-size: 35px;
-  color: #2C5684;
-} */
-
-
-
 future-logs{
   display: block;
   border-bottom: 3px solid black;

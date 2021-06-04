@@ -35,6 +35,11 @@ body.error #error {
   display: block !important;
 }
 
+/*Future Log Div */
+
+
+
+
 /* #futureLogDiv > h1 {
 
   text-align: center;
@@ -77,4 +82,54 @@ future-logs:nth-child(odd){
 
 .item:nth-child(odd){
   border-right: 3px solid black;
+}
+
+/** futue log div **/
+
+#futureLogDiv h1{
+  text-align: center;
+  font-family: literata;
+  font-size: 35px;
+  color: #2C5684;
+
+}
+
+#futureLogDiv h2 {
+  font-family: literata
+}
+
+#futureLogDiv body {
+  background-color: white;
+}
+
+#futureLogDiv .month {
+  color: #2C5684;
+  word-break: break-all;
+
+
+}
+
+#futureLogDiv .container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, minmax(200px, auto));
+  grid-gap: 0;
+  border-top: solid black;
+
+
+
+}
+
+#futureLogDiv .item {
+  color: #2C5684;
+  /*border-bottom: 3px solid black;*/
+  /*border-top: 1px solid black;*/
+  word-break: break-all;
+
+ /* padding: 30px;*/
+}
+
+#futureLogDiv .item:nth-child(odd){
+  border-right: 3px solid black;
+  background: red;
 }

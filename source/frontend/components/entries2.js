@@ -13,7 +13,7 @@ export class LogEntries extends HTMLElement {
   constructor () {
     super();
     this.attachShadow({ mode: 'open' });
-    /*     const template = document.createElement('template');
+    const template = document.createElement('template');
     template.innerHTML = `
           <link rel="stylesheet" href="../styles/bootstrap.css">
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -23,10 +23,11 @@ export class LogEntries extends HTMLElement {
             }
           </style>
           <article id="entries"></article>
-          <slot name="buttonSlot></slot>
-      `; */
-    // this.shadowRoot.appendChild(template.content.cloneNode(true));
-    this.shadowRoot.innerHTML = `
+      `;
+
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
+    this.shadowRoot.innerHTML += '<slot name="addButtonSlot"></slot></slot>';
+    /*     this.shadowRoot.innerHTML = `
     <link rel="stylesheet" href="../styles/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <style>
@@ -36,8 +37,7 @@ export class LogEntries extends HTMLElement {
     </style>
     <article id="entries"></article>
     <slot name="addButtonSlot"> Default Text </slot>
-   
-    `;
+    `; */
   }
 
   get entries () {
@@ -59,7 +59,7 @@ export class LogEntries extends HTMLElement {
 
   createAddButton() {
     const addDropdown = document.createElement('div');
-    const id = 'myDropdown-' + this.parentId.substring(11)
+    const id = this.uniqueId();
     addDropdown.innerHTML = `
       <button id="${id}" type="button" data-bs-toggle="dropdown" data-bs-keyboard="true" aria-haspopup="true" aria-expanded="false"
       class="px-1 pt-1 mx-4 mb-2 btn btn-lg btn-primary dropdown-toggle">
@@ -109,7 +109,7 @@ export class LogEntries extends HTMLElement {
 
   createAddNestedButton() {
     this.addNestedDropdown = document.createElement('div');
-    const id = 'nestedDropdown-' + this.parentId.substring(11)
+    const id = this.uniqueId();
     this.addNestedDropdown.innerHTML = `
       <button id="${id}"  type="button" data-bs-toggle="dropdown" data-bs-keyboard="true" aria-haspopup="true" aria-expanded="false"
       class="px-1 pt-1 mx-4 mb-2 btn btn-lg btn-primary dropdown-toggle">
@@ -122,13 +122,14 @@ export class LogEntries extends HTMLElement {
         <a class="dropdown-item"  href="#">Delete Entry</a>
       <div>
     `;
-    this.addNestedDropdown.classList.add('dropdown','position-absolute');
-    this.addNestedDropdown.slot = 'addNestedButtonSlot';
+    this.addNestedDropdown.classList.add('dropdown','d-block');
+    this.style='Z-index:-100'
     this.addNestedDropdown.item = {};
     document.body.appendChild(this.addNestedDropdown);
     const myDropdownInit = new BSN.Dropdown(`#${id}`);
     this.appendChild(this.addNestedDropdown);
     let addItems = this.addNestedDropdown.querySelectorAll('a');
+   
     addItems[0].addEventListener('click', event => {
       this.addNestedDropdown.item.subEntries.push({
         "type": "note",
@@ -201,8 +202,11 @@ export class LogEntries extends HTMLElement {
   createLi (bullet, item, topLevel) {
     const li = document.createElement('li');
     // li.draggable = true;
-    li.innerHTML = '<span class="d-inline-block pr-5"><span>' + bullet + ' </span><span class="mr-5" >' + item.text + '</span></span>';
-    li.classList.add('list-group-item', 'border-0', 'py-0');
+    li.innerHTML = `
+    <span class="d-inline-block pr-5"><span>${bullet}</span><span class="mr-5" >${item.text}</span></span>
+    
+    `;
+    li.classList.add('list-group-item', 'border-0', 'py-0', 'd-inline-block');
 
     if (this.editable) {
       li.tabIndex = 0;
@@ -212,11 +216,18 @@ export class LogEntries extends HTMLElement {
         li.classList.add('focused');
       });
       if (topLevel) {
-        li.addEventListener('focusin', event => {
+        const slotName = this.uniqueId();
+        const divID = this.uniqueId();
+        li.innerHTML += `
+        <div id="${divID}" class="float-right"><slot name="${slotName}"></slot></div>
+        `;
+        li.addEventListener('focus', event => {
           // this.addNestedDropdown.classList.remove('d-none');
           this.addNestedDropdown.item = item;
-          this.addNestedDropdown.style.top = li.getBoundingClientRect().y + 'px';
-          this.addNestedDropdown.style.left = li.getBoundingClientRect().x + 50 + 'px';
+          /*  this.addNestedDropdown.style.top = li.getBoundingClientRect().y + 'px';
+          this.addNestedDropdown.style.left = li.getBoundingClientRect().x + 50 + 'px'; */
+          this.addNestedDropdown.slot = slotName;
+          this.appendChild(this.addNestedDropdown);
         });
         li.addEventListener('focusout', event => {
           // this.addNestedDropdown.classList.add('d-none');
@@ -277,11 +288,10 @@ export class LogEntries extends HTMLElement {
         &nbsp Ends: <input type="time" value="${event.endTime}" name="endTime">
       </span>
       `;
-      // console.log(eventElem.children);
-      eventElem.children[2].children[0].addEventListener('input', ev => {
+      eventElem.querySelectorAll('input[type=time]')[0].addEventListener('input', ev => {
         event.startTime = ev.path[0].value;
       });
-      eventElem.children[2].children[1].addEventListener('input', ev => {
+      eventElem.querySelectorAll('input[type=time]')[1].addEventListener('input', ev => {
         event.endTime = ev.path[0].value;
       });
     }
@@ -324,12 +334,16 @@ export class LogEntries extends HTMLElement {
       taskElem.innerHTML += `
       <br><span>&nbsp &nbsp Deadline: <input type="time" value="${task.deadline}"></span>
         `;
-      taskElem.children[2].children[0].addEventListener('input', ev => {
+      taskElem.querySelector('input[type="time"]').addEventListener('input', ev => {
         task.deadline = ev.path[0].value;
       });
     }
     this.createList(taskElem, task.subEntries, false);
     return taskElem;
+  }
+
+  uniqueId () {
+    return 'id-' + Math.random().toString(36).substring(2);
   }
 }
 

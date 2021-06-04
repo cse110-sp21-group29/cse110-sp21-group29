@@ -131,5 +131,5 @@ future-logs:nth-child(odd){
 
 #futureLogDiv .item:nth-child(odd){
   border-right: 3px solid black;
-  background: red;
+  /**background: red;**/
 }

@@ -1,5 +1,6 @@
 export const router = {};
-const dailyLogUrl = './dailyLog.json';
+const dailyLogUrl = 'send/';
+const dailySaveUrl = 'receive/'
 const futureLogUrl = './futureLog.json';
 const dailyLog = document.getElementById('dailyLogDiv');
 let dailyLogLoaded = false;
@@ -8,11 +9,13 @@ router.setState = function () {
   if (location.hash === '#/dailyLog') {
     router.loadDailyLog();
     router.setDailyLogHome();
+    router.saveDailyLog();
     return;
   }
   if (location.hash.substring(0, 10) === '#/dailyLog') {
     router.loadDailyLog();
     router.setDay();
+    router.saveDailyLog();
     return;
   }
   if (location.hash === '#/futureLog') {
@@ -32,7 +35,9 @@ router.loadDailyLog = function () {
   dailyLogLoaded = true;
   document.body.className = 'dailyLog';
   dailyLog.innerHTML = '';
-  fetch(dailyLogUrl)
+  fetch(dailyLogUrl, {
+    method: 'GET'
+  })
     .then(response => response.json())
     .then(days => {
       window.days = days;
@@ -61,6 +66,38 @@ router.loadDailyLog = function () {
       });
     });
 };
+
+router.saveDailyLog = function () {
+  setInterval(
+    function(){
+      fetch(dailySaveUrl, {
+        method: 'POST',
+        headers: {
+          "X-CSRFToken": getCookie("csrftoken"),
+          "Accept": "application/json",
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(window.days)
+      });
+    }, 5000
+  );
+};
+
+function getCookie(name) {
+  var cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i].replace(/\s/g, "");;
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+          }
+      }
+  }
+  return cookieValue;
+}
 
 router.setDailyLogHome = function () {
   window.scrollTo(0, 0);

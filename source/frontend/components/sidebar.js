@@ -121,7 +121,7 @@ export class SideBar extends HTMLElement {
     for (let i = 0; i < entry.length; i++) {
       const a = document.createElement('a');
       a.setAttribute('class', 'list-group-item');
-      a.style.display='block';
+      a.style.display = 'block';
       a.innerHTML = entry[i].date;
       dailyList.appendChild(a);
       a.setAttribute('href', '#/dailyLog/' + entry[i].date);
@@ -147,23 +147,23 @@ export class SideBar extends HTMLElement {
     monthlySection.appendChild(monthlyList);
     dailySection.appendChild(dailyList);
     this.shadowRoot.getElementById('daily').addEventListener('click', () => {
-      console.log("click");
+      console.log('click');
       for (let i = 0; i < entry.length; i++) {
         if (this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display === 'block') {
-          console.log("none");
+          console.log('none');
           this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display = 'none';
         } else {
-          console.log("block");
+          console.log('block');
           this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display = 'block';
         }
       }
     });
-    
+
     const input = this.shadowRoot.getElementById('searchbar');
     const link = this.shadowRoot.querySelectorAll("[class='list-group-item']");
-    this.shadowRoot.getElementById('future').addEventListener('click',()=>{
-      location.hash='/futureLog';
-    })
+    this.shadowRoot.getElementById('future').addEventListener('click', () => {
+      location.hash = '/futureLog';
+    });
     input.addEventListener('keyup', () => {
       for (let i = 0; i < link.length; i++) {
         if (!link[i].innerHTML.includes(input.value)) {

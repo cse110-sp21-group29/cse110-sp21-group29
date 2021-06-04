@@ -112,7 +112,6 @@ export class LogEntries extends HTMLElement {
       <div>
     `;
     this.addNestedDropdown.classList.add('dropdown','d-block');
-    this.style='Z-index:-100'
     this.addNestedDropdown.item = {};
     document.body.appendChild(this.addNestedDropdown);
     const myDropdownInit = new BSN.Dropdown(`#${id}`);
@@ -145,10 +144,14 @@ export class LogEntries extends HTMLElement {
       this.entryArray.splice(index,1);
       this.entries = this.entryArray;
     })
-    this.addEventListener('focusout',event => {
+/*     this.addEventListener('focusout',event => {
       this.addNestedDropdown.classList.add('d-none');
-    })    
+    })     */
     
+    this.addNestedDropdown.addEventListener('focus',event => {
+      this.addNestedDropdown.classList.remove('d-none');
+    })    
+
   }
 
   /* eslint-enable */

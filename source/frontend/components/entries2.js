@@ -24,20 +24,8 @@ export class LogEntries extends HTMLElement {
           </style>
           <article id="entries"></article>
       `;
-
     this.shadowRoot.appendChild(template.content.cloneNode(true));
-    this.shadowRoot.innerHTML += '<slot name="addButtonSlot"></slot></slot>';
-    /*     this.shadowRoot.innerHTML = `
-    <link rel="stylesheet" href="../styles/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <style>
-      .focused {
-        outline: 5px auto -webkit-focus-ring-color;
-      }
-    </style>
-    <article id="entries"></article>
-    <slot name="addButtonSlot"> Default Text </slot>
-    `; */
+    this.shadowRoot.innerHTML += '<slot name="addButtonSlot"></slot>';
   }
 
   get entries () {
@@ -54,6 +42,7 @@ export class LogEntries extends HTMLElement {
       this.addButtonCreated = true;
       this.createAddButton();
       this.createAddNestedButton();
+      
     }
   }
 
@@ -156,7 +145,9 @@ export class LogEntries extends HTMLElement {
       this.entryArray.splice(index,1);
       this.entries = this.entryArray;
     })
-    
+    this.addEventListener('focusout',event => {
+      this.addNestedDropdown.classList.add('d-none');
+    })    
     
   }
 
@@ -222,15 +213,12 @@ export class LogEntries extends HTMLElement {
         <div id="${divID}" class="float-right"><slot name="${slotName}"></slot></div>
         `;
         li.addEventListener('focus', event => {
-          // this.addNestedDropdown.classList.remove('d-none');
+          this.addNestedDropdown.classList.remove('d-none');
           this.addNestedDropdown.item = item;
           /*  this.addNestedDropdown.style.top = li.getBoundingClientRect().y + 'px';
           this.addNestedDropdown.style.left = li.getBoundingClientRect().x + 50 + 'px'; */
           this.addNestedDropdown.slot = slotName;
           this.appendChild(this.addNestedDropdown);
-        });
-        li.addEventListener('focusout', event => {
-          // this.addNestedDropdown.classList.add('d-none');
         });
       }
       li.addEventListener('blur', event => {

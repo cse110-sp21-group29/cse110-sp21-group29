@@ -11,14 +11,6 @@ class FutureLogs extends HTMLElement {
   }
 
   set content (item) {
-    /*     template.innerHTML = `
-    <div class="item">
-        <h2 class="month"> YOOOOO </h2>
-        <log-entries>
-        </log-entries>
-    </div>
-    `; */
-    // this.attachShadow({ mode: 'open' });
     this.innerHTML = `
     <div class="item">
         <h2 class="month"> YOOOOO </h2>

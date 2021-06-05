@@ -94,14 +94,7 @@ export class SideBar extends HTMLElement {
     return this.getAttribute('content');
   }
 
-  /* const dailySection = this.shadowRoot.querySelector("[class='dailyLog']");
-  dailySection.addEventListener('click', function () {
-  this.dailySection.classList.add('daily_hide');
-  for (let i = 0; i < entry.length; i++) {
-
-  }
-});
-*//**
+  /**
  *
  *
  * @author Dadian Zhu <dazhu@ucsd.edu>
@@ -129,20 +122,6 @@ export class SideBar extends HTMLElement {
     const futureSection = this.shadowRoot.querySelector("[class='futureLog']");
     const monthlySection = this.shadowRoot.querySelector("[class='monthlyLog']");
     const dailySection = this.shadowRoot.querySelector("[class='dailyLog']");
-    futureSection.innerHTML = '';
-    monthlySection.innerHTML = '';
-    dailySection.innerHTML = '';
-    // const li = document.createElement('li');
-    // li.innerHTML = day.date;
-    // if(entry.category=='Future Log'){
-    //     futureList.appendChild(li);
-    // }
-    // if(entry.category=='Monthly Log'){
-    //     monthlyList.appendChild(li);
-    // }
-    // if(entry.category=='Daily Log'){
-
-    // }
     futureSection.appendChild(futureList);
     monthlySection.appendChild(monthlyList);
     dailySection.appendChild(dailyList);

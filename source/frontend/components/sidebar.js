@@ -1,4 +1,14 @@
-class SideBar extends HTMLElement {
+
+/**
+ *
+ * This is a re-usable custom web component that setup sidebar, enables search bar, and enable navigating to note on a certain date
+ * @author Dadian Zhu <dazhu@ucsd.edu>
+ * @date 2021-05-30
+ * @export
+ * @class SideBar
+ * @extends {HTMLElement}
+ */
+export class SideBar extends HTMLElement {
   constructor () {
     super();
     const template = document.createElement('template');
@@ -8,7 +18,7 @@ class SideBar extends HTMLElement {
             a{
               text-align:center;
               text-decoration: none;
-              display:block;
+              
               color: #e1ffff;
               font-family: "Comic Sans MS", "Comic Sans", cursive;
               font-size: 18px;
@@ -98,24 +108,30 @@ class SideBar extends HTMLElement {
  * @date 2021-05-30
  * @memberof SideBar
  */
-
   set content (entry) {
-    console.log(entry);
+    // console.log(entry);
     const futureList = document.createElement('div');
     futureList.setAttribute('class', 'list-group');
     const monthlyList = document.createElement('div');
     monthlyList.setAttribute('class', 'list-group');
     const dailyList = document.createElement('div');
     dailyList.setAttribute('class', 'list-group');
-    console.log(entry.date);
-    console.log(entry.length);
+    // console.log(entry.date);
+    // console.log(entry.length);
     for (let i = 0; i < entry.length; i++) {
       const a = document.createElement('a');
       a.setAttribute('class', 'list-group-item');
+      a.style.display = 'block';
       a.innerHTML = entry[i].date;
       dailyList.appendChild(a);
       a.setAttribute('href', '#/dailyLog/' + entry[i].date);
     }
+    const futureSection = this.shadowRoot.querySelector("[class='futureLog']");
+    const monthlySection = this.shadowRoot.querySelector("[class='monthlyLog']");
+    const dailySection = this.shadowRoot.querySelector("[class='dailyLog']");
+    futureSection.innerHTML = '';
+    monthlySection.innerHTML = '';
+    dailySection.innerHTML = '';
     // const li = document.createElement('li');
     // li.innerHTML = day.date;
     // if(entry.category=='Future Log'){
@@ -127,21 +143,27 @@ class SideBar extends HTMLElement {
     // if(entry.category=='Daily Log'){
 
     // }
-    this.shadowRoot.querySelector("[class='futureLog']").appendChild(futureList);
-    this.shadowRoot.querySelector("[class='monthlyLog']").appendChild(monthlyList);
-    this.shadowRoot.querySelector("[class='dailyLog']").appendChild(dailyList);
+    futureSection.appendChild(futureList);
+    monthlySection.appendChild(monthlyList);
+    dailySection.appendChild(dailyList);
     this.shadowRoot.getElementById('daily').addEventListener('click', () => {
+      console.log('click');
       for (let i = 0; i < entry.length; i++) {
         if (this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display === 'block') {
+          console.log('none');
           this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display = 'none';
         } else {
+          console.log('block');
           this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display = 'block';
         }
       }
     });
+
     const input = this.shadowRoot.getElementById('searchbar');
     const link = this.shadowRoot.querySelectorAll("[class='list-group-item']");
-
+    this.shadowRoot.getElementById('future').addEventListener('click', () => {
+      location.hash = '/futureLog';
+    });
     input.addEventListener('keyup', () => {
       for (let i = 0; i < link.length; i++) {
         if (!link[i].innerHTML.includes(input.value)) {

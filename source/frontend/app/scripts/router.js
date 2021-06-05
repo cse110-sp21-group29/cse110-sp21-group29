@@ -89,10 +89,11 @@ router.setFutureLog = function () {
   fetch(futureLogUrl)
     .then(response => response.json())
     .then(month => {
-      month.forEach((monthz) => {
+      month.forEach((months) => {
+        window.months = months;
         if (counter < 6) {
           const changeDate = document.createElement('future-logs');
-          changeDate.content = monthz;
+          changeDate.content = months;
           futureLog.append(changeDate);
           counter++;
         }

@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="LogEntries.html">LogEntries</a><ul class='methods'><li data-type='method'><a href="LogEntries.html#createEvent">createEvent</a></li><li data-type='method'><a href="LogEntries.html#createEvent">createEvent</a></li><li data-type='method'><a href="LogEntries.html#createLi">createLi</a></li><li data-type='method'><a href="LogEntries.html#createLi">createLi</a></li><li data-type='method'><a href="LogEntries.html#createList">createList</a></li><li data-type='method'><a href="LogEntries.html#createList">createList</a></li><li data-type='method'><a href="LogEntries.html#createNote">createNote</a></li><li data-type='method'><a href="LogEntries.html#createNote">createNote</a></li><li data-type='method'><a href="LogEntries.html#createTask">createTask</a></li><li data-type='method'><a href="LogEntries.html#createTask">createTask</a></li></ul></li><li></li><li><a href="MonthlyLog.html">MonthlyLog</a><ul class='methods'><li data-type='method'><a href="MonthlyLog.html#getDaysInMonth">getDaysInMonth</a></li><li data-type='method'><a href="MonthlyLog.html#makeList">makeList</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#sum">sum</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="LogEntries.html">LogEntries</a><ul class='methods'><li data-type='method'><a href="LogEntries.html#convertTime">convertTime</a></li><li data-type='method'><a href="LogEntries.html#createEvent">createEvent</a></li><li data-type='method'><a href="LogEntries.html#createEvent">createEvent</a></li><li data-type='method'><a href="LogEntries.html#createLi">createLi</a></li><li data-type='method'><a href="LogEntries.html#createLi">createLi</a></li><li data-type='method'><a href="LogEntries.html#createList">createList</a></li><li data-type='method'><a href="LogEntries.html#createList">createList</a></li><li data-type='method'><a href="LogEntries.html#createNote">createNote</a></li><li data-type='method'><a href="LogEntries.html#createNote">createNote</a></li><li data-type='method'><a href="LogEntries.html#createTask">createTask</a></li><li data-type='method'><a href="LogEntries.html#createTask">createTask</a></li></ul></li><li></li><li><a href="SideBar.html">SideBar</a></li></ul><h3>Global</h3><ul><li><a href="global.html#sum">sum</a></li></ul>
 </nav>
 
 <div id="main">
@@ -42,7 +42,17 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>class SideBar extends HTMLElement {
+            <pre class="prettyprint source linenums"><code>
+/**
+ *
+ * This is a re-usable custom web component that setup sidebar, enables search bar, and enable navigating to note on a certain date
+ * @author Dadian Zhu &lt;dazhu@ucsd.edu>
+ * @date 2021-05-30
+ * @export
+ * @class SideBar
+ * @extends {HTMLElement}
+ */
+export class SideBar extends HTMLElement {
   constructor () {
     super();
     const template = document.createElement('template');
@@ -52,7 +62,7 @@
             a{
               text-align:center;
               text-decoration: none;
-              display:block;
+              
               color: #e1ffff;
               font-family: "Comic Sans MS", "Comic Sans", cursive;
               font-size: 18px;
@@ -142,24 +152,30 @@
  * @date 2021-05-30
  * @memberof SideBar
  */
-
   set content (entry) {
-    console.log(entry);
+    // console.log(entry);
     const futureList = document.createElement('div');
     futureList.setAttribute('class', 'list-group');
     const monthlyList = document.createElement('div');
     monthlyList.setAttribute('class', 'list-group');
     const dailyList = document.createElement('div');
     dailyList.setAttribute('class', 'list-group');
-    console.log(entry.date);
-    console.log(entry.length);
+    // console.log(entry.date);
+    // console.log(entry.length);
     for (let i = 0; i &lt; entry.length; i++) {
       const a = document.createElement('a');
       a.setAttribute('class', 'list-group-item');
+      a.style.display = 'block';
       a.innerHTML = entry[i].date;
       dailyList.appendChild(a);
       a.setAttribute('href', '#/dailyLog/' + entry[i].date);
     }
+    const futureSection = this.shadowRoot.querySelector("[class='futureLog']");
+    const monthlySection = this.shadowRoot.querySelector("[class='monthlyLog']");
+    const dailySection = this.shadowRoot.querySelector("[class='dailyLog']");
+    futureSection.innerHTML = '';
+    monthlySection.innerHTML = '';
+    dailySection.innerHTML = '';
     // const li = document.createElement('li');
     // li.innerHTML = day.date;
     // if(entry.category=='Future Log'){
@@ -171,21 +187,27 @@
     // if(entry.category=='Daily Log'){
 
     // }
-    this.shadowRoot.querySelector("[class='futureLog']").appendChild(futureList);
-    this.shadowRoot.querySelector("[class='monthlyLog']").appendChild(monthlyList);
-    this.shadowRoot.querySelector("[class='dailyLog']").appendChild(dailyList);
+    futureSection.appendChild(futureList);
+    monthlySection.appendChild(monthlyList);
+    dailySection.appendChild(dailyList);
     this.shadowRoot.getElementById('daily').addEventListener('click', () => {
+      console.log('click');
       for (let i = 0; i &lt; entry.length; i++) {
         if (this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display === 'block') {
+          console.log('none');
           this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display = 'none';
         } else {
+          console.log('block');
           this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display = 'block';
         }
       }
     });
+
     const input = this.shadowRoot.getElementById('searchbar');
     const link = this.shadowRoot.querySelectorAll("[class='list-group-item']");
-
+    this.shadowRoot.getElementById('future').addEventListener('click', () => {
+      location.hash = '/futureLog';
+    });
     input.addEventListener('keyup', () => {
       for (let i = 0; i &lt; link.length; i++) {
         if (!link[i].innerHTML.includes(input.value)) {
@@ -212,7 +234,7 @@ customElements.define('side-bar', SideBar);
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Thu Jun 03 2021 04:59:27 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Sat Jun 05 2021 00:14:28 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

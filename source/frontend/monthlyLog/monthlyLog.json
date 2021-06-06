@@ -1,0 +1,38 @@
+{ 
+    "name": "June",
+    "entry" : [],
+    "editable" : "true",
+    "daysOfMonth" : [
+        {"Day": "1 ", "Week" : "Tue", "Description" : ""},
+        {"Day": "2", "Week":"Wed", "Description" : ""},
+        {"Day": "3", "Week": "Thur", "Description" : ""},
+        {"Day": "4", "Week": "Fri", "Description" : ""},
+        {"Day": "5", "Week": "Sat", "Description" : " I did nothing today"},
+        {"Day": "6", "Week": "Sun", "Description" : " Did hw today"},
+        {"Day": "7 ","Week": "Mon ", "Description" : ""},
+        {"Day": "8", "Week": "Tue", "Description" : ""},
+        {"Day": "9", "Week": "Wed", "Description" : ""},
+        {"Day": "10", "Week":"Thur", "Description" : ""},
+        {"Day": "11", "Week": "Fri", "Description" : ""},
+        {"Day": "12", "Week":"Sat", "Description" : ""},
+        {"Day": "13", "Week": "Sun", "Description" : ""},
+        {"Day": "14", "Week": "Mon", "Description" : ""},
+        {"Day": "15", "Week":"Tue", "Description" : ""},
+        {"Day": "16", "Week": "Wed", "Description" : ""},
+        {"Day": "17", "Week": "Thur", "Description" : ""},
+        {"Day": "18", "Week":"Fri", "Description" : ""},
+        {"Day": "19", "Week":"Sat", "Description" : ""},
+        {"Day": "20", "Week": "Sun", "Description" : ""},
+        {"Day": "21", "Week":"Mon", "Description" : ""},
+        {"Day": "22", "Week":"Tue", "Description" : ""},
+        {"Day": "23", "Week":"Wed", "Description" : ""},
+        {"Day": "24", "Week": "Thur", "Description" : ""},
+        {"Day": "25", "Week": "Fri", "Description" : ""},
+        {"Day": "26", "Week": "Sat", "Description" : ""},
+        {"Day": "27", "Week":"Sun", "Description" : ""},
+        {"Day": "28", "Week": "Mon", "Description" : ""},
+        {"Day": "29", "Week": "Tue", "Description" : ""},
+        {"Day": "30", "Week": "Wed", "Description" : ""}
+
+    ]
+}

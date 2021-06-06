@@ -11,6 +11,7 @@ class MonthlyLog extends HTMLElement {
     super();
     const template = document.createElement('template');
     template.innerHTML = `
+    <link rel="stylesheet" href="../styles/bootstrap.css">
     <style> 
       @font-face {
          font-family: headerText;
@@ -66,7 +67,7 @@ class MonthlyLog extends HTMLElement {
       }
 
       .position-relative {
-         margin-top: -100px;
+         margin-top: 100px;
       }
 
       hr {
@@ -79,92 +80,72 @@ class MonthlyLog extends HTMLElement {
       }
 
     </style>
-    <div class="header-container">
-      <img src="paint.png">
-      <header id="monthName"></header>
-      <h1 id="yearName"></h1>
-   </div>
 
-   <body background="bg.png">
-      <main class="position-relative">
-      </main>
-      <script src="../components/entries.js" type="module"></script>
-      <script src="./scripts/script.js" type="module"></script>
-      
-   </body>
+    <div class="month">
+      <ul class="list-group">
+        <li class="list-group-item">
+        </li>
+      </ul>
+    </div>
+
+
     `;
+    this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
-   /**
-    * Create month with appropriate amount of days
-    * @author Anahita Afshari <aafshari@ucsd.edu>
-    * @date 2021-05-30
-    * @param month - the month it is
-    * @param year - the year it is
-    * @return days - how many days are in the month
-    */
-   getDaysInMonth (month, year) {
-      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-      const d = new Date();
-      const n = months[d.getMonth()];
-      const y = d.getFullYear();
-      document.getElementById('monthName').innerHTML = n;
-      document.getElementById('yearName').innerHTML = y;
-      const allDays = getDaysInMonth(d.getMonth(), y);
-      const date = new Date(year, month, 1);
-      const days = [];
-      const dNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-      while (date.getMonth() === month) {
-         const temp = new Date(date);
-         const tempDayName = dNames[temp.getDay()];
-         const tempDayNum = temp.getDate();
-         const tempStr = String(tempDayNum) + '         ' + String(tempDayName);
-         days.push(tempStr);
-         date.setDate(date.getDate() + 1);
-      }
-      return days;
-   }
+  get content () {
+    return document.querySelector('.month');
+  }
+
+  set content (month) {
+    const logEntry = document.createElement('log-entries');
+    logEntry.editable = month.editable;
+    logEntry.entry = month.entry;
+    this.appendChild(logEntry);
+    this.makeList(month);
+  }
 
   /**
     * Make a list of the days with appropriate week lines
     * @author Anahita Afshari <aafshari@ucsd.edu>
     * @date 2021-05-30
     */
-   makeList () {
-      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-      const d = new Date();
-      const n = months[d.getMonth()];
-      const y = d.getFullYear();
-      document.getElementById('monthName').innerHTML = n;
-      document.getElementById('yearName').innerHTML = y;
-      const allDays = getDaysInMonth(d.getMonth(), y);
-      const listData = allDays;
-      const listContainer = document.createElement('div');
-      const listElement = document.createElement('ul');
-      const numberOfListItems = listData.length;
-      let listItem;
-      let i;
+  makeList (month) {
+    document.getElementById('monthName').innerHTML = month.name;
+    const d = new Date();
+    const y = d.getFullYear();
+    document.getElementById('yearName').innerHTML = y;
+    const listContainer = document.createElement('div');
 
-      document.getElementsByTagName('body')[0].appendChild(listContainer);
-      listContainer.appendChild(listElement);
+    const listElement = document.createElement('ul');
+    listElement.classList.add('list-group');
 
-      for (i = 0; i < numberOfListItems; i++) {
-         const count = listData[i];
-         const weekCount = count.slice(count.length - 3);
-         console.log(weekCount);
+    let listItem;
+    let listDes;
+    let i;
 
-         if (weekCount === 'Sun') {
-            const elem = document.createElement('hr');
-            listElement.appendChild(elem);
-            console.log(weekCount);
-         }
+    document.getElementsByTagName('body')[0].appendChild(listContainer);
+    listContainer.appendChild(listElement);
 
-         listItem = document.createElement('li');
-         listItem.innerHTML = listData[i];
-         listElement.appendChild(listItem);
+    for (i = 0; i < month.daysOfMonth.length; i++) {
+      const day = month.daysOfMonth[i];
+      if (day.Week === 'Sun') {
+        const elem = document.createElement('hr');
+        listElement.appendChild(elem);
       }
-   }
-}
 
+      listItem = document.createElement('li');
+      listItem.classList.add('list-group-item', 'border-0', 'py-0');
+      listItem.innerHTML = day.Day + ' ' + day.Week + ' ';
+
+      listDes = document.createElement('li');
+      listDes.classList.add('list-group-item', 'border-0', 'py-0');
+      listDes.contentEditable = true;
+      listDes.innerHTML = 'Description: ' + day.Description;
+      listElement.appendChild(listItem);
+      listElement.appendChild(listDes);
+    }
+  }
+}
 customElements.define('monthly-log', MonthlyLog);

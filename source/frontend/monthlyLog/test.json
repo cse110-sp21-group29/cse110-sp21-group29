@@ -1,7 +1,12 @@
 [
   {
     "date": "2021-05-01",
-    "entries": []
+    "editable": false,
+    "entries": [
+      { "type": "note",
+        "text": "This is a subnote"
+      }
+    ]
   },
   {
     "date": "2021-05-02",

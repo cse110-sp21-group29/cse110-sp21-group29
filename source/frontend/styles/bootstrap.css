@@ -6932,11 +6932,11 @@ fieldset:disabled .btn {
   vertical-align: text-top !important;
 }
 
-.float-start {
+.float-left {
   float: left !important;
 }
 
-.float-end {
+.float-right {
   float: right !important;
 }
 

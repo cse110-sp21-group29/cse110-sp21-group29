@@ -1,7 +1,7 @@
 [
     {
       "Month": "May ",
-      "editable": false,
+      "editable": true,
       "entries": [
           {
             "type": "note",

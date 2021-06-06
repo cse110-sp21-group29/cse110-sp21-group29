@@ -19,10 +19,14 @@ body.futureLog  #futureLogDiv {
   display: grid;
 }
 
-body.futureLog side-bar{
-  display: none;
+#futureLogDiv {
+  margin-left: 400px;
 }
 
+/* body.futureLog side-bar{
+  display: none;
+}
+ */
 body.error #dailyLogDiv, body.error #futureLogDiv, body.error side-bar {
   display: none
 }
@@ -30,15 +34,6 @@ body.error #dailyLogDiv, body.error #futureLogDiv, body.error side-bar {
 body.error #error {
   display: block !important;
 }
-
-/* #futureLogDiv > h1 {
-
-  text-align: center;
-  font-size: 35px;
-  color: #2C5684;
-} */
-
-
 
 future-logs{
   display: block;
@@ -49,7 +44,8 @@ future-logs:nth-child(odd){
   border-right: 3px solid black
 }
 
-.month {
+future-logs .month {
+  text-align: center;
   color: #2C5684;
   word-break: break-all;
 }
@@ -62,7 +58,7 @@ future-logs:nth-child(odd){
   border-top: solid black;
 }
 
-.item {
+future-logs .item {
   color: #2C5684;
   border-bottom: 3px solid black;
   /*border-top: 1px solid black;*/
@@ -71,6 +67,5 @@ future-logs:nth-child(odd){
  /* padding: 30px;*/
 }
 
-.item:nth-child(odd){
-  border-right: 3px solid black;
-}
+
+/** futue log div **/

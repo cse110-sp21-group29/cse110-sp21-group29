@@ -101,7 +101,7 @@ class MonthlyLog extends HTMLElement {
   set content (month) {
     const logEntry = document.createElement('log-entries');
     logEntry.editable = month.editable;
-    logEntry.entry = month.entry;
+    logEntry.entries = month.entries;
     this.appendChild(logEntry);
     this.makeList(month);
   }

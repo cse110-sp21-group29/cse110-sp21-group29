@@ -1,6 +1,21 @@
 { 
     "name": "June",
-    "entries" : [],
+    "entries" : [
+        {
+            "type": "note",
+            "text": "Hello World",
+            "subEntries": [
+                {                
+                    "type": "note",
+                    "text": "This is a subnote"
+                },
+                {                
+                  "type": "note",
+                  "text": "This is another subnote"
+                }
+            ]    
+        }
+    ],
     "editable" : "true",
     "daysOfMonth" : [
         {"dayNum": "1 ", "dayOfWeek" : "Tue", "description" : ""},

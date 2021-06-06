@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       monthlyLog.content = month;
 
-      // document.body.appendChild(monthlyLog);
+      document.body.appendChild(monthlyLog);
     })
     .catch(error => {
       console.log(`%cresult of fetch is an error: \n"${error}"`, 'color: red');

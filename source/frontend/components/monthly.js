@@ -7,9 +7,11 @@
  * @extends {HTMLElement}
  */
 class MonthlyLog extends HTMLElement {
+  /* eslint-disable */
   constructor () {
     super();
   }
+  /* eslint-disable */
 
   get content () {
     return document.querySelector('.month');

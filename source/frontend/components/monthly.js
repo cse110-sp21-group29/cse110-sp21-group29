@@ -11,7 +11,7 @@ class MonthlyLog extends HTMLElement {
   constructor () {
     super();
   }
-  /* eslint-disable */
+  /* eslint-enable */
 
   get content () {
     return document.querySelector('.month');
@@ -59,25 +59,24 @@ class MonthlyLog extends HTMLElement {
       listItem.innerHTML = day.dayNum + ' ' + day.dayOfWeek + ' ';
 
       listDes = document.createElement('li');
-      listDes.setAttribute("id", "description");
+      listDes.setAttribute('id', 'description');
       listDes.classList.add('list-group-item', 'border-0', 'py-0');
-      if(month.editable == "true"){
-        listDes.contentEditable = true;
-      }
+      listDes.contentEditable = month.editable;
+
       listDes.innerText = day.description;
       listElement.appendChild(listItem);
       listElement.appendChild(listDes);
     }
-    let n; 
-    let list = listElement.querySelectorAll('li[ id = "description"]');
-      if(month.editable == "true"){
-        listElement.addEventListener('input', event => {
-          for(n = 0; n < month.daysOfMonth.length; n ++) {
-            month.daysOfMonth[n].description = list[n].innerText;
-            console.log(month.daysOfMonth[n].description);
-          }
-        });
-      }
+    let n;
+    const list = listElement.querySelectorAll('li[ id = "description"]');
+    if (month.editable) {
+      listElement.addEventListener('input', event => {
+        for (n = 0; n < month.daysOfMonth.length; n++) {
+          month.daysOfMonth[n].description = list[n].innerText;
+          console.log(month.daysOfMonth[n].description);
+        }
+      });
+    }
   }
 }
 customElements.define('monthly-log', MonthlyLog);

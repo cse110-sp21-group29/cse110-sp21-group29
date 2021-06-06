@@ -137,12 +137,12 @@ class MonthlyLog extends HTMLElement {
 
       listItem = document.createElement('li');
       listItem.classList.add('list-group-item', 'border-0', 'py-0');
-      listItem.innerHTML = day.Day + ' ' + day.Week + ' ';
+      listItem.innerHTML = day.dayNum + ' ' + day.dayOfWeek + ' ';
 
       listDes = document.createElement('li');
       listDes.classList.add('list-group-item', 'border-0', 'py-0');
       listDes.contentEditable = true;
-      listDes.innerHTML = day.Description;
+      listDes.innerHTML = day.description;
       listElement.appendChild(listItem);
       listElement.appendChild(listDes);
     }

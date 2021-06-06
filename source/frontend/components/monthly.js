@@ -142,7 +142,7 @@ class MonthlyLog extends HTMLElement {
       listDes = document.createElement('li');
       listDes.classList.add('list-group-item', 'border-0', 'py-0');
       listDes.contentEditable = true;
-      listDes.innerHTML = 'Description: ' + day.Description;
+      listDes.innerHTML = day.Description;
       listElement.appendChild(listItem);
       listElement.appendChild(listDes);
     }

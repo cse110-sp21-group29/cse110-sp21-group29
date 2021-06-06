@@ -49,7 +49,7 @@ class MonthlyLog extends HTMLElement {
 
     for (i = 0; i < month.daysOfMonth.length; i++) {
       const day = month.daysOfMonth[i];
-      if (day.Week === 'Sun') {
+      if (day.dayOfWeek === 'Sun') {
         const elem = document.createElement('hr');
         listElement.appendChild(elem);
       }
@@ -59,12 +59,25 @@ class MonthlyLog extends HTMLElement {
       listItem.innerHTML = day.dayNum + ' ' + day.dayOfWeek + ' ';
 
       listDes = document.createElement('li');
+      listDes.setAttribute("id", "description");
       listDes.classList.add('list-group-item', 'border-0', 'py-0');
-      listDes.contentEditable = true;
-      listDes.innerHTML = day.description;
+      if(month.editable == "true"){
+        listDes.contentEditable = true;
+      }
+      listDes.innerText = day.description;
       listElement.appendChild(listItem);
       listElement.appendChild(listDes);
     }
+    let n; 
+    let list = listElement.querySelectorAll('li[ id = "description"]');
+      if(month.editable == "true"){
+        listElement.addEventListener('input', event => {
+          for(n = 0; n < month.daysOfMonth.length; n ++) {
+            month.daysOfMonth[n].description = list[n].innerText;
+            console.log(month.daysOfMonth[n].description);
+          }
+        });
+      }
   }
 }
 customElements.define('monthly-log', MonthlyLog);

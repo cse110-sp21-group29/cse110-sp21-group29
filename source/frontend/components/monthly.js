@@ -9,89 +9,6 @@
 class MonthlyLog extends HTMLElement {
   constructor () {
     super();
-    const template = document.createElement('template');
-    template.innerHTML = `
-    <link rel="stylesheet" href="../styles/bootstrap.css">
-    <style> 
-      @font-face {
-         font-family: headerText;
-         src: url(bright-sunshine.ttf);
-      }
-
-      @font-face {
-         font-family: literata;
-         src: url(literata.ttf);
-      }
-
-      body {
-         background-color: white;
-      }
-
-      .header-container {
-         position: relative;
-         text-align: center;
-         color: white;
-      }
-
-      header {
-         font-size: 80pt;
-         font-family: headerText;
-         text-align: center;
-         color: #2C5684;
-         position: absolute;
-         top: 50%;
-         left: 50%;
-         transform: translate(-50%, -85%);
-      }
-
-      img {
-         width: 400px;
-         height: 250px;
-      }
-
-      h1 {
-         font-family: literata;
-         text-align: center;
-         transform: translate(-15px, -130px);
-         font-size: 35px;
-      }
-
-      ul {
-         list-style-type: none;
-      }
-
-      li {
-         font-family: literata;
-         font-size: 20px;
-         color: #2C5684;
-      }
-
-      .position-relative {
-         margin-top: 100px;
-      }
-
-      hr {
-         margin-right: 30px;
-      }
-
-      body {
-         height: auto;
-         background-size: cover;
-      }
-
-    </style>
-
-    <div class="month">
-      <ul class="list-group">
-        <li class="list-group-item">
-        </li>
-      </ul>
-    </div>
-
-
-    `;
-    this.attachShadow({ mode: 'open' });
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
   get content () {
@@ -125,7 +42,7 @@ class MonthlyLog extends HTMLElement {
     let listDes;
     let i;
 
-    document.getElementsByTagName('body')[0].appendChild(listContainer);
+    this.appendChild(listContainer);
     listContainer.appendChild(listElement);
 
     for (i = 0; i < month.daysOfMonth.length; i++) {

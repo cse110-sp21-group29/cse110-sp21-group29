@@ -40,6 +40,7 @@ export class SideBar extends HTMLElement {
                 position:relative;
                 padding-top: 40px;
                 overflow-y: scroll;
+                margin-top: -20px;
             }
 
             .sidebar_hide {

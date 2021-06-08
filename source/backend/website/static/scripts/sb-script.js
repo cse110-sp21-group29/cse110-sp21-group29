@@ -3,7 +3,7 @@ import { router } from './router.js';
 let dailyLog;
 let sideBar;
 document.addEventListener('DOMContentLoaded', () => {
-  const url = 'daily/'; // SET URL
+  const url = './test.json'; // SET URL
   dailyLog = document.getElementById('dailyLog');
   sideBar = document.querySelector('side-bar');
   console.log(sideBar);

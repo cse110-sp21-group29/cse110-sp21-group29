@@ -1,3 +1,11 @@
+/**
+ * This is a resuable web component that displays the future log
+ *
+ * @author Dario Aburto  <daaburto@ucsd.edu>
+ * @date 2021-06-08
+ * @class FutureLogs
+ * @extends {HTMLElement}
+ */
 class FutureLogs extends HTMLElement {
   /* eslint-disable */
   constructor() {

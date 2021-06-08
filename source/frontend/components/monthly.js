@@ -79,6 +79,11 @@ class MonthlyLog extends HTMLElement {
     const listElement = document.createElement("ul");
     listElement.classList.add("list-group");
 
+  makeList (month) {
+    const listContainer = document.createElement('div');
+    const listElement = document.createElement('ul');
+    listElement.classList.add('list-group');
+
     let listItem;
     let listDes;
     let i;

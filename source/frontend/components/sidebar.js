@@ -1,4 +1,3 @@
-
 /**
  *
  * This is a re-usable custom web component that setup sidebar, enables search bar, and enable navigating to note on a certain date
@@ -9,18 +8,16 @@
  * @extends {HTMLElement}
  */
 export class SideBar extends HTMLElement {
-  constructor () {
+  constructor() {
     super();
-    const template = document.createElement('template');
+    const template = document.createElement("template");
     template.innerHTML = `
             <style>
-            
-            a{
+            a {
               text-align:center;
               text-decoration: none;
               
-              color: #e1ffff;
-              font-family: "Comic Sans MS", "Comic Sans", cursive;
+              color: #ffffff;
               font-size: 18px;
               padding: 10px 25px;
             }
@@ -30,41 +27,47 @@ export class SideBar extends HTMLElement {
               background-color: #0076ad;
             }
 
-            input{
+            input {
               width:90%;
               height:20px;
-              padding-left:10px;
+              margin-left:10px;
+              margin-right:10px;
             }
+
             .sidebar {
                 height: 100%;
-                background-color: #22282c;
+                background-color: #2C5684;
                 position:relative;
                 padding-top: 40px;
                 overflow-y: scroll;
             }
-            .sidebar_hide{
+
+            .sidebar_hide {
                 width:0%;
             }
-            .futureLog{
-              
+
+            .futureLog {
               display:block;
             }
-            .monthlyLog{
-              
+
+            .monthlyLog {
               display:block;
             }
-            .dailyLog{
-              
+
+            .dailyLog {
               display:block;
             }
-            h3{
-              color: #e1ffff; 
-              font-family: "Comic Sans MS", "Comic Sans", cursive;
+            
+            h3 {
+              color: #ffffff; 
               font-weight: bold;
+              padding-left:10px;
             }
+
             h3:hover {
               text-decoration: underline;
               background-color: #0076ad;
+              cursor: pointer;
             }
             </style> 
             <section class="sidebar">
@@ -79,82 +82,91 @@ export class SideBar extends HTMLElement {
              </section>
             
             `;
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
   /**
- *
- *
- * @author Dadian Zhu <dazhu@ucsd.edu>
- * @date 2021-05-30
- * @memberof SideBar
- */
-  get content () {
-    return this.getAttribute('content');
+   *
+   *
+   * @author Dadian Zhu <dazhu@ucsd.edu>
+   * @date 2021-05-30
+   * @memberof SideBar
+   */
+  get content() {
+    return this.getAttribute("content");
   }
 
   /**
- *
- *
- * @author Dadian Zhu <dazhu@ucsd.edu>
- * @date 2021-05-30
- * @memberof SideBar
- */
-  set content (entry) {
+   *
+   *
+   * @author Dadian Zhu <dazhu@ucsd.edu>
+   * @date 2021-05-30
+   * @memberof SideBar
+   */
+  set content(entry) {
     // console.log(entry);
-    const futureList = document.createElement('div');
-    futureList.setAttribute('class', 'list-group');
-    const monthlyList = document.createElement('div');
-    monthlyList.setAttribute('class', 'list-group');
-    const dailyList = document.createElement('div');
-    dailyList.setAttribute('class', 'list-group');
+    const futureList = document.createElement("div");
+    futureList.setAttribute("class", "list-group");
+    const monthlyList = document.createElement("div");
+    monthlyList.setAttribute("class", "list-group");
+    const dailyList = document.createElement("div");
+    dailyList.setAttribute("class", "list-group");
     // console.log(entry.date);
     // console.log(entry.length);
     for (let i = 0; i < entry.length; i++) {
-      const a = document.createElement('a');
-      a.setAttribute('class', 'list-group-item');
-      a.style.display = 'block';
+      const a = document.createElement("a");
+      a.setAttribute("class", "list-group-item");
+      a.style.display = "block";
       a.innerHTML = entry[i].date;
       dailyList.appendChild(a);
-      a.setAttribute('href', '#/dailyLog/' + entry[i].date);
+      a.setAttribute("href", "#/dailyLog/" + entry[i].date);
     }
     const futureSection = this.shadowRoot.querySelector("[class='futureLog']");
-    const monthlySection = this.shadowRoot.querySelector("[class='monthlyLog']");
+    const monthlySection = this.shadowRoot.querySelector(
+      "[class='monthlyLog']"
+    );
     const dailySection = this.shadowRoot.querySelector("[class='dailyLog']");
     futureSection.appendChild(futureList);
     monthlySection.appendChild(monthlyList);
     dailySection.appendChild(dailyList);
-    this.shadowRoot.getElementById('daily').addEventListener('click', () => {
-      console.log('click');
+    this.shadowRoot.getElementById("daily").addEventListener("click", () => {
+      console.log("click");
       for (let i = 0; i < entry.length; i++) {
-        if (this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display === 'block') {
-          console.log('none');
-          this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display = 'none';
+        if (
+          this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style
+            .display === "block"
+        ) {
+          console.log("none");
+          this.shadowRoot.querySelectorAll("[class='list-group-item']")[
+            i
+          ].style.display = "none";
         } else {
-          console.log('block');
-          this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display = 'block';
+          console.log("block");
+          this.shadowRoot.querySelectorAll("[class='list-group-item']")[
+            i
+          ].style.display = "block";
         }
       }
     });
 
-    const input = this.shadowRoot.getElementById('searchbar');
+    const input = this.shadowRoot.getElementById("searchbar");
     const link = this.shadowRoot.querySelectorAll("[class='list-group-item']");
-    this.shadowRoot.getElementById('future').addEventListener('click', () => {
-      location.hash = '/futureLog';
+    this.shadowRoot.getElementById("future").addEventListener("click", () => {
+      location.hash = "/futureLog";
     });
-    this.shadowRoot.getElementById('monthly').addEventListener('click', () => {
-      location.hash = '#/monthlyLog';
+    this.shadowRoot.getElementById("monthly").addEventListener("click", () => {
+      location.hash = "#/monthlyLog";
     });
-    input.addEventListener('keyup', () => {
+    input.addEventListener("keyup", () => {
       for (let i = 0; i < link.length; i++) {
         if (!link[i].innerHTML.includes(input.value)) {
-          link[i].style.display = 'none';
+          link[i].style.display = "none";
         } else {
-          link[i].style.display = 'block';
+          link[i].style.display = "block";
         }
       }
     });
   }
 }
-customElements.define('side-bar', SideBar);
+customElements.define("side-bar", SideBar);

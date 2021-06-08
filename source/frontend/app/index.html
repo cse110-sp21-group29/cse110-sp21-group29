@@ -1,43 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Log</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Log</title>
+    <link href="favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" href="../styles/bootstrap.css" />
+    <link rel="stylesheet" href="../styles/app.css" />
 
-  <link href="favicon.ico" rel="icon" type="image/x-icon" />
-  <link rel="stylesheet" href="../styles/bootstrap.css">
-  <link rel="stylesheet" href="../styles/app.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@3.0.15/dist/bootstrap-native.min.js"></script>
+    <script src="../components/entries.js" type="module"></script>
+    <script src="../components/sidebar.js" type="module"></script>
+    <script src="../components/monthly.js" type="module"></script>
+    <script src="../components/future.js" type="module"></script>
+    <script src="./scripts/script.js" type="module"></script>
+  </head>
 
+  <body background="../monthlyLog/bg.png">
+    <header></header>
+    <nav>
+      <!-- <side-bar class = "col-2 h-100 position-fixed"></side-bar> -->
+    </nav>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@3.0.15/dist/bootstrap-native.min.js"></script>
-  <script src="../components/entries.js" type="module"></script>
-  <script src="../components/sidebar.js" type="module"></script>
-  <script src="../components/monthly.js" type="module"></script>
-  <script src="../components/future.js" type="module"></script>
-  <script src="./scripts/script.js" type="module"></script>
-</head>
-
-<body>
-  <header>
-  </header>
-  <nav>
-    <!-- <side-bar class = "col-2 h-100 position-fixed"></side-bar> -->
-  </nav>
-
-  <main>
-    <div id="dailyLogDiv"></div>
-    <div id="monthlyLogDiv"></div>
-    <div id="futureLogDiv" class="container"></div>
-    <div id="error" style="display:none">
-      <h1 class="text-center">Error 404</h1>
-      <p class="text-center">Page not found</p>
-    </div>
-  </main>
-
-
-</body>
-
+    <main>
+      <div id="dailyLogDiv"></div>
+      <div id="monthlyLogDiv"></div>
+      <div id="futureLogDiv" class="container"></div>
+      <div id="error" style="display: none">
+        <h1 class="text-center">Error 404</h1>
+        <p class="text-center">Page not found</p>
+      </div>
+    </main>
+  </body>
 </html>

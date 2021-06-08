@@ -143,6 +143,9 @@ export class SideBar extends HTMLElement {
     this.shadowRoot.getElementById('future').addEventListener('click', () => {
       location.hash = '/futureLog';
     });
+    this.shadowRoot.getElementById('monthly').addEventListener('click', () => {
+      location.hash = '#/monthlyLog';
+    });
     input.addEventListener('keyup', () => {
       for (let i = 0; i < link.length; i++) {
         if (!link[i].innerHTML.includes(input.value)) {

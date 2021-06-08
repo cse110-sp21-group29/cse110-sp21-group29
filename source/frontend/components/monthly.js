@@ -19,24 +19,51 @@ class MonthlyLog extends HTMLElement {
 
   set content(month) {
     this.innerHTML = `
-            <style>
-              img {
-                margin-left: auto;
-                margin-right: auto;
-                display: block;
-                width: 400px;
-                height: 250px;
-              }
+          <style>
+            @font-face {
+              font-family: headerText;
+              src: url(../styles/bright-sunshine.ttf);
+            }
 
-              body {
-                background-image: url("../monthlyLog/bg.png");
-              }
-            </style>
-            <img src="../monthlyLog/paint.png">
-            `;
+            img {
+              margin-left: auto;
+              margin-right: auto;
+              display: block;
+              width: 400px;
+              height: 250px;
+            }
+
+            body {
+              background-image: url("../monthlyLog/bg.png");
+            }
+
+            .monthName {
+              font-size: 80pt;
+              font-family: headerText;
+              color: #2C5684;
+              position: absolute;
+              top: 7%;
+              left: 53%;
+            }
+
+            .monthLogDes {
+              display: flex;
+              border: #95C9FF 3px dotted;
+              align-items: center;
+              justify-content: center;
+              padding-top: 10px;
+              padding-bottom: 10px;
+              margin-right: 20px;
+            }
+
+          </style>
+          <header class="monthName">June</header>
+          <img src="../monthlyLog/paint.png">
+          `;
     const logEntry = document.createElement("log-entries");
     logEntry.editable = month.editable;
     logEntry.entries = month.entries;
+    logEntry.setAttribute("class", "monthLogDes");
     this.appendChild(logEntry);
     this.makeList(month);
   }

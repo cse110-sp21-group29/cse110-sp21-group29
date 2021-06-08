@@ -18,8 +18,22 @@ class MonthlyLog extends HTMLElement {
   }
 
   set content(month) {
-    this.innerHTML =
-      '<img src="../monthlyLog/paint.png" width="400px" height="250px" style="margin-left: auto; display: block; margin-right: auto;">';
+    this.innerHTML = `
+            <style>
+              img {
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+                width: 400px;
+                height: 250px;
+              }
+
+              body {
+                background-image: url("../monthlyLog/bg.png");
+              }
+            </style>
+            <img src="../monthlyLog/paint.png">
+            `;
     const logEntry = document.createElement("log-entries");
     logEntry.editable = month.editable;
     logEntry.entries = month.entries;

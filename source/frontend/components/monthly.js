@@ -18,6 +18,12 @@ class MonthlyLog extends HTMLElement {
   }
 
   set content (month) {
+    const monthName = document.createElement('header');
+    monthName.innerText = month.name + ' ' + 2021;
+    monthName.style.fontSize = '80px';
+    monthName.style.color = '#0076ad';
+    monthName.style.textAlign = 'center';
+    this.appendChild(monthName);
     const logEntry = document.createElement('log-entries');
     logEntry.editable = month.editable;
     logEntry.entries = month.entries;
@@ -35,16 +41,18 @@ class MonthlyLog extends HTMLElement {
     const d = new Date();
     const y = d.getFullYear();
     document.getElementById('yearName').innerHTML = y; */
-    const listContainer = document.createElement('div');
 
+    const listContainer = document.createElement('div');
     const listElement = document.createElement('ul');
     listElement.classList.add('list-group');
-
     let listItem;
     let listDes;
     let i;
 
+    // document.querySelector('main').style.backgroundImage = "url('./scripts/bg.png')";
     this.appendChild(listContainer);
+
+    // this.appendChild(image);
     listContainer.appendChild(listElement);
 
     for (i = 0; i < month.daysOfMonth.length; i++) {

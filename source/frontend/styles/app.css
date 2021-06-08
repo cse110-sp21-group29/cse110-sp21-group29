@@ -7,11 +7,11 @@ body.dailyLog #dailyLogDiv {
   display: block;
 }
 
-body.dailyLog  #futureLogDiv {
-  display: none;
+body.monthlyLog #monthlyLogDiv {
+  display: block;
 }
 
-body.futureLog  #dailyLogDiv {
+body.dailyLog #futureLogDiv, body.dailyLog #monthlyLogDiv, body.futureLog #dailyLogDiv, body.futureLog #monthlyLogDiv, body.monthlyLog #futureLogDiv, body.monthlyLog #dailyLogDiv {
   display: none;
 }
 
@@ -19,14 +19,29 @@ body.futureLog  #futureLogDiv {
   display: grid;
 }
 
-#futureLogDiv {
+#monthlyLogDiv, #futureLogDiv {
   margin-left: 400px;
 }
 
-/* body.futureLog side-bar{
-  display: none;
+#monthlyLogDiv ul {
+  list-style-type: none;
 }
- */
+
+#monthlyLogDiv li {
+  font-family: literata;
+  font-size: 20px;
+  color: #2C5684;
+}
+
+#monthlyLogDiv .position-relative {
+  margin-top: -100px;
+}
+
+#monthlyLogDiv hr {
+  margin-right: 30px;
+}
+
+
 body.error #dailyLogDiv, body.error #futureLogDiv, body.error side-bar {
   display: none
 }
@@ -57,6 +72,7 @@ future-logs .month {
   grid-gap: 0;
   border-top: solid black;
 }
+
 
 future-logs .item {
   color: #2C5684;

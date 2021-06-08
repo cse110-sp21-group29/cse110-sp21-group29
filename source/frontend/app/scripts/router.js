@@ -1,7 +1,9 @@
 export const router = {};
 const dailyLogUrl = './dailyLog.json';
+const monthlyLogUrl = './monthlyLog.json';
 const futureLogUrl = './futureLog.json';
 const dailyLog = document.getElementById('dailyLogDiv');
+const monthlyLog = document.getElementById('monthlyLogDiv');
 const futureLog = document.getElementById('futureLogDiv');
 
 let dailyLogLoaded = false;
@@ -22,7 +24,12 @@ router.setState = function () {
     } else {
       router.setDay();
     }
-
+    return;
+  }
+  if (location.hash === '#/monthlyLog') {
+    dailyLogLoaded = false;
+    router.loadDailyLog(false, false);
+    router.setMonthlyLog();
     return;
   }
   if (location.hash === '#/futureLog') {
@@ -53,10 +60,11 @@ router.loadDailyLog = function (render, setDay) {
       window.days = days;
       sideBar.content = days;
       if (render) router.renderDailyLog(days, setDay);
+      if (render && setDay) router.setDay();
     });
 };
 
-router.renderDailyLog = function (days, setDay) {
+router.renderDailyLog = function (days) {
   days.forEach((day) => {
     const newDay = document.createElement('section');
     newDay.tabIndex = 0;
@@ -80,7 +88,6 @@ router.renderDailyLog = function (days, setDay) {
       newDay.classList.remove('focused');
     });
   });
-  if (setDay) router.setDay();
 };
 
 router.setDailyLogHome = function () {
@@ -100,19 +107,33 @@ router.setDay = function () {
   }
 };
 
+router.setMonthlyLog = function () {
+  document.body.className = 'monthlyLog';
+  monthlyLog.innerHTML = '';
+  fetch(monthlyLogUrl)
+    .then(response => response.json())
+    .then(months => {
+      window.months = months;
+      const monthElem = document.createElement('monthly-log');
+      console.dir(monthElem);
+      monthElem.content = months[0];
+      monthlyLog.appendChild(monthElem);
+    });
+};
+
 router.setFutureLog = function () {
   document.body.className = 'futureLog';
   futureLog.innerHTML = '';
   let counter = 0;
   fetch(futureLogUrl)
     .then(response => response.json())
-    .then(month => {
-      month.forEach((months) => {
-        window.months = months;
+    .then(futureMonths => {
+      window.futureMonths = futureMonths;
+      futureMonths.forEach((month) => {
         if (counter < 6) {
-          const changeDate = document.createElement('future-logs');
-          changeDate.content = months;
-          futureLog.append(changeDate);
+          const futureElem = document.createElement('future-logs');
+          futureElem.content = month;
+          futureLog.append(futureElem);
           counter++;
         }
       });

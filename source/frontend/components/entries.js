@@ -228,7 +228,7 @@ export class LogEntries extends HTMLElement {
         li.classList.remove('focused');
       });
       li.children[0].children[1].addEventListener('input', event => {
-        item.text = li.children[0].children[1].innerText;
+        item.text = li.children[0].children[1].innerText.trim();
       });
     }
     return li;

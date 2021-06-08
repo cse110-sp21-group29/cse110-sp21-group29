@@ -10,7 +10,11 @@
 
 body {
   background-color: white;
+  height: auto;
+  background-size: cover;
 }
+
+
 
 .header-container {
   position: relative;
@@ -57,9 +61,4 @@ li {
 
 hr {
   margin-right: 30px;
-}
-
-body {
-  height: auto;
-  background-size: cover;
 }

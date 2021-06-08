@@ -31,10 +31,10 @@ class MonthlyLog extends HTMLElement {
     * @date 2021-05-30
     */
   makeList (month) {
-    document.getElementById('monthName').innerHTML = month.name;
+    /*     document.getElementById('monthName').innerHTML = month.name;
     const d = new Date();
     const y = d.getFullYear();
-    document.getElementById('yearName').innerHTML = y;
+    document.getElementById('yearName').innerHTML = y; */
     const listContainer = document.createElement('div');
 
     const listElement = document.createElement('ul');
@@ -72,7 +72,7 @@ class MonthlyLog extends HTMLElement {
     if (month.editable) {
       listElement.addEventListener('input', event => {
         for (n = 0; n < month.daysOfMonth.length; n++) {
-          month.daysOfMonth[n].description = list[n].innerText;
+          month.daysOfMonth[n].description = list[n].innerText.trim();
           console.log(month.daysOfMonth[n].description);
         }
       });

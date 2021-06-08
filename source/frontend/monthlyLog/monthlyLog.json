@@ -1,0 +1,53 @@
+{ 
+    "name": "June",
+    "entries" : [
+        {
+            "type": "note",
+            "text": "Hello World",
+            "subEntries": [
+                {                
+                    "type": "note",
+                    "text": "This is a subnote"
+                },
+                {                
+                  "type": "note",
+                  "text": "This is another subnote"
+                }
+            ]    
+        }
+    ],
+    "editable" : "true",
+    "daysOfMonth" : [
+        {"dayNum": "1 ", "dayOfWeek" : "Tue", "description" : ""},
+        {"dayNum": "2", "dayOfWeek":"Wed", "description" : ""},
+        {"dayNum": "3", "dayOfWeek": "Thur", "description" : ""},
+        {"dayNum": "4", "dayOfWeek": "Fri", "description" : ""},
+        {"dayNum": "5", "dayOfWeek": "Sat", "description" : " I did nothing today"},
+        {"dayNum": "6", "dayOfWeek": "Sun", "description" : " Did hw today"},
+        {"dayNum": "7 ","dayOfWeek": "Mon ", "description" : ""},
+        {"dayNum": "8", "dayOfWeek": "Tue", "description" : ""},
+        {"dayNum": "9", "dayOfWeek": "Wed", "description" : ""},
+        {"dayNum": "10", "dayOfWeek":"Thur", "description" : ""},
+        {"dayNum": "11", "dayOfWeek": "Fri", "description" : ""},
+        {"dayNum": "12", "dayOfWeek":"Sat", "description" : ""},
+        {"dayNum": "13", "dayOfWeek": "Sun", "description" : ""},
+        {"dayNum": "14", "dayOfWeek": "Mon", "description" : ""},
+        {"dayNum": "15", "dayOfWeek":"Tue", "description" : ""},
+        {"dayNum": "16", "dayOfWeek": "Wed", "description" : ""},
+        {"dayNum": "17", "dayOfWeek": "Thur", "description" : ""},
+        {"dayNum": "18", "dayOfWeek":"Fri", "description" : ""},
+        {"dayNum": "19", "dayOfWeek":"Sat", "description" : ""},
+        {"dayNum": "20", "dayOfWeek": "Sun", "description" : ""},
+        {"dayNum": "21", "dayOfWeek":"Mon", "description" : ""},
+        {"dayNum": "22", "dayOfWeek":"Tue", "description" : ""},
+        {"dayNum": "23", "dayOfWeek":"Wed", "description" : ""},
+        {"dayNum": "24", "dayOfWeek": "Thur", "description" : ""},
+        {"dayNum": "25", "dayOfWeek": "Fri", "description" : ""},
+        {"dayNum": "26", "dayOfWeek": "Sat", "description" : ""},
+        {"dayNum": "27", "dayOfWeek":"Sun", "description" : ""},
+        {"dayNum": "28", "dayOfWeek": "Mon", "description" : ""},
+        {"dayNum": "29", "dayOfWeek": "Tue", "description" : ""},
+        {"dayNum": "30", "dayOfWeek": "Wed", "description" : ""}
+
+    ]
+}

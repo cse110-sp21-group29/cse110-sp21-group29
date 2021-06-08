@@ -1,8 +1,8 @@
 # Decision of Log-In Inclusion
 
-* Status: pending
+* Status: Approved
 * Deciders: All members of group 29
-* Date: 2021-05-10
+* Date: 2021-05-23
 
 ## Context and Problem Statement
 
@@ -15,7 +15,7 @@ The decision of what metadata to include for entries in our BuJo (this ADR speci
 
 ## Decision Outcome
 
-(preliminary) Chosen option: Inclusion of recurring metadata for events
+Chosen option: Inclusion of recurring metadata for events
 Decesion made based on: The consideration of how this inclusion can be usefull for our target audience (college students)
 
 ## Pros and Cons of the Options
@@ -29,6 +29,5 @@ Decesion made based on: The consideration of how this inclusion can be usefull f
 ### Exclusion of recurring metadata for events
 
 * Good, makes implementation of data less intrusive for user
-* Good, 
-* Bad, 
-* Bad, 
+* Bad, user is must then set each session of recurring event manually 
+* Bad, less information that can be analyized by the development team

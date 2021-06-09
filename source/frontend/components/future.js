@@ -10,12 +10,12 @@ class FutureLogs extends HTMLElement {
   /* eslint-disable */
   constructor() {
     super();
-    document.title = "Future Log";
+    document.title = 'Future Log';
   }
   /* eslint-enable */
 
   get content() {
-    return this.getAttribute(".item");
+    return this.getAttribute('.item');
   }
 
   set content(item) {
@@ -59,13 +59,13 @@ class FutureLogs extends HTMLElement {
         }
     </style>
     `;
-    this.querySelector(".month").textContent = item.Month;
-    const test = document.createElement("log-entries");
-    test.setAttribute("class", "logEntries");
+    this.querySelector('.month').textContent = item.Month;
+    const test = document.createElement('log-entries');
+    test.setAttribute('class', 'logEntries');
     test.editable = item.editable;
     test.entries = item.entries;
     this.appendChild(test);
   }
 }
 
-customElements.define("future-logs", FutureLogs);
+customElements.define('future-logs', FutureLogs);

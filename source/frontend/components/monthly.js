@@ -10,12 +10,12 @@ class MonthlyLog extends HTMLElement {
   /* eslint-disable */
   constructor() {
     super();
-    document.title = "Monthly Log";
+    document.title = 'Monthly Log';
   }
   /* eslint-enable */
 
   get content() {
-    return document.querySelector(".month");
+    return document.querySelector('.month');
   }
 
   set content(month) {
@@ -60,11 +60,11 @@ class MonthlyLog extends HTMLElement {
           <header class="monthName">June</header>
           <img src="../monthlyLog/paint.png">
           `;
-    this.setAttribute("title", "Monthly Log");
-    const logEntry = document.createElement("log-entries");
+    this.setAttribute('title', 'Monthly Log');
+    const logEntry = document.createElement('log-entries');
     logEntry.editable = month.editable;
     logEntry.entries = month.entries;
-    logEntry.setAttribute("class", "monthLogDes");
+    logEntry.setAttribute('class', 'monthLogDes');
     this.appendChild(logEntry);
     this.makeList(month);
   }
@@ -75,9 +75,9 @@ class MonthlyLog extends HTMLElement {
    * @date 2021-05-30
    */
   makeList(month) {
-    const listContainer = document.createElement("div");
-    const listElement = document.createElement("ul");
-    listElement.classList.add("list-group");
+    const listContainer = document.createElement('div');
+    const listElement = document.createElement('ul');
+    listElement.classList.add('list-group');
     let listItem;
     let listDes;
     let i;
@@ -87,25 +87,25 @@ class MonthlyLog extends HTMLElement {
 
     for (i = 0; i < month.daysOfMonth.length; i++) {
       const day = month.daysOfMonth[i];
-      if (day.dayOfWeek === "Sun") {
-        const elem = document.createElement("hr");
+      if (day.dayOfWeek === 'Sun') {
+        const elem = document.createElement('hr');
         listElement.appendChild(elem);
       }
 
-      listItem = document.createElement("li");
-      listItem.classList.add("list-group-item", "border-0", "py-0");
-      listItem.innerHTML = day.dayNum + " " + day.dayOfWeek + " ";
+      listItem = document.createElement('li');
+      listItem.classList.add('list-group-item', 'border-0', 'py-0');
+      listItem.innerHTML = day.dayNum + ' ' + day.dayOfWeek + ' ';
 
-      listDes = document.createElement("li");
-      listDes.setAttribute("class", "description");
-      listDes.classList.add("list-group-item", "border-0", "py-0");
+      listDes = document.createElement('li');
+      listDes.setAttribute('class', 'description');
+      listDes.classList.add('list-group-item', 'border-0', 'py-0');
       listDes.contentEditable = month.editable;
       listDes.innerText = day.description;
-      listDes.style.color = "black";
-      listDes.style.fontSize = "15px";
-      listDes.style.marginBottom = "30px";
-      listDes.style.marginLeft = "90px";
-      listDes.style.marginTop = "-25px";
+      listDes.style.color = 'black';
+      listDes.style.fontSize = '15px';
+      listDes.style.marginBottom = '30px';
+      listDes.style.marginLeft = '90px';
+      listDes.style.marginTop = '-25px';
 
       listElement.appendChild(listItem);
       listElement.appendChild(listDes);
@@ -115,7 +115,7 @@ class MonthlyLog extends HTMLElement {
     const list = listElement.querySelectorAll('li[ id = "description"]');
 
     if (month.editable) {
-      listElement.addEventListener("input", (event) => {
+      listElement.addEventListener('input', (event) => {
         for (n = 0; n < month.daysOfMonth.length; n++) {
           month.daysOfMonth[n].description = list[n].innerText.trim();
           console.log(month.daysOfMonth[n].description);
@@ -124,4 +124,4 @@ class MonthlyLog extends HTMLElement {
     }
   }
 }
-customElements.define("monthly-log", MonthlyLog);
+customElements.define('monthly-log', MonthlyLog);

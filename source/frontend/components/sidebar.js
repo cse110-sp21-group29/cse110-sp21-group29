@@ -10,7 +10,7 @@
 export class SideBar extends HTMLElement {
   constructor() {
     super();
-    const template = document.createElement("template");
+    const template = document.createElement('template');
     template.innerHTML = `
             <style>
             a {
@@ -83,7 +83,7 @@ export class SideBar extends HTMLElement {
              </section>
             
             `;
-    this.attachShadow({ mode: "open" });
+    this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
@@ -95,7 +95,7 @@ export class SideBar extends HTMLElement {
    * @memberof SideBar
    */
   get content() {
-    return this.getAttribute("content");
+    return this.getAttribute('content');
   }
 
   /**
@@ -107,21 +107,21 @@ export class SideBar extends HTMLElement {
    */
   set content(entry) {
     // console.log(entry);
-    const futureList = document.createElement("div");
-    futureList.setAttribute("class", "list-group");
-    const monthlyList = document.createElement("div");
-    monthlyList.setAttribute("class", "list-group");
-    const dailyList = document.createElement("div");
-    dailyList.setAttribute("class", "list-group");
+    const futureList = document.createElement('div');
+    futureList.setAttribute('class', 'list-group');
+    const monthlyList = document.createElement('div');
+    monthlyList.setAttribute('class', 'list-group');
+    const dailyList = document.createElement('div');
+    dailyList.setAttribute('class', 'list-group');
     // console.log(entry.date);
     // console.log(entry.length);
     for (let i = 0; i < entry.length; i++) {
-      const a = document.createElement("a");
-      a.setAttribute("class", "list-group-item");
-      a.style.display = "block";
+      const a = document.createElement('a');
+      a.setAttribute('class', 'list-group-item');
+      a.style.display = 'block';
       a.innerHTML = entry[i].date;
       dailyList.appendChild(a);
-      a.setAttribute("href", "#/dailyLog/" + entry[i].date);
+      a.setAttribute('href', '#/dailyLog/' + entry[i].date);
     }
     const futureSection = this.shadowRoot.querySelector("[class='futureLog']");
     const monthlySection = this.shadowRoot.querySelector(
@@ -131,43 +131,43 @@ export class SideBar extends HTMLElement {
     futureSection.appendChild(futureList);
     monthlySection.appendChild(monthlyList);
     dailySection.appendChild(dailyList);
-    this.shadowRoot.getElementById("daily").addEventListener("click", () => {
-      console.log("click");
+    this.shadowRoot.getElementById('daily').addEventListener('click', () => {
+      console.log('click');
       for (let i = 0; i < entry.length; i++) {
         if (
           this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style
-            .display === "block"
+            .display === 'block'
         ) {
-          console.log("none");
+          console.log('none');
           this.shadowRoot.querySelectorAll("[class='list-group-item']")[
             i
-          ].style.display = "none";
+          ].style.display = 'none';
         } else {
-          console.log("block");
+          console.log('block');
           this.shadowRoot.querySelectorAll("[class='list-group-item']")[
             i
-          ].style.display = "block";
+          ].style.display = 'block';
         }
       }
     });
 
-    const input = this.shadowRoot.getElementById("searchbar");
+    const input = this.shadowRoot.getElementById('searchbar');
     const link = this.shadowRoot.querySelectorAll("[class='list-group-item']");
-    this.shadowRoot.getElementById("future").addEventListener("click", () => {
-      location.hash = "/futureLog";
+    this.shadowRoot.getElementById('future').addEventListener('click', () => {
+      location.hash = '/futureLog';
     });
-    this.shadowRoot.getElementById("monthly").addEventListener("click", () => {
-      location.hash = "#/monthlyLog";
+    this.shadowRoot.getElementById('monthly').addEventListener('click', () => {
+      location.hash = '#/monthlyLog';
     });
-    input.addEventListener("keyup", () => {
+    input.addEventListener('keyup', () => {
       for (let i = 0; i < link.length; i++) {
         if (!link[i].innerHTML.includes(input.value)) {
-          link[i].style.display = "none";
+          link[i].style.display = 'none';
         } else {
-          link[i].style.display = "block";
+          link[i].style.display = 'block';
         }
       }
     });
   }
 }
-customElements.define("side-bar", SideBar);
+customElements.define('side-bar', SideBar);

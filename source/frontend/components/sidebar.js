@@ -8,7 +8,7 @@
  * @extends {HTMLElement}
  */
 export class SideBar extends HTMLElement {
-  constructor() {
+  constructor () {
     super();
     const template = document.createElement('template');
     template.innerHTML = `
@@ -94,7 +94,7 @@ export class SideBar extends HTMLElement {
    * @date 2021-05-30
    * @memberof SideBar
    */
-  get content() {
+  get content () {
     return this.getAttribute('content');
   }
 

@@ -8,17 +8,17 @@
  */
 class FutureLogs extends HTMLElement {
   /* eslint-disable */
-  constructor() {
+  constructor () {
     super();
     document.title = 'Future Log';
   }
   /* eslint-enable */
 
-  get content() {
+  get content () {
     return this.getAttribute('.item');
   }
 
-  set content(item) {
+  set content (item) {
     this.innerHTML = `
     <div class="item">
         <h2 class="month"> YOOOOO </h2>

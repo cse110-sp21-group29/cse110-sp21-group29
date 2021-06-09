@@ -8,17 +8,17 @@
  */
 class MonthlyLog extends HTMLElement {
   /* eslint-disable */
-  constructor() {
+  constructor () {
     super();
     document.title = 'Monthly Log';
   }
   /* eslint-enable */
 
-  get content() {
+  get content () {
     return document.querySelector('.month');
   }
 
-  set content(month) {
+  set content (month) {
     this.innerHTML = `
           <style>
             @font-face {
@@ -74,7 +74,7 @@ class MonthlyLog extends HTMLElement {
    * @author Anahita Afshari <aafshari@ucsd.edu>
    * @date 2021-05-30
    */
-  makeList(month) {
+  makeList (month) {
     const listContainer = document.createElement('div');
     const listElement = document.createElement('ul');
     listElement.classList.add('list-group');

@@ -10,7 +10,7 @@
  * @extends {HTMLElement}
  */
 export class LogEntries extends HTMLElement {
-  constructor() {
+  constructor () {
     super();
     this.attachShadow({ mode: 'open' });
     const template = document.createElement('template');
@@ -28,11 +28,11 @@ export class LogEntries extends HTMLElement {
     this.shadowRoot.innerHTML += '<slot name="addButtonSlot"></slot>';
   }
 
-  get entries() {
+  get entries () {
     return this.getAttribute('entries');
   }
   /* eslint-disable */
-  set entries(entries) {
+  set entries (entries) {
     // this.tabIndex = 0;
     this.entryArray = entries;
     const article = this.shadowRoot.getElementById('entries');
@@ -45,7 +45,7 @@ export class LogEntries extends HTMLElement {
     }
   }
 
-  createAddButton() {
+  createAddButton () {
     const addDropdown = document.createElement('div');
     const id = this.uniqueId();
     addDropdown.innerHTML = `
@@ -95,7 +95,7 @@ export class LogEntries extends HTMLElement {
     });
   }
 
-  createAddNestedButton() {
+  createAddNestedButton () {
     this.addNestedDropdown = document.createElement('div');
     const id = this.uniqueId();
     this.addNestedDropdown.innerHTML = `
@@ -163,7 +163,7 @@ export class LogEntries extends HTMLElement {
    * @return {HTMLUListElement} The created list
    * @memberof LogEntries
    */
-  createList(elem, entries, topLevel) {
+  createList (elem, entries, topLevel) {
     if (!entries || entries.length === 0) return false;
     const list = document.createElement('ul');
     list.innerHTML = `
@@ -199,12 +199,12 @@ export class LogEntries extends HTMLElement {
    * @return {HTMLLIElement}  The created li element
    * @memberof LogEntries
    */
-  createLi(bullet, item, topLevel) {
+  createLi (bullet, item, topLevel) {
     const li = document.createElement('li');
     // li.draggable = true;
     li.innerHTML = `
     <span class="d-inline-block pr-5"><span>${bullet}</span><span class="mr-5" >${item.text}</span></span>
-    
+
     `;
     li.classList.add('list-group-item', 'border-0', 'py-0', 'd-inline-block');
 
@@ -248,7 +248,7 @@ export class LogEntries extends HTMLElement {
    * @return {HTMLLIElement}  The created note
    * @memberof LogEntries
    */
-  createNote(note, topLevel) {
+  createNote (note, topLevel) {
     const noteElem = this.createLi('–', note, topLevel);
     // noteElem.innerText = '– ' + note.text;
     this.createList(noteElem, note.subEntries, false);
@@ -263,7 +263,7 @@ export class LogEntries extends HTMLElement {
    * @return {HTMLLIElement} The created event
    * @memberof LogEntries
    */
-  createEvent(event, topLevel) {
+  createEvent (event, topLevel) {
     const eventElem = this.createLi('○', event, topLevel);
     // eventElem.innerText = '○ ' + event.text;
     if (!this.editable) {
@@ -282,7 +282,7 @@ export class LogEntries extends HTMLElement {
     } else {
       eventElem.innerHTML += `
       <br>
-      <span> 
+      <span>
         &nbsp &nbsp  Starts: <input type="time" value="${event.startTime}" name="startTime">
         &nbsp Ends: <input type="time" value="${event.endTime}" name="endTime">
       </span>
@@ -312,7 +312,7 @@ export class LogEntries extends HTMLElement {
    * @return {*} The time string in 12 hour format
    * @memberof LogEntries
    */
-  convertTime(time) {
+  convertTime (time) {
     if (time)
       return new Date('2000-01-01T' + time + 'Z').toLocaleTimeString(
         {},
@@ -329,7 +329,7 @@ export class LogEntries extends HTMLElement {
    * @return {HTMLLIElement}  The created task
    * @memberof LogEntries
    */
-  createTask(task, topLevel) {
+  createTask (task, topLevel) {
     const taskElem = this.createLi('●', task, topLevel);
     if (!this.editable) {
       if (task.deadline) {
@@ -353,7 +353,7 @@ export class LogEntries extends HTMLElement {
     return taskElem;
   }
 
-  uniqueId() {
+  uniqueId () {
     return 'id-' + Math.random().toString(36).substring(2);
   }
 }

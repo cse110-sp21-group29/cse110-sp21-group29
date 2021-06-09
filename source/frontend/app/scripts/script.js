@@ -6,6 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
   router.setState();
 });
 
-window.addEventListener('hashchange', event => {
+window.addEventListener('hashchange', (event) => {
   router.setState();
 });

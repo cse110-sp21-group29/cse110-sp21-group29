@@ -1,5 +1,5 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
-#dailyLogDiv >   section.focused {
+#dailyLogDiv > section.focused {
   outline: 5px auto -webkit-focus-ring-color;
 }
 
@@ -7,46 +7,69 @@ body.dailyLog #dailyLogDiv {
   display: block;
 }
 
-body.dailyLog  #futureLogDiv {
+body.monthlyLog #monthlyLogDiv {
+  display: block;
+}
+
+body.dailyLog #futureLogDiv,
+body.dailyLog #monthlyLogDiv,
+body.futureLog #dailyLogDiv,
+body.futureLog #monthlyLogDiv,
+body.monthlyLog #futureLogDiv,
+body.monthlyLog #dailyLogDiv {
   display: none;
 }
 
-body.futureLog  #dailyLogDiv {
-  display: none;
-}
-
-body.futureLog  #futureLogDiv {
+body.futureLog #futureLogDiv {
   display: grid;
 }
 
+#monthlyLogDiv,
 #futureLogDiv {
-  margin-left: 400px;
+  margin-left: 250px;
+  padding-top: 10px;
 }
 
-/* body.futureLog side-bar{
-  display: none;
+#monthlyLogDiv ul {
+  list-style-type: none;
 }
- */
-body.error #dailyLogDiv, body.error #futureLogDiv, body.error side-bar {
-  display: none
+
+#monthlyLogDiv li {
+  font-family: literata;
+  font-size: 20px;
+  color: #2c5684;
+}
+
+#monthlyLogDiv .position-relative {
+  margin-top: -100px;
+}
+
+#monthlyLogDiv hr {
+  margin-right: 30px;
+}
+
+body.error #dailyLogDiv,
+body.error #futureLogDiv,
+body.error side-bar {
+  display: none;
 }
 
 body.error #error {
   display: block !important;
 }
 
-future-logs{
+future-logs {
   display: block;
   border-bottom: 3px solid black;
 }
 
-future-logs:nth-child(odd){
-  border-right: 3px solid black
+future-logs:nth-child(odd) {
+  border-right: 3px solid black;
 }
 
 future-logs .month {
   text-align: center;
-  color: #2C5684;
+  color: #2c5684;
   word-break: break-all;
 }
 
@@ -59,13 +82,12 @@ future-logs .month {
 }
 
 future-logs .item {
-  color: #2C5684;
+  color: #2c5684;
   border-bottom: 3px solid black;
   /*border-top: 1px solid black;*/
   word-break: break-all;
 
- /* padding: 30px;*/
+  /* padding: 30px;*/
 }
-
 
 /** futue log div **/

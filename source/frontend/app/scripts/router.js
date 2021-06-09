@@ -76,7 +76,7 @@ router.renderDailyLog = function (days) {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
-      timeZone: 'UTC',
+      timeZone: 'UTC'
     });
     const dateFont = "font-family: 'Satisfy', cursive; color: #2C5684;";
     newDay.innerHTML =

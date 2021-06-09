@@ -313,11 +313,7 @@ export class LogEntries extends HTMLElement {
    * @memberof LogEntries
    */
   convertTime (time) {
-    if (time)
-      return new Date('2000-01-01T' + time + 'Z').toLocaleTimeString(
-        {},
-        { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' }
-      );
+    if (time) return new Date('2000-01-01T' + time + 'Z').toLocaleTimeString({}, { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' });
     return '';
   }
 

@@ -105,7 +105,7 @@ export class SideBar extends HTMLElement {
    * @date 2021-05-30
    * @memberof SideBar
    */
-  set content(entry) {
+  set content (entry) {
     // console.log(entry);
     const futureList = document.createElement('div');
     futureList.setAttribute('class', 'list-group');

@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
           year: 'numeric',
           month: 'long',
           day: 'numeric',
-          timeZone: 'UTC',
+          timeZone: 'UTC'
         });
         newDay.innerHTML =
           '<div class="card-body"><h2 class="card-title text-center"><time datetime="' +

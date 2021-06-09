@@ -15,7 +15,7 @@ export class LogEntries extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     const template = document.createElement('template');
     template.innerHTML = `
-          <link rel="stylesheet" href="../styles/bootstrap.css">
+          <link rel="stylesheet" href="../static/styles/bootstrap.css">
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
           <style>
             .focused {

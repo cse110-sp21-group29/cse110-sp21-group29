@@ -1,9 +1,0 @@
-{
-    "javascript.validate.enable": false,
-    "docthis.authorName": "Dario Aburto Rodriguez <daaburto@ucsd.edu>",
-    "docthis.includeAuthorTag": true,
-    "docthis.dateTagFormat": "yyyy-mm-dd",
-    "docthis.includeDateTag": true,
-    "standard.autoFixOnSave": true,
-    "standard.usePackageJson": true
-}

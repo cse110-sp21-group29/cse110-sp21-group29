@@ -5,7 +5,8 @@ const futureLogUrl = 'sendFuture/';
 const futureSaveUrl = 'receiveFuture/';
 const dailyLog = document.getElementById('dailyLogDiv');
 const futureLog = document.getElementById('futureLogDiv');
-
+var futureInterval;
+var dailyInterval;
 let dailyLogLoaded = false;
 // const main = document.querySelector('main');
 router.setState = function () {
@@ -97,7 +98,7 @@ router.renderDailyLog = function (days, setDay) {
 };
 
 router.saveDailyLog = function () {
-  var dailyInterval = setInterval(
+  dailyInterval = setInterval(
     function(){
       fetch(dailySaveUrl, {
         method: 'POST',
@@ -178,7 +179,7 @@ router.setFutureLog = function () {
 };
 
 router.saveFutureLog = function () {
-  var futureInterval = setInterval(
+  futureInterval = setInterval(
     function(){
       fetch(futureSaveUrl, {
         method: 'POST',

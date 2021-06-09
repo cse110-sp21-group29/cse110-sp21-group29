@@ -60,7 +60,7 @@ def save_daily(request):
         return JsonResponse(json.loads(request.body), safe=False)
 
 def daily_view(request):
-    return render(request, "frontend/app/index.html")
+    return render(request, "index.html")
 
 def send_future(request):
     if request.method == 'GET' and request.headers['type'] == 'future':

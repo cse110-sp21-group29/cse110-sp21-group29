@@ -6,7 +6,7 @@
  * @class FutureLogs
  * @extends {HTMLElement}
  */
- class FutureLogs extends HTMLElement {
+class FutureLogs extends HTMLElement {
   /* eslint-disable */
   constructor () {
     super();

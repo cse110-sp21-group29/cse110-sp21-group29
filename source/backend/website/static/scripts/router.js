@@ -15,6 +15,7 @@ let dailyLogLoaded = false;
 // const main = document.querySelector('main');
 router.setState = function () {
   if (location.hash === '#/dailyLog') {
+    saveAll();
     clearMonthly();
     clearFuture();
     if (!dailyLogLoaded) {
@@ -26,6 +27,7 @@ router.setState = function () {
     return;
   }
   if (location.hash.substring(0, 10) === '#/dailyLog') {
+    saveAll();
     clearMonthly();
     clearFuture();
     if (!dailyLogLoaded) {
@@ -38,6 +40,7 @@ router.setState = function () {
     return;
   }
   if (location.hash === '#/monthlyLog') {
+    saveAll();
     clearDaily();
     clearFuture();
     dailyLogLoaded = false;
@@ -48,6 +51,7 @@ router.setState = function () {
     return;
   }
   if (location.hash === '#/futureLog') {
+    saveAll();
     clearDaily()
     clearMonthly();
     dailyLogLoaded = false;
@@ -58,6 +62,7 @@ router.setState = function () {
   }
 
   if (location.hash === '#' || location.hash === '#/' || location.hash === '') {
+    saveAll();
     clearFuture();
     clearMonthly();
     location.hash = '#/dailyLog';
@@ -259,6 +264,41 @@ function clearMonthly(){
   if(typeof monthlyInterval !== 'undefined'){
     clearInterval(monthlyInterval);
   }
+}
+
+function saveAll(){
+  fetch(dailySaveUrl, {
+    method: 'POST',
+    headers: {
+      "X-CSRFToken": getCookie("csrftoken"),
+      "Accept": "application/json",
+      'Content-Type': 'application/json',
+      'type': 'daily'
+    },
+    body: JSON.stringify(window.days)
+  });
+  
+  fetch(monthlySaveUrl, {
+    method: 'POST',
+    headers: {
+      "X-CSRFToken": getCookie("csrftoken"),
+      "Accept": "application/json",
+      'Content-Type': 'application/json',
+      'type': 'monthly'
+    },
+    body: JSON.stringify(window.months)
+  });
+
+  fetch(futureSaveUrl, {
+    method: 'POST',
+    headers: {
+      "X-CSRFToken": getCookie("csrftoken"),
+      "Accept": "application/json",
+      'Content-Type': 'application/json',
+      'type': 'future'
+    },
+    body: JSON.stringify(window.futureMonths)
+  });
 }
 
 router.setError = function () {

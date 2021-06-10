@@ -3,6 +3,10 @@
   outline: 5px auto -webkit-focus-ring-color;
 }
 
+body{
+  background-image: url('../scripts/bg.png');
+}
+
 body.dailyLog #dailyLogDiv {
   display: block;
 }

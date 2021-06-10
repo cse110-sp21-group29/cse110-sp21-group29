@@ -48,7 +48,7 @@ router.setState = function () {
     return;
   }
   if (location.hash === '#/futureLog') {
-    clearDaily()
+    clearDaily();
     clearMonthly();
     dailyLogLoaded = false;
     router.loadDailyLog(false, false);
@@ -58,8 +58,9 @@ router.setState = function () {
   }
 
   if (location.hash === '#' || location.hash === '#/' || location.hash === '') {
-    clearFuture();
+    clearDaily();
     clearMonthly();
+    clearFuture();
     location.hash = '#/dailyLog';
     return;
   }
@@ -185,7 +186,7 @@ router.setFutureLog = function () {
     .then(response => response.json())
     .then(month => {
       month.forEach((months) => {
-        window.futureMonths = months;
+        window.futureMonths = month;
         if (counter < 6) {
           const changeDate = document.createElement('future-logs');
           changeDate.content = months;
@@ -199,13 +200,14 @@ router.setFutureLog = function () {
 router.saveFutureLog = function () {
   futureInterval = setInterval(
     function(){
+      console.log('saves future');
       fetch(futureSaveUrl, {
         method: 'POST',
         headers: {
           "X-CSRFToken": getCookie("csrftoken"),
           "Accept": "application/json",
           'Content-Type': 'application/json',
-          'type': 'future'
+          'type': 'futureLog'
         },
         body: JSON.stringify(window.futureMonths)
       });
@@ -256,6 +258,7 @@ router.saveMonthlyLog = function () {
 };
 
 function clearMonthly(){
+
   if(typeof monthlyInterval !== 'undefined'){
     clearInterval(monthlyInterval);
   }

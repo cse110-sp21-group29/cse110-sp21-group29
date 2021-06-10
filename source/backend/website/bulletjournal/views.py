@@ -98,9 +98,10 @@ def send_future(request):
 
 
 def save_future(request):
-    if request.method == 'POST' and request.headers['type'] == 'future':
+    if request.method == 'POST' and request.headers['type'] == 'futureLog':
         currFuture = future.objects.all().filter(user=request.user).first()
-        currFuture.choice_text = '[' + request.body.decode('utf-8') + ']'
+        print(request.body.decode('utf-8'))
+        currFuture.choice_text = request.body.decode('utf-8')
         currFuture.save()
         return JsonResponse(json.loads(request.body), safe=False)
 

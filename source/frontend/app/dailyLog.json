@@ -29,15 +29,18 @@
           "subEntries": [
             {
               "type": "task",
-              "text": "Get the bread"
+              "text": "Get the bread",
+              "deadline": "08:00"
             },
             {
               "type": "task",
-              "text": "Toast the bread"
+              "text": "Toast the bread",
+              "deadline": "08:00"
             },
             {
               "type": "task",
-              "text": "Apply butter to the toast"
+              "text": "Apply butter to the toast",
+              "deadline": "08:00"
             }
           ]
         },

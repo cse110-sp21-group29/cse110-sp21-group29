@@ -54,8 +54,8 @@ def send_daily(request):
             entry = daily.objects.all().filter(user=request.user).first()
             if entry.modified_date < datetime.date.today():
                 dailystr = "[{\"date\":\"" + dayStr + "\",\"editable\""\
-                         ":true,\"entries\":[{\"type\":\"note\",\"text\""\
-                         ":\"A note\",\"subEntries\":[]}]}," + entry.choice_text[1:]
+                            ":true,\"entries\":[{\"type\":\"note\",\"text\""\
+                            ":\"A note\",\"subEntries\":[]}]}," + entry.choice_text[1:]
                 entry.choice_text = dailystr
                 entry.save()
             return JsonResponse(json.loads(entry.choice_text), safe=False)
@@ -72,7 +72,9 @@ def save_daily(request):
 def daily_view(request):
     return render(request, "index.html")
 
+
 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
 
 def send_future(request):
     if request.method == 'GET' and request.headers['type'] == 'future':

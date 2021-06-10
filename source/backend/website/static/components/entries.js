@@ -25,7 +25,7 @@ export class LogEntries extends HTMLElement {
           <article id="entries"></article>
       `;
     this.shadowRoot.appendChild(template.content.cloneNode(true));
-    this.shadowRoot.innerHTML += '<slot name="addButtonSlot"></slot>';
+    this.shadowRoot.innerHTML += '<br><slot name="addButtonSlot"></slot>';
   }
 
   get entries () {

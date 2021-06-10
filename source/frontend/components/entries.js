@@ -37,16 +37,15 @@ export class LogEntries extends HTMLElement {
     this.entryArray = entries;
     const article = this.shadowRoot.getElementById('entries');
     article.innerHTML = '';
-    this.createList(article, entries,true);
+    this.createList(article, entries, true);
     if (this.editable && !this.addButtonCreated) {
       this.addButtonCreated = true;
       this.createAddButton();
       this.createAddNestedButton();
-      
     }
   }
 
-  createAddButton() {
+  createAddButton () {
     const addDropdown = document.createElement('div');
     const id = this.uniqueId();
     addDropdown.innerHTML = `
@@ -60,43 +59,43 @@ export class LogEntries extends HTMLElement {
         <a class="dropdown-item"  href="#">Add Task</a>
       <div>
     `;
-    addDropdown.classList.add("dropdown");
-    addDropdown.slot='addButtonSlot';
-    
+    addDropdown.classList.add('dropdown');
+    addDropdown.slot = 'addButtonSlot';
+
     document.body.appendChild(addDropdown);
-    const myDropdownInit = new BSN.Dropdown( `#${id}`);
+    const myDropdownInit = new BSN.Dropdown(`#${id}`);
     this.appendChild(addDropdown);
-    
+
     let addItems = addDropdown.querySelectorAll('a');
-    addItems[0].addEventListener('click', event => {
+    addItems[0].addEventListener('click', (event) => {
       this.entryArray.push({
-        "type": "note",
-        "text": "A note",
-        "subEntries": []
+        type: 'note',
+        text: 'A note',
+        subEntries: [],
       });
       this.entries = this.entryArray;
-    })
-    addItems[1].addEventListener('click', event => {
+    });
+    addItems[1].addEventListener('click', (event) => {
       this.entryArray.push({
-        "type": "event",
-        "text": "An event",
-        "startTime": "",
-        "endTime": "",
-        "subEntries": []
+        type: 'event',
+        text: 'An event',
+        startTime: '',
+        endTime: '',
+        subEntries: [],
       });
       this.entries = this.entryArray;
-    })
-    addItems[2].addEventListener('click', event => {
+    });
+    addItems[2].addEventListener('click', (event) => {
       this.entryArray.push({
-        "type": "task",
-        "text": "A task",
-        "subEntries": []
+        type: 'task',
+        text: 'A task',
+        subEntries: [],
       });
       this.entries = this.entryArray;
-    })
+    });
   }
 
-  createAddNestedButton() {
+  createAddNestedButton () {
     this.addNestedDropdown = document.createElement('div');
     const id = this.uniqueId();
     this.addNestedDropdown.innerHTML = `
@@ -111,66 +110,73 @@ export class LogEntries extends HTMLElement {
         <a class="dropdown-item"  href="#">Delete Entry</a>
       <div>
     `;
-    this.addNestedDropdown.classList.add('dropdown','d-block');
+    this.addNestedDropdown.classList.add('dropdown', 'd-block');
     this.addNestedDropdown.item = {};
     document.body.appendChild(this.addNestedDropdown);
     const myDropdownInit = new BSN.Dropdown(`#${id}`);
     this.appendChild(this.addNestedDropdown);
     let addItems = this.addNestedDropdown.querySelectorAll('a');
-   
-    addItems[0].addEventListener('click', event => {
+
+    addItems[0].addEventListener('click', (event) => {
       this.addNestedDropdown.item.subEntries.push({
-        "type": "note",
-        "text": "A note",
+        type: 'note',
+        text: 'A note',
       });
       this.entries = this.entryArray;
-    })
-    addItems[1].addEventListener('click', event => {
+    });
+    addItems[1].addEventListener('click', (event) => {
       this.addNestedDropdown.item.subEntries.push({
-        "type": "event",
-        "text": "An event",
+        type: 'event',
+        text: 'An event',
       });
       this.entries = this.entryArray;
-    })
-    addItems[2].addEventListener('click', event => {
-      this.addNestedDropdown.item.subEntries.push(        {
-        "type": "task",
-        "text": "A task",
+    });
+    addItems[2].addEventListener('click', (event) => {
+      this.addNestedDropdown.item.subEntries.push({
+        type: 'task',
+        text: 'A task',
       });
       this.entries = this.entryArray;
-    })
-    addItems[3].addEventListener('click', event => {
+    });
+    addItems[3].addEventListener('click', (event) => {
       const index = this.entryArray.indexOf(this.addNestedDropdown.item);
-      this.entryArray.splice(index,1);
+      this.entryArray.splice(index, 1);
       this.entries = this.entryArray;
-    })
-/*     this.addEventListener('focusout',event => {
+    });
+    /*     this.addEventListener('focusout',event => {
       this.addNestedDropdown.classList.add('d-none');
     })     */
-    
-    this.addNestedDropdown.addEventListener('focus',event => {
-      this.addNestedDropdown.classList.remove('d-none');
-    })    
 
+    this.addNestedDropdown.addEventListener('focus', (event) => {
+      this.addNestedDropdown.classList.remove('d-none');
+    });
   }
 
   /* eslint-enable */
 
   /**
- * Create an ol element containing the entries.
- * @author Julius Tran <j6tran@ucsd.edu>
- * @date 2021-05-15
- * @param {Object} - The element to append the ol to
- * @param {Object[]} entries - The data for the entries
- * @return {HTMLUListElement} The created list
- * @memberof LogEntries
- */
+   * Create an ol element containing the entries.
+   * @author Julius Tran <j6tran@ucsd.edu>
+   * @date 2021-05-15
+   * @param {Object} - The element to append the ol to
+   * @param {Object[]} entries - The data for the entries
+   * @return {HTMLUListElement} The created list
+   * @memberof LogEntries
+   */
   createList (elem, entries, topLevel) {
     if (!entries || entries.length === 0) return false;
     const list = document.createElement('ul');
+    list.innerHTML = `
+    <style>
+      .list-group-item {
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+    </style>
+    `;
     list.classList.add('list-group');
     elem.appendChild(list);
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.type === 'note') {
         list.appendChild(this.createNote(entry, topLevel));
         return;
@@ -198,7 +204,7 @@ export class LogEntries extends HTMLElement {
     // li.draggable = true;
     li.innerHTML = `
     <span class="d-inline-block pr-5"><span>${bullet}</span><span class="mr-5" >${item.text}</span></span>
-    
+
     `;
     li.classList.add('list-group-item', 'border-0', 'py-0', 'd-inline-block');
 
@@ -206,7 +212,7 @@ export class LogEntries extends HTMLElement {
       li.tabIndex = 0;
       li.children[0].children[0].tabIndex = 0;
       li.children[0].children[1].contentEditable = true;
-      li.addEventListener('focus', event => {
+      li.addEventListener('focus', (event) => {
         li.classList.add('focused');
       });
       if (topLevel) {
@@ -215,7 +221,7 @@ export class LogEntries extends HTMLElement {
         li.innerHTML += `
         <div id="${divID}" class="float-right"><slot name="${slotName}"></slot></div>
         `;
-        li.addEventListener('focus', event => {
+        li.addEventListener('focus', (event) => {
           this.addNestedDropdown.classList.remove('d-none');
           this.addNestedDropdown.item = item;
           /*  this.addNestedDropdown.style.top = li.getBoundingClientRect().y + 'px';
@@ -224,10 +230,10 @@ export class LogEntries extends HTMLElement {
           this.appendChild(this.addNestedDropdown);
         });
       }
-      li.addEventListener('blur', event => {
+      li.addEventListener('blur', (event) => {
         li.classList.remove('focused');
       });
-      li.children[0].children[1].addEventListener('input', event => {
+      li.children[0].children[1].addEventListener('input', (event) => {
         item.text = li.children[0].children[1].innerText.trim();
       });
     }
@@ -235,13 +241,13 @@ export class LogEntries extends HTMLElement {
   }
 
   /**
- * Create a note li element
- * @author Julius Tran <j6tran@ucsd.edu>
- * @date 2021-05-15
- * @param {Object} - The note data
- * @return {HTMLLIElement}  The created note
- * @memberof LogEntries
- */
+   * Create a note li element
+   * @author Julius Tran <j6tran@ucsd.edu>
+   * @date 2021-05-15
+   * @param {Object} - The note data
+   * @return {HTMLLIElement}  The created note
+   * @memberof LogEntries
+   */
   createNote (note, topLevel) {
     const noteElem = this.createLi('–', note, topLevel);
     // noteElem.innerText = '– ' + note.text;
@@ -263,7 +269,9 @@ export class LogEntries extends HTMLElement {
     if (!this.editable) {
       if (event.startTime) {
         eventElem.innerHTML += `
-        <br><span>&nbsp &nbsp Starts:  ${this.convertTime(event.startTime)}</span>
+        <br><span>&nbsp &nbsp Starts:  ${this.convertTime(
+          event.startTime
+        )}</span>
         `;
         if (event.endTime) {
           eventElem.innerHTML += `
@@ -274,17 +282,21 @@ export class LogEntries extends HTMLElement {
     } else {
       eventElem.innerHTML += `
       <br>
-      <span> 
+      <span>
         &nbsp &nbsp  Starts: <input type="time" value="${event.startTime}" name="startTime">
         &nbsp Ends: <input type="time" value="${event.endTime}" name="endTime">
       </span>
       `;
-      eventElem.querySelectorAll('input[type=time]')[0].addEventListener('input', ev => {
-        event.startTime = ev.path[0].value;
-      });
-      eventElem.querySelectorAll('input[type=time]')[1].addEventListener('input', ev => {
-        event.endTime = ev.path[0].value;
-      });
+      eventElem
+        .querySelectorAll('input[type=time]')[0]
+        .addEventListener('input', (ev) => {
+          event.startTime = ev.path[0].value;
+        });
+      eventElem
+        .querySelectorAll('input[type=time]')[1]
+        .addEventListener('input', (ev) => {
+          event.endTime = ev.path[0].value;
+        });
     }
 
     this.createList(eventElem, event.subEntries, false);
@@ -318,16 +330,20 @@ export class LogEntries extends HTMLElement {
     if (!this.editable) {
       if (task.deadline) {
         taskElem.innerHTML += `
-        <br><span>&nbsp &nbsp Deadline: ${this.convertTime(task.deadline)}</span>
+        <br><span>&nbsp &nbsp Deadline: ${this.convertTime(
+          task.deadline
+        )}</span>
         `;
       }
     } else {
       taskElem.innerHTML += `
       <br><span>&nbsp &nbsp Deadline: <input type="time" value="${task.deadline}"></span>
         `;
-      taskElem.querySelector('input[type="time"]').addEventListener('input', ev => {
-        task.deadline = ev.path[0].value;
-      });
+      taskElem
+        .querySelector('input[type="time"]')
+        .addEventListener('input', (ev) => {
+          task.deadline = ev.path[0].value;
+        });
     }
     this.createList(taskElem, task.subEntries, false);
     return taskElem;

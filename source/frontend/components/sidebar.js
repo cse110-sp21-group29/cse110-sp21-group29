@@ -1,4 +1,3 @@
-
 /**
  *
  * This is a re-usable custom web component that setup sidebar, enables search bar, and enable navigating to note on a certain date
@@ -14,13 +13,11 @@ export class SideBar extends HTMLElement {
     const template = document.createElement('template');
     template.innerHTML = `
             <style>
-            
-            a{
+            a {
               text-align:center;
               text-decoration: none;
               
-              color: #e1ffff;
-              font-family: "Comic Sans MS", "Comic Sans", cursive;
+              color: #ffffff;
               font-size: 18px;
               padding: 10px 25px;
             }
@@ -30,41 +27,48 @@ export class SideBar extends HTMLElement {
               background-color: #0076ad;
             }
 
-            input{
+            input {
               width:90%;
               height:20px;
-              padding-left:10px;
+              margin-left:10px;
+              margin-right:10px;
             }
+
             .sidebar {
                 height: 100%;
-                background-color: #22282c;
+                background-color: #2C5684;
                 position:relative;
                 padding-top: 40px;
                 overflow-y: scroll;
+                margin-top: -20px;
             }
-            .sidebar_hide{
+
+            .sidebar_hide {
                 width:0%;
             }
-            .futureLog{
-              
+
+            .futureLog {
               display:block;
             }
-            .monthlyLog{
-              
+
+            .monthlyLog {
               display:block;
             }
-            .dailyLog{
-              
+
+            .dailyLog {
               display:block;
             }
-            h3{
-              color: #e1ffff; 
-              font-family: "Comic Sans MS", "Comic Sans", cursive;
+            
+            h3 {
+              color: #ffffff; 
               font-weight: bold;
+              padding-left:10px;
             }
+
             h3:hover {
               text-decoration: underline;
               background-color: #0076ad;
+              cursor: pointer;
             }
             </style> 
             <section class="sidebar">
@@ -84,23 +88,23 @@ export class SideBar extends HTMLElement {
   }
 
   /**
- *
- *
- * @author Dadian Zhu <dazhu@ucsd.edu>
- * @date 2021-05-30
- * @memberof SideBar
- */
+   *
+   *
+   * @author Dadian Zhu <dazhu@ucsd.edu>
+   * @date 2021-05-30
+   * @memberof SideBar
+   */
   get content () {
     return this.getAttribute('content');
   }
 
   /**
- *
- *
- * @author Dadian Zhu <dazhu@ucsd.edu>
- * @date 2021-05-30
- * @memberof SideBar
- */
+   *
+   *
+   * @author Dadian Zhu <dazhu@ucsd.edu>
+   * @date 2021-05-30
+   * @memberof SideBar
+   */
   set content (entry) {
     // console.log(entry);
     const futureList = document.createElement('div');
@@ -120,7 +124,9 @@ export class SideBar extends HTMLElement {
       a.setAttribute('href', '#/dailyLog/' + entry[i].date);
     }
     const futureSection = this.shadowRoot.querySelector("[class='futureLog']");
-    const monthlySection = this.shadowRoot.querySelector("[class='monthlyLog']");
+    const monthlySection = this.shadowRoot.querySelector(
+      "[class='monthlyLog']"
+    );
     const dailySection = this.shadowRoot.querySelector("[class='dailyLog']");
     futureSection.appendChild(futureList);
     monthlySection.appendChild(monthlyList);
@@ -128,12 +134,19 @@ export class SideBar extends HTMLElement {
     this.shadowRoot.getElementById('daily').addEventListener('click', () => {
       console.log('click');
       for (let i = 0; i < entry.length; i++) {
-        if (this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display === 'block') {
+        if (
+          this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style
+            .display === 'block'
+        ) {
           console.log('none');
-          this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display = 'none';
+          this.shadowRoot.querySelectorAll("[class='list-group-item']")[
+            i
+          ].style.display = 'none';
         } else {
           console.log('block');
-          this.shadowRoot.querySelectorAll("[class='list-group-item']")[i].style.display = 'block';
+          this.shadowRoot.querySelectorAll("[class='list-group-item']")[
+            i
+          ].style.display = 'block';
         }
       }
     });

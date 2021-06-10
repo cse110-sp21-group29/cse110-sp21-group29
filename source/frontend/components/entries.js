@@ -272,18 +272,20 @@ export class LogEntries extends HTMLElement {
         }
       }
     } else {
-      eventElem.innerHTML += `
-      <br>
-      <span> 
-        &nbsp &nbsp  Starts: <input type="time" value="${event.startTime}" name="startTime">
-        &nbsp Ends: <input type="time" value="${event.endTime}" name="endTime">
-      </span>
+      eventElem.appendChild(document.createElement('br'));
+      const newSpan = document.createElement('span');
+      newSpan.innerHTML = `
+      &nbsp &nbsp  Starts: <input type="time" value="${event.startTime}" name="startTime">
+      &nbsp Ends: <input type="time" value="${event.endTime}" name="endTime">
       `;
-      eventElem.querySelectorAll('input[type=time]')[0].addEventListener('input', ev => {
-        event.startTime = ev.path[0].value;
+      eventElem.appendChild(newSpan);
+      const startTimeInput = eventElem.querySelectorAll('input[type=time]')[0];
+      startTimeInput.addEventListener('input', () => {
+        event.startTime = startTimeInput.value;
       });
-      eventElem.querySelectorAll('input[type=time]')[1].addEventListener('input', ev => {
-        event.endTime = ev.path[0].value;
+      const endTimeInput = eventElem.querySelectorAll('input[type=time]')[1];
+      endTimeInput.addEventListener('input', () => {
+        event.endTime = endTimeInput.value;
       });
     }
 
@@ -322,11 +324,15 @@ export class LogEntries extends HTMLElement {
         `;
       }
     } else {
-      taskElem.innerHTML += `
-      <br><span>&nbsp &nbsp Deadline: <input type="time" value="${task.deadline}"></span>
-        `;
-      taskElem.querySelector('input[type="time"]').addEventListener('input', ev => {
-        task.deadline = ev.path[0].value;
+      taskElem.appendChild(document.createElement('br'));
+      const newSpan = document.createElement('span');
+      newSpan.innerHTML = `
+        &nbsp &nbsp Deadline: <input type="time" value="${task.deadline}">
+      `;
+      taskElem.appendChild(newSpan);
+      const taskTime = taskElem.querySelector('input[type="time"]');
+      taskTime.addEventListener('input', () => {
+        task.deadline = taskTime.value;
       });
     }
     this.createList(taskElem, task.subEntries, false);

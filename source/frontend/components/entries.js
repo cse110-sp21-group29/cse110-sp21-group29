@@ -195,10 +195,9 @@ export class LogEntries extends HTMLElement {
    */
   createLi (bullet, item, topLevel) {
     const li = document.createElement('li');
-    const textID = this.uniqueId();
     // li.draggable = true;
     li.innerHTML = `
-    <span class="d-inline-block pr-5"><span>${bullet}</span><span id="${textID}"class="mr-5" >${item.text}</span></span>
+    <span class="d-inline-block pr-5"><span>${bullet}</span><span class="mr-5" >${item.text}</span></span>
     
     `;
     li.classList.add('list-group-item', 'border-0', 'py-0', 'd-inline-block');
@@ -228,12 +227,8 @@ export class LogEntries extends HTMLElement {
       li.addEventListener('blur', event => {
         li.classList.remove('focused');
       });
-      const textField = li.querySelector(`#${textID}`);
-      console.log(textField);
-      console.dir(textField);
-      textField.addEventListener('input', event => {
-        alert('editing');
-        item.text = textField.innerText.trim();
+      li.children[0].children[1].addEventListener('input', event => {
+        item.text = li.children[0].children[1].innerText;
       });
     }
     return li;
@@ -277,19 +272,21 @@ export class LogEntries extends HTMLElement {
         }
       }
     } else {
-      /*       eventElem.innerHTML += `
-      <br>
-      <span>
-        &nbsp &nbsp  Starts: <input type="time" value="${event.startTime}" name="startTime">
-        &nbsp Ends: <input type="time" value="${event.endTime}" name="endTime">
-      </span>
+      eventElem.appendChild(document.createElement('br'));
+      const newSpan = document.createElement('span');
+      newSpan.innerHTML = `
+      &nbsp &nbsp  Starts: <input type="time" value="${event.startTime}" name="startTime">
+      &nbsp Ends: <input type="time" value="${event.endTime}" name="endTime">
       `;
-      eventElem.querySelectorAll('input[type=time]')[0].addEventListener('input', ev => {
-        event.startTime = ev.path[0].value;
+      eventElem.appendChild(newSpan);
+      const startTimeInput = eventElem.querySelectorAll('input[type=time]')[0];
+      startTimeInput.addEventListener('input', () => {
+        event.startTime = startTimeInput.value;
       });
-      eventElem.querySelectorAll('input[type=time]')[1].addEventListener('input', ev => {
-        event.endTime = ev.path[0].value;
-      }); */
+      const endTimeInput = eventElem.querySelectorAll('input[type=time]')[1];
+      endTimeInput.addEventListener('input', () => {
+        event.endTime = endTimeInput.value;
+      });
     }
 
     this.createList(eventElem, event.subEntries, false);
@@ -327,11 +324,15 @@ export class LogEntries extends HTMLElement {
         `;
       }
     } else {
-      taskElem.innerHTML += `
-      <br><span>&nbsp &nbsp Deadline: <input type="time" value="${task.deadline}"></span>
-        `;
-      taskElem.querySelector('input[type="time"]').addEventListener('input', ev => {
-        task.deadline = ev.path[0].value;
+      taskElem.appendChild(document.createElement('br'));
+      const newSpan = document.createElement('span');
+      newSpan.innerHTML = `
+        &nbsp &nbsp Deadline: <input type="time" value="${task.deadline}">
+      `;
+      taskElem.appendChild(newSpan);
+      const taskTime = taskElem.querySelector('input[type="time"]');
+      taskTime.addEventListener('input', () => {
+        task.deadline = taskTime.value;
       });
     }
     this.createList(taskElem, task.subEntries, false);

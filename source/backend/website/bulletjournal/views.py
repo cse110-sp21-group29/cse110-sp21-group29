@@ -73,16 +73,23 @@ def save_daily(request):
 def daily_view(request):
     return render(request, "index.html")
 
+months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 def send_future(request):
     if request.method == 'GET' and request.headers['type'] == 'future':
-        monthStr = datetime.date.today().strftime("%B")
+        monthNum = int(datetime.date.today().strftime("%m"))
         if future.objects.filter(user=request.user).count() == 0:
-            jsonString = "[{\"Month\":\"" + monthStr + "\",\"editable\":true,\"entries\":[{\"type\":\"note\",\"text\":\"Something else\",\"subEntries\":[]}]}]"
-            newLog = future(choice_text=jsonString, user=request.user)
+            futurestr = '['
+            for i in range(0, 6):
+                monthStr = months[(monthNum + i - 1) % 12]
+                futurestr += "{\"Month\":\"" + monthStr + "\",\"editable\":true,\"entries\":[{\"type\":\"note\",\"text\":\"A note\",\"subEntries\":[]}]},"
+            futurestr = futurestr[:-1]
+            futurestr += ']'
+            newLog = future(choice_text=futurestr, user=request.user)
             newLog.save()
             return JsonResponse(json.loads(newLog.choice_text), safe=False)
         else:
+            monthStr = datetime.date.today().strftime("%m")
             entry = future.objects.all().filter(user=request.user).first()
             if entry.modified_date.month < datetime.date.today().month:
                 entry.choice_text = "[{\"Month\":\"" + monthStr + "\",\"editable\":true,\"entries\":[{\"type\":\"note\",\"text\":\"A note\",\"subEntries\":[]}]}," + entry.choice_text[1:]

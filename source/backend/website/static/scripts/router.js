@@ -128,7 +128,7 @@ router.saveDailyLog = function () {
         },
         body: JSON.stringify(window.days)
       });
-    }, 5000
+    }, 1000
   );
 };
 
@@ -209,7 +209,7 @@ router.saveFutureLog = function () {
         },
         body: JSON.stringify(window.futureMonths)
       });
-    }, 5000
+    }, 1000
   );
 };
 
@@ -251,7 +251,7 @@ router.saveMonthlyLog = function () {
         },
         body: JSON.stringify(window.months)
       });
-    }, 5000
+    }, 1000
   );
 };
 

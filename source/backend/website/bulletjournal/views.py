@@ -53,11 +53,10 @@ def send_daily(request):
         else:
             entry = daily.objects.all().filter(user=request.user).first()
             if entry.modified_date < datetime.date.today():
-                str = "[{\"date\":\"" + dayStr + "\",\"editable\""\
-                      ":true,\"entries\":[{\"type\":\"note\",\"text\""\
-                      ":\"A note\",\"subEntries\":[]}]}]"\
-                      + entry.choice_text[1:]
-                entry.choice_text = str
+                dailystr = "[{\"date\":\"" + dayStr + "\",\"editable\""\
+                         ":true,\"entries\":[{\"type\":\"note\",\"text\""\
+                         ":\"A note\",\"subEntries\":[]}]}," + entry.choice_text[1:]
+                entry.choice_text = dailystr
                 entry.save()
             return JsonResponse(json.loads(entry.choice_text), safe=False)
 

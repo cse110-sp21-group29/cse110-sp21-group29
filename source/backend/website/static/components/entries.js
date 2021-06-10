@@ -327,8 +327,9 @@ export class LogEntries extends HTMLElement {
       taskElem.innerHTML += `
       <br><span>&nbsp &nbsp Deadline: <input type="time" value="${task.deadline}"></span>
         `;
-      taskElem.querySelector('input[type="time"]').addEventListener('input', ev => {
-        task.deadline = ev.path[0].value;
+      const taskTime = taskElem.querySelector('input[type="time"]')
+      taskTime.addEventListener('input', () => {
+        task.deadline = taskTime.value;
       });
     }
     this.createList(taskElem, task.subEntries, false);

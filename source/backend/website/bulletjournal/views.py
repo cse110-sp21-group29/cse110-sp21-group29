@@ -7,6 +7,7 @@ from .forms import LoginForm
 from django.contrib.auth.forms import UserCreationForm
 from .models import daily, future, monthly
 import datetime
+import calendar
 import json
 
 
@@ -97,12 +98,22 @@ def save_future(request):
         return JsonResponse(json.loads(request.body), safe=False)
 
 
+weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+
+
 def send_monthly(request):
     if request.method == 'GET' and request.headers['type'] == 'monthly':
         monthStr = datetime.date.today().strftime("%B")
         if monthly.objects.filter(user=request.user).count() == 0:
-            jsonString = "[{\"Month\":\"" + monthStr + "\",\"editable\":true,\"entries\":[{\"type\":\"note\",\"text\":\"Something else\",\"subEntries\":[]}]}]"
-            newLog = monthly(choice_text=jsonString, user=request.user)
+            startStr = "[{\"name\":\"" + monthStr + "\",\"entries\":[{\"type\":\"note\",\"text\":\" My Reminders:\",\"subEntries\":[{\"type\":\"note\",\"text\":\" A note\"}]}],\"editable\":\"true\",\"daysOfMonth\":["
+            midStr = ""
+            now = datetime.datetime.now()
+            for i in range(1, calendar.monthrange(now.year, now.month)[1] + 1):
+                day = weekDays[datetime.datetime(now.year, now.month, i).weekday()]
+                midStr += "{\"dayNum\":\"" + str(i) + "\",\"dayOfWeek\":\"" + day + "\",\"description\":\"\"},"
+            midStr = midStr[:-1]
+            string = startStr + midStr + "]}]"
+            newLog = monthly(choice_text=string, user=request.user)
             newLog.save()
             return JsonResponse(json.loads(newLog.choice_text), safe=False)
         else:
@@ -116,7 +127,7 @@ def send_monthly(request):
 def save_monthly(request):
     if request.method == 'POST' and request.headers['type'] == 'monthly':
         currMonthly = monthly.objects.all().filter(user=request.user).first()
-        currMonthly.choice_text = '[' + request.body.decode('utf-8') + ']'
+        currMonthly.choice_text = request.body.decode('utf-8')
         currMonthly.save()
         return JsonResponse(json.loads(request.body), safe=False)
 

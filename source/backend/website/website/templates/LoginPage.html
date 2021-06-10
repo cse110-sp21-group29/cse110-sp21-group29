@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang=”en”>
 <head>
+    {% load static %}
+    <link href="{% static 'favicon.ico' %}" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'styles/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/front.css' %}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +12,9 @@
 </head>
 <body>
     {% block content %}
-    <a href="{% url 'signup' %}">Sign up</a>
+    <h1>Welcome Back</h1>
+    <div class = 'box'>
+    <p>Already have an account? <a href="{% url 'signup' %}">Sign up</a></p>
     <form method='POST'>
         {% csrf_token %}
         {% for field in form %}
@@ -28,6 +34,7 @@
         <button id="loginBut"><A href="FrontPage.html">Login</A></button>
         -->
     </form>
+  </div>
     {% endblock %}
 </body>
 </html>

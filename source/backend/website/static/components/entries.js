@@ -279,11 +279,13 @@ export class LogEntries extends HTMLElement {
         &nbsp Ends: <input type="time" value="${event.endTime}" name="endTime">
       </span>
       `;
-      eventElem.querySelectorAll('input[type=time]')[0].addEventListener('input', ev => {
-        event.startTime = ev.path[0].value;
+      const startTimeInput = eventElem.querySelectorAll('input[type=time]')[0];
+      startTimeInput.addEventListener('input', () => {
+        event.startTime = startTimeInput.value;
       });
-      eventElem.querySelectorAll('input[type=time]')[1].addEventListener('input', ev => {
-        event.endTime = ev.path[0].value;
+      const endTimeInput = eventElem.querySelectorAll('input[type=time]')[1]
+      endTimeInput.addEventListener('input', () => {
+        event.endTime = endTimeInput.value;
       });
     }
 

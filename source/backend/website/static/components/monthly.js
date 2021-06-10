@@ -23,7 +23,7 @@
             <style>
               @font-face {
                 font-family: headerText;
-                src: url(../styles/bright-sunshine.ttf);
+                src: url(../static/styles/bright-sunshine.ttf);
               }
               img {
                 margin-left: auto;
@@ -33,7 +33,7 @@
                 height: 200px;
               }
               body {
-                background-image: url("../monthlyLog/bg.png");
+                background-image: url("../static/scripts/bg.png");
               }
               .monthName {
                 font-size: 60pt;
@@ -54,7 +54,7 @@
               }
             </style>
             <header class="monthName">June</header>
-            <img src="../monthlyLog/paint.png">
+            <img src="../static/scripts/paint.png">
             `;
       this.setAttribute('title', 'Monthly Log');
       const logEntry = document.createElement('log-entries');
@@ -72,6 +72,7 @@
      */
     makeList (month) {
       const listContainer = document.createElement('div');
+      listContainer.classList.add('push-left');
       const listElement = document.createElement('ul');
       listElement.classList.add('list-group');
       let listItem;
@@ -93,7 +94,7 @@
         listItem.innerHTML = day.dayNum + ' ' + day.dayOfWeek + ' ';
   
         listDes = document.createElement('li');
-        listDes.setAttribute('class', 'description');
+        listDes.setAttribute('id', 'description');
         listDes.classList.add('list-group-item', 'border-0', 'py-0');
         listDes.contentEditable = month.editable;
         listDes.innerText = day.description;

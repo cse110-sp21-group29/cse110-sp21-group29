@@ -42,6 +42,7 @@ router.setState = function () {
     clearFuture();
     dailyLogLoaded = false;
     router.loadDailyLog(false, false);
+    console.log('gets here')
     router.setMonthlyLog();
     router.saveMonthlyLog();
     return;

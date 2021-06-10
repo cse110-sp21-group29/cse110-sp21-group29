@@ -40,6 +40,14 @@ body.futureLog #futureLogDiv {
   color: #2c5684;
 }
 
+.push-left{
+  padding-left: 15%;
+}
+
+#futureLogDiv{
+  padding-left: 15%;
+}
+
 #monthlyLogDiv .position-relative {
   margin-top: -100px;
 }

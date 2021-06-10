@@ -51,6 +51,9 @@
         .container {
           border-top: 3px solid white;
         }
+        body {
+          background-image: url("../static/scripts/bg.png");
+        }
     </style>
     `;
     this.querySelector('.month').textContent = item.Month;

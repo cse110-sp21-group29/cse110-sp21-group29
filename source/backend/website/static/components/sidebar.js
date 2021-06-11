@@ -7,7 +7,7 @@
  * @class SideBar
  * @extends {HTMLElement}
  */
- export class SideBar extends HTMLElement {
+export class SideBar extends HTMLElement {
   constructor () {
     super();
     const template = document.createElement('template');

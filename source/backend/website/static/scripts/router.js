@@ -1,16 +1,16 @@
 export const router = {};
 const dailyLogUrl = 'sendDaily/';
-const dailySaveUrl = 'receiveDaily/'
+const dailySaveUrl = 'receiveDaily/';
 const futureLogUrl = 'sendFuture/';
 const futureSaveUrl = 'receiveFuture/';
 const monthlyLogUrl = 'sendMonthly/';
-const monthlySaveUrl = 'receiveMonthly/'
+const monthlySaveUrl = 'receiveMonthly/';
 const dailyLog = document.getElementById('dailyLogDiv');
 const monthlyLog = document.getElementById('monthlyLogDiv');
 const futureLog = document.getElementById('futureLogDiv');
-var futureInterval;
-var dailyInterval;
-var monthlyInterval;
+let futureInterval;
+let dailyInterval;
+let monthlyInterval;
 let dailyLogLoaded = false;
 // const main = document.querySelector('main');
 router.setState = function () {
@@ -42,7 +42,7 @@ router.setState = function () {
     clearFuture();
     dailyLogLoaded = false;
     router.loadDailyLog(false, false);
-    console.log('gets here')
+    console.log('gets here');
     router.setMonthlyLog();
     router.saveMonthlyLog();
     return;
@@ -78,7 +78,7 @@ router.loadDailyLog = function (render, setDay) {
   fetch(dailyLogUrl, {
     method: 'GET',
     headers: {
-      'type': 'daily'
+      type: 'daily'
     }
   })
     .then(response => response.json())
@@ -118,14 +118,14 @@ router.renderDailyLog = function (days, setDay) {
 
 router.saveDailyLog = function () {
   dailyInterval = setInterval(
-    function(){
+    function () {
       fetch(dailySaveUrl, {
         method: 'POST',
         headers: {
-          "X-CSRFToken": getCookie("csrftoken"),
-          "Accept": "application/json",
+          'X-CSRFToken': getCookie('csrftoken'),
+          Accept: 'application/json',
           'Content-Type': 'application/json',
-          'type': 'daily'
+          type: 'daily'
         },
         body: JSON.stringify(window.days)
       });
@@ -133,28 +133,27 @@ router.saveDailyLog = function () {
   );
 };
 
-function clearDaily(){
-  if(typeof dailyInterval !== 'undefined'){
+function clearDaily () {
+  if (typeof dailyInterval !== 'undefined') {
     clearInterval(dailyInterval);
   }
 }
 
-function getCookie(name) {
-  var cookieValue = null;
+function getCookie (name) {
+  let cookieValue = null;
   if (document.cookie && document.cookie !== '') {
-      var cookies = document.cookie.split(';');
-      for (var i = 0; i < cookies.length; i++) {
-          var cookie = cookies[i].replace(/\s/g, "");;
-          // Does this cookie string begin with the name we want?
-          if (cookie.substring(0, name.length + 1) === (name + '=')) {
-              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-              break;
-          }
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].replace(/\s/g, '');
+      // Does this cookie string begin with the name we want?
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
       }
+    }
   }
   return cookieValue;
 }
-
 
 router.setDailyLogHome = function () {
   window.scrollTo(0, 0);
@@ -180,7 +179,7 @@ router.setFutureLog = function () {
   fetch(futureLogUrl, {
     method: 'GET',
     headers: {
-      'type': 'future'
+      type: 'future'
     }
   })
     .then(response => response.json())
@@ -199,15 +198,15 @@ router.setFutureLog = function () {
 
 router.saveFutureLog = function () {
   futureInterval = setInterval(
-    function(){
+    function () {
       console.log('saves future');
       fetch(futureSaveUrl, {
         method: 'POST',
         headers: {
-          "X-CSRFToken": getCookie("csrftoken"),
-          "Accept": "application/json",
+          'X-CSRFToken': getCookie('csrftoken'),
+          Accept: 'application/json',
           'Content-Type': 'application/json',
-          'type': 'futureLog'
+          type: 'futureLog'
         },
         body: JSON.stringify(window.futureMonths)
       });
@@ -215,8 +214,8 @@ router.saveFutureLog = function () {
   );
 };
 
-function clearFuture(){
-  if(typeof futureInterval !== 'undefined'){
+function clearFuture () {
+  if (typeof futureInterval !== 'undefined') {
     clearInterval(futureInterval);
   }
 }
@@ -227,7 +226,7 @@ router.setMonthlyLog = function () {
   fetch(monthlyLogUrl, {
     method: 'GET',
     headers: {
-      'type': 'monthly'
+      type: 'monthly'
     }
   })
     .then((response) => response.json())
@@ -242,14 +241,14 @@ router.setMonthlyLog = function () {
 
 router.saveMonthlyLog = function () {
   monthlyInterval = setInterval(
-    function(){
+    function () {
       fetch(monthlySaveUrl, {
         method: 'POST',
         headers: {
-          "X-CSRFToken": getCookie("csrftoken"),
-          "Accept": "application/json",
+          'X-CSRFToken': getCookie('csrftoken'),
+          Accept: 'application/json',
           'Content-Type': 'application/json',
-          'type': 'monthly'
+          type: 'monthly'
         },
         body: JSON.stringify(window.months)
       });
@@ -257,9 +256,8 @@ router.saveMonthlyLog = function () {
   );
 };
 
-function clearMonthly(){
-
-  if(typeof monthlyInterval !== 'undefined'){
+function clearMonthly () {
+  if (typeof monthlyInterval !== 'undefined') {
     clearInterval(monthlyInterval);
   }
 }

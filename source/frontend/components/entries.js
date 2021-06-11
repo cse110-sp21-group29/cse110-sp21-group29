@@ -45,7 +45,6 @@ export class LogEntries extends HTMLElement {
       
     }
   }
-
   createAddButton() {
     const addDropdown = document.createElement('div');
     const id = this.uniqueId();
@@ -186,6 +185,7 @@ export class LogEntries extends HTMLElement {
     return list;
   }
 
+  // Hello World
   /**
    * Create li with proper CSS clasess
    * @author Julius Tran <j6tran@ucsd.edu>

@@ -38,4 +38,4 @@ There should be a red icon, which upon pressed would show you 4 options:
 [Documentation display repo](https://github.com/cse110-sp21-group29/docs)
 
 ## Final Project Video - Public Version
-https://youtu.be/zCfKNDkCIN0
+https://www.youtube.com/watch?v=iLnpxdt4KmE&t=18s

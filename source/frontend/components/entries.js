@@ -28,6 +28,7 @@ export class LogEntries extends HTMLElement {
     this.shadowRoot.innerHTML += '<slot name="addButtonSlot"></slot>';
   }
 
+  // Hello World
   get entries () {
     return this.getAttribute('entries');
   }

@@ -1,5 +1,6 @@
 # CI/CD Pipeline: Phase 1
 
+## Frontend
 ![Diagram](phase1.drawio.png)
 
 I (Julius Tran) have created a pipeline for the front end. 
@@ -13,6 +14,10 @@ I have also asked everyone working on the front end to install two VSCode extens
 
 Once coding is fully underway code will be reviewed by teammates.
 
-The other co-leader Ethan Lew is working on a pipeline for the back end.
-
 [Here is a video demonstrating the pipeline](https://www.youtube.com/watch?v=sq8I9ZODWLs)
+
+## Backend
+![Diagram](phase1.png)
+Everything in the diagram is already functional. Whenever a push (or pull-request) is made on either the backend or main branch, it is first linted with flake8 (since the backend is made up of entirely python), which makes sure it follows a single coding style. After that, the same action runs Pytest unit tests on the code.
+
+Everyone on the backend branch has downloaded flake8 and uses a VSCode extension to allow flake8 to be the default linter for this project. 

@@ -1,3 +1,4 @@
+
 export const router = {};
 const dailyLogUrl = './dailyLog.json';
 const monthlyLogUrl = './monthlyLog.json';
@@ -8,6 +9,7 @@ const futureLog = document.getElementById('futureLogDiv');
 
 let dailyLogLoaded = false;
 // const main = document.querySelector('main');
+
 router.setState = function () {
   if (location.hash === '#/dailyLog') {
     if (!dailyLogLoaded) {

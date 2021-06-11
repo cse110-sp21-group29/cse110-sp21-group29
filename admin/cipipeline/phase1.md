@@ -21,3 +21,5 @@ Once coding is fully underway code will be reviewed by teammates.
 Everything in the diagram is already functional. Whenever a push (or pull-request) is made on either the backend or main branch, it is first linted with flake8 (since the backend is made up of entirely python), which makes sure it follows a single coding style. After that, the same action runs Pytest unit tests on the code.
 
 Everyone on the backend branch has downloaded flake8 and uses a VSCode extension to allow flake8 to be the default linter for this project. 
+
+[Here is a video demonstrating the pipeline](https://www.youtube.com/watch?v=T-TJ3HMyxiw)

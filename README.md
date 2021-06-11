@@ -39,3 +39,6 @@ There should be a red icon, which upon pressed would show you 4 options:
 
 ## Final Project Video - Public Version
 https://www.youtube.com/watch?v=iLnpxdt4KmE&t=18s
+
+## Final Project Video - Private Version 
+https://youtu.be/gt7oSYngwRE

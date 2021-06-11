@@ -37,6 +37,8 @@ There should be a red icon, which upon pressed would show you 4 options:
 
 [Documentation display repo](https://github.com/cse110-sp21-group29/docs)
 
+[Final Retrospective and Discussion](https://docs.google.com/document/d/1dbyHUQ8UoQJv5CClBoTor5WmI-x5mRb7_26RFqNi6oY)
+
 ## Final Project Video - Public Version
 https://www.youtube.com/watch?v=iLnpxdt4KmE&t=18s
 

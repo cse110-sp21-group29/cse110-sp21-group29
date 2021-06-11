@@ -1,12 +1,12 @@
 # Decision of Metadata
 
-* Status: Approved
+* Status: Approved (Never Implemented)
 * Deciders: All members of group 29
 * Date: 2021-05-23
 
 ## Context and Problem Statement
 
-The decision of what metadata to include for entries in our BuJo (this ADR specifically for the inclusion of recurring metadate for events)
+The decision of what metadata to include for entries in our BuJo (this ADR specifically for the inclusion of recurring metadata for events)
 
 ## Considered Options
 
@@ -31,3 +31,8 @@ Decesion made based on: The consideration of how this inclusion can be usefull f
 * Good, makes implementation of data less intrusive for user
 * Bad, user is must then set each session of recurring event manually 
 * Bad, less information that can be analyized by the development team
+
+### Reasons that Recurring Metadata was Excluded from current build
+
+* Recurring Metadata was a feature the time wanted to add however, due to the unforseen complexity of integrated the front end and backend the feature was scrapped
+* Time constraints of the project timeline, the feature was seen by the team as user friendly to our target audience. However, getting the web app to function properly (debugging) and to seemlessly save data to the database took precedence.

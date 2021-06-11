@@ -11,7 +11,7 @@ import calendar
 import json
 
 
-# Create your views here.
+#View for the signp page
 def signup_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -26,6 +26,7 @@ def signup_view(request):
     return render(request, "SignUpPage.html", {'form': form})
 
 
+#View for the login page
 def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -40,6 +41,7 @@ def login_view(request):
     return render(request, "LoginPage.html", {'form': form})
 
 
+#Function for fetching daily entries from the database
 def send_daily(request):
     if request.method == 'GET' and request.headers['type'] == 'daily':
         dayStr = datetime.date.today().strftime("%Y-%m-%d")
@@ -61,6 +63,7 @@ def send_daily(request):
             return JsonResponse(json.loads(entry.choice_text), safe=False)
 
 
+#Function for saving the daily entries into the database
 def save_daily(request):
     if request.method == 'POST' and request.headers['type'] == 'daily':
         currDaily = daily.objects.all().filter(user=request.user).first()
@@ -69,6 +72,7 @@ def save_daily(request):
         return JsonResponse(json.loads(request.body), safe=False)
 
 
+#Renderer for the daily log
 def daily_view(request):
     return render(request, "index.html")
 
@@ -76,6 +80,7 @@ def daily_view(request):
 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 
+#Function for fetching the future log entries from the database
 def send_future(request):
     if request.method == 'GET' and request.headers['type'] == 'future':
         monthNum = int(datetime.date.today().strftime("%m"))
@@ -98,6 +103,7 @@ def send_future(request):
             return JsonResponse(json.loads(entry.choice_text), safe=False)
 
 
+#Function for saving the future log entries into the database
 def save_future(request):
     if request.method == 'POST' and request.headers['type'] == 'futureLog':
         currFuture = future.objects.all().filter(user=request.user).first()
@@ -110,6 +116,7 @@ def save_future(request):
 weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
 
+#Function for fetching the monthly log entries from the database
 def send_monthly(request):
     if request.method == 'GET' and request.headers['type'] == 'monthly':
         monthStr = datetime.date.today().strftime("%B")
@@ -133,6 +140,7 @@ def send_monthly(request):
             return JsonResponse(json.loads(entry.choice_text), safe=False)
 
 
+#Function for saving the montly log entries into the database
 def save_monthly(request):
     if request.method == 'POST' and request.headers['type'] == 'monthly':
         currMonthly = monthly.objects.all().filter(user=request.user).first()
@@ -141,5 +149,6 @@ def save_monthly(request):
         return JsonResponse(json.loads(request.body), safe=False)
 
 
+#Stub front page
 def front_page(request):
     return render(request, "FrontPage.html")

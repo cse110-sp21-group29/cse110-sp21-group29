@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="LogEntries.html">LogEntries</a><ul class='methods'><li data-type='method'><a href="LogEntries.html#createEvent">createEvent</a></li><li data-type='method'><a href="LogEntries.html#createEvent">createEvent</a></li><li data-type='method'><a href="LogEntries.html#createLi">createLi</a></li><li data-type='method'><a href="LogEntries.html#createLi">createLi</a></li><li data-type='method'><a href="LogEntries.html#createList">createList</a></li><li data-type='method'><a href="LogEntries.html#createList">createList</a></li><li data-type='method'><a href="LogEntries.html#createNote">createNote</a></li><li data-type='method'><a href="LogEntries.html#createNote">createNote</a></li><li data-type='method'><a href="LogEntries.html#createTask">createTask</a></li><li data-type='method'><a href="LogEntries.html#createTask">createTask</a></li></ul></li><li></li><li><a href="MonthlyLog.html">MonthlyLog</a><ul class='methods'><li data-type='method'><a href="MonthlyLog.html#getDaysInMonth">getDaysInMonth</a></li><li data-type='method'><a href="MonthlyLog.html#makeList">makeList</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#sum">sum</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="LogEntries.html">LogEntries</a><ul class='methods'><li data-type='method'><a href="LogEntries.html#convertTime">convertTime</a></li><li data-type='method'><a href="LogEntries.html#createEvent">createEvent</a></li><li data-type='method'><a href="LogEntries.html#createEvent">createEvent</a></li><li data-type='method'><a href="LogEntries.html#createLi">createLi</a></li><li data-type='method'><a href="LogEntries.html#createLi">createLi</a></li><li data-type='method'><a href="LogEntries.html#createList">createList</a></li><li data-type='method'><a href="LogEntries.html#createList">createList</a></li><li data-type='method'><a href="LogEntries.html#createNote">createNote</a></li><li data-type='method'><a href="LogEntries.html#createNote">createNote</a></li><li data-type='method'><a href="LogEntries.html#createTask">createTask</a></li><li data-type='method'><a href="LogEntries.html#createTask">createTask</a></li></ul></li><li></li><li><a href="MonthlyLog.html">MonthlyLog</a><ul class='methods'><li data-type='method'><a href="MonthlyLog.html#makeList">makeList</a></li></ul></li><li><a href="SideBar.html">SideBar</a></li></ul><h3>Global</h3><ul><li><a href="global.html#sum">sum</a></li></ul>
 </nav>
 
 <div id="main">
@@ -43,174 +43,128 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- *
- * This is a re-usable custom web component that displays a month with separations at each week.
+ * This is a re-usable custom web component that displays a month with separations
+ * at each week.
  * @author Anahita Afshari &lt;aafshari@ucsd.edu>
  * @date 2021-06-02
  * @class MonthlyLog
  * @extends {HTMLElement}
  */
 class MonthlyLog extends HTMLElement {
-  constructor () {
-    super();
-    const template = document.createElement('template');
-    template.innerHTML = `
-    &lt;style> 
-      @font-face {
-         font-family: headerText;
-         src: url(bright-sunshine.ttf);
-      }
+  /* eslint-disable */
+    constructor () {
+      super();
+      document.title = 'Monthly Log';
+    }
+    /* eslint-enable */
 
-      @font-face {
-         font-family: literata;
-         src: url(literata.ttf);
-      }
-
-      body {
-         background-color: white;
-      }
-
-      .header-container {
-         position: relative;
-         text-align: center;
-         color: white;
-      }
-
-      header {
-         font-size: 80pt;
-         font-family: headerText;
-         text-align: center;
-         color: #2C5684;
-         position: absolute;
-         top: 50%;
-         left: 50%;
-         transform: translate(-50%, -85%);
-      }
-
-      img {
-         width: 400px;
-         height: 250px;
-      }
-
-      h1 {
-         font-family: literata;
-         text-align: center;
-         transform: translate(-15px, -130px);
-         font-size: 35px;
-      }
-
-      ul {
-         list-style-type: none;
-      }
-
-      li {
-         font-family: literata;
-         font-size: 20px;
-         color: #2C5684;
-      }
-
-      .position-relative {
-         margin-top: -100px;
-      }
-
-      hr {
-         margin-right: 30px;
-      }
-
-      body {
-         height: auto;
-         background-size: cover;
-      }
-
-    &lt;/style>
-    &lt;div class="header-container">
-      &lt;img src="paint.png">
-      &lt;header id="monthName">&lt;/header>
-      &lt;h1 id="yearName">&lt;/h1>
-   &lt;/div>
-
-   &lt;body background="bg.png">
-      &lt;main class="position-relative">
-      &lt;/main>
-      &lt;script src="../components/entries.js" type="module">&lt;/script>
-      &lt;script src="./scripts/script.js" type="module">&lt;/script>
-      
-   &lt;/body>
-    `;
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
+  get content () {
+    return document.querySelector('.month');
   }
 
-   /**
-    * Create month with appropriate amount of days
-    * @author Anahita Afshari &lt;aafshari@ucsd.edu>
-    * @date 2021-05-30
-    * @param month - the month it is
-    * @param year - the year it is
-    * @return days - how many days are in the month
-    */
-   getDaysInMonth (month, year) {
-      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-      const d = new Date();
-      const n = months[d.getMonth()];
-      const y = d.getFullYear();
-      document.getElementById('monthName').innerHTML = n;
-      document.getElementById('yearName').innerHTML = y;
-      const allDays = getDaysInMonth(d.getMonth(), y);
-      const date = new Date(year, month, 1);
-      const days = [];
-      const dNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-      while (date.getMonth() === month) {
-         const temp = new Date(date);
-         const tempDayName = dNames[temp.getDay()];
-         const tempDayNum = temp.getDate();
-         const tempStr = String(tempDayNum) + '         ' + String(tempDayName);
-         days.push(tempStr);
-         date.setDate(date.getDate() + 1);
-      }
-      return days;
-   }
+  set content (month) {
+    this.innerHTML = `
+            &lt;style>
+              @font-face {
+                font-family: headerText;
+                src: url(../static/styles/bright-sunshine.ttf);
+              }
+              img {
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+                width: 500px;
+                height: 200px;
+              }
+              body {
+                background-image: url("../static/scripts/bg.png");
+              }
+              .monthName {
+                font-size: 60pt;
+                font-family: 'Satisfy', cursive;
+                color: #2C5684;
+                position: absolute;
+                top: 5%;
+                left: 53%;
+              }
+              .monthLogDes {
+                display: flex;
+                border: #95C9FF 3px dotted;
+                align-items: center;
+                justify-content: center;
+                padding-top: 10px;
+                margin-bottom: 10px;
+                margin-right: 20px;
+              }
+            &lt;/style>
+            &lt;header class="monthName">June&lt;/header>
+            &lt;img src="../static/scripts/paint.png">
+            `;
+    this.setAttribute('title', 'Monthly Log');
+    const logEntry = document.createElement('log-entries');
+    logEntry.editable = month.editable;
+    logEntry.entries = month.entries;
+    logEntry.setAttribute('class', 'monthLogDes');
+    this.appendChild(logEntry);
+    this.makeList(month);
+  }
 
   /**
-    * Make a list of the days with appropriate week lines
-    * @author Anahita Afshari &lt;aafshari@ucsd.edu>
-    * @date 2021-05-30
-    */
-   makeList () {
-      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-      const d = new Date();
-      const n = months[d.getMonth()];
-      const y = d.getFullYear();
-      document.getElementById('monthName').innerHTML = n;
-      document.getElementById('yearName').innerHTML = y;
-      const allDays = getDaysInMonth(d.getMonth(), y);
-      const listData = allDays;
-      const listContainer = document.createElement('div');
-      const listElement = document.createElement('ul');
-      const numberOfListItems = listData.length;
-      let listItem;
-      let i;
+     * Make a list of the days with appropriate week lines
+     * @author Anahita Afshari &lt;aafshari@ucsd.edu>
+     * @date 2021-05-30
+     */
+  makeList (month) {
+    const listContainer = document.createElement('div');
+    listContainer.classList.add('push-left');
+    const listElement = document.createElement('ul');
+    listElement.classList.add('list-group');
+    let listItem;
+    let listDes;
+    let i;
 
-      document.getElementsByTagName('body')[0].appendChild(listContainer);
-      listContainer.appendChild(listElement);
+    this.appendChild(listContainer);
+    listContainer.appendChild(listElement);
 
-      for (i = 0; i &lt; numberOfListItems; i++) {
-         const count = listData[i];
-         const weekCount = count.slice(count.length - 3);
-         console.log(weekCount);
-
-         if (weekCount === 'Sun') {
-            const elem = document.createElement('hr');
-            listElement.appendChild(elem);
-            console.log(weekCount);
-         }
-
-         listItem = document.createElement('li');
-         listItem.innerHTML = listData[i];
-         listElement.appendChild(listItem);
+    for (i = 0; i &lt; month.daysOfMonth.length; i++) {
+      const day = month.daysOfMonth[i];
+      if (day.dayOfWeek === 'Sun') {
+        const elem = document.createElement('hr');
+        listElement.appendChild(elem);
       }
-   }
-}
 
+      listItem = document.createElement('li');
+      listItem.classList.add('list-group-item', 'border-0', 'py-0');
+      listItem.innerHTML = day.dayNum + ' ' + day.dayOfWeek + ' ';
+
+      listDes = document.createElement('li');
+      listDes.setAttribute('id', 'description');
+      listDes.classList.add('list-group-item', 'border-0', 'py-0');
+      listDes.contentEditable = month.editable;
+      listDes.innerText = day.description;
+      listDes.style.color = 'black';
+      listDes.style.fontSize = '15px';
+      listDes.style.marginBottom = '30px';
+      listDes.style.marginLeft = '90px';
+      listDes.style.marginTop = '-25px';
+
+      listElement.appendChild(listItem);
+      listElement.appendChild(listDes);
+    }
+
+    let n;
+    const list = listElement.querySelectorAll('li[ id = "description"]');
+
+    if (month.editable) {
+      listElement.addEventListener('input', (event) => {
+        for (n = 0; n &lt; month.daysOfMonth.length; n++) {
+          month.daysOfMonth[n].description = list[n].innerText.trim();
+          console.log(month.daysOfMonth[n].description);
+        }
+      });
+    }
+  }
+}
 customElements.define('monthly-log', MonthlyLog);
 </code></pre>
         </article>
@@ -226,7 +180,7 @@ customElements.define('monthly-log', MonthlyLog);
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Thu Jun 03 2021 04:59:27 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Fri Jun 11 2021 00:10:40 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

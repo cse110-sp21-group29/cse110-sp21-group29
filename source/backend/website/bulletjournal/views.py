@@ -20,7 +20,7 @@ def signup_view(request):
             user = authenticate(username=form.cleaned_data.get('username'),
                                 password=form.cleaned_data.get('password1'))
             login(request, user)
-            return HttpResponseRedirect('daily')
+            return HttpResponseRedirect('app')
     else:
         form = UserCreationForm()
     return render(request, "SignUpPage.html", {'form': form})
@@ -34,7 +34,7 @@ def login_view(request):
                                 password=form.cleaned_data.get('pword'))
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect('daily')
+                return HttpResponseRedirect('app')
     else:
         form = LoginForm()
     return render(request, "LoginPage.html", {'form': form})

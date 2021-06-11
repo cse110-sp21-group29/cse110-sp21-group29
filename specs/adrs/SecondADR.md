@@ -1,4 +1,4 @@
-# Decision of Log-In Inclusion
+# Decision of Metadata
 
 * Status: Approved
 * Deciders: All members of group 29

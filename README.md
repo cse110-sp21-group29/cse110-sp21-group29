@@ -32,6 +32,7 @@ There should be a red icon, which upon pressed would show you 4 options:
 
 # Important links
 [Our bullet journal web-application](http://elew27.pythonanywhere.com/) - Now inactive
+
 [Our bullet journal web-application](https://cse110-sp21-group29.github.io/cse110-sp21-group29/source/frontend/app/) - Frontend only
 
 [Meet the team](https://github.com/cse110-sp21-group29/cse110-sp21-group29/blob/57190d0b908c781484c7a4d84432d488a81af6e0/admin/team.md)
